@@ -1,9 +1,13 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class Javafxx {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class JavaFxController implements Initializable {
 
     @FXML
     private TextField tfTitle;
@@ -15,6 +19,11 @@ public class Javafxx {
         mainWindow.setTitle(title);
 
 
+
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
