@@ -1,29 +1,66 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class JavaFxController implements Initializable {
+public class JavaFxController {
 
     @FXML
-    private TextField tfTitle;
+    private Button displayVersionsButton;
 
     @FXML
-    void btnnOKClickced(ActionEvent event) {
-        Stage mainWindow = (Stage) tfTitle.getScene().getWindow();
-        String title = tfTitle.getText();
-        mainWindow.setTitle(title);
+    private Pane displayVersionsPage;
 
+    @FXML
+    private Pane homePage;
 
+    @FXML
+    private Button newCourseButton;
+
+    @FXML
+    private Pane newCoursePage;
+
+    @FXML
+    private Button saveFeaturesButton;
+
+    @FXML
+    private Pane saveFeaturesPage;
+
+    @FXML
+    private Button updateCourseButton;
+
+    @FXML
+    private Pane updateCoursePage;
+
+    @FXML
+    private Button userManualButton;
+
+    @FXML
+    private Pane userManualPage;
+
+    @FXML
+    void clickDV(ActionEvent event) {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    void clickNC(ActionEvent event) {
 
     }
+
+    @FXML
+    void clickSF(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clickUC(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clickUM(ActionEvent event) {
+
+    }
+
 }
