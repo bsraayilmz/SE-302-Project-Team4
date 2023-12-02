@@ -6,8 +6,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static void main(String[] args) {
-//        project.SQLConnection connection = new project.SQLConnection();
-//        connection.getDatabaseConnection();
         launch();
     }
 
@@ -18,6 +16,4 @@ public class Main extends Application {
        primaryStage.setScene(new Scene(root));
        primaryStage.show();
     }
-
-
 }
