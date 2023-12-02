@@ -2,11 +2,12 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <AnchorPane>
       <children>
          <VBox prefHeight="469.0" prefWidth="205.0" style="-fx-background-color: #30115E;">
@@ -144,11 +145,20 @@
             <children>
                <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0">
                   <children>
-                     <Label layoutX="111.0" layoutY="200.0">
+                     <Label layoutX="162.0" layoutY="43.0" prefHeight="72.0" prefWidth="111.0" text="Welcome!" textAlignment="CENTER">
                         <font>
-                           <Font name="MV Boli" size="24.0" />
+                           <Font size="24.0" />
                         </font>
                      </Label>
+                     <Label layoutX="86.0" layoutY="93.0" prefHeight="98.0" prefWidth="274.0" text="Please click on to the action you &#10;want to do from the left menu!" textAlignment="CENTER">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                     <ImageView fitHeight="302.0" fitWidth="336.0" layoutX="66.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@img.png" />
+                        </image></ImageView>
                   </children>
                </Pane>
                <Pane id="newCoursePage" fx:id="newCoursePage" prefHeight="470.0" prefWidth="446.0" visible="false">
