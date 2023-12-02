@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <AnchorPane>
+      <children>
+         <VBox prefHeight="469.0" prefWidth="205.0" style="-fx-background-color: #30115E;">
+            <children>
+               <Pane prefHeight="89.0" prefWidth="205.0" style="-fx-background-color: #03045E;">
+                  <children>
+                     <Label layoutX="6.0" layoutY="13.0" text="SE302-App">
+                        <font>
+                           <Font name="MV Boli" size="35.0" />
+                        </font>
+                        <textFill>
+                           <LinearGradient endX="1.0" endY="1.0" startX="0.4928909952606635" startY="0.7298578199052133">
+                              <stops>
+                                 <Stop>
+                                    <color>
+                                       <Color red="0.7894737124443054" green="0.36549708247184753" blue="0.36549708247184753" />
+                                    </color>
+                                 </Stop>
+                                 <Stop offset="1.0">
+                                    <color>
+                                       <Color red="1.0" green="1.0" blue="1.0" />
+                                    </color>
+                                 </Stop>
+                              </stops>
+                           </LinearGradient>
+                        </textFill>
+                     </Label>
+                  </children>
+               </Pane>
+               <Button id="newCourseButton" fx:id="newCourseButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickNC" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="New Course">
+                  <textFill>
+                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="1.0" green="1.0" blue="1.0" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </textFill>
+               </Button>
+               <Button id="updateCourseButton" fx:id="updateCourseButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickUC" prefHeight="73.0" prefWidth="213.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="Update Course">
+                  <textFill>
+                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="1.0" green="1.0" blue="1.0" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </textFill>
+                  <effect>
+                     <Blend />
+                  </effect>
+               </Button>
+               <Button id="displayVersionsButton" fx:id="displayVersionsButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickDV" prefHeight="78.0" prefWidth="211.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="Display Versions">
+                  <textFill>
+                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="1.0" green="1.0" blue="1.0" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </textFill>
+                  <effect>
+                     <Blend />
+                  </effect>
+               </Button>
+               <Button id="saveFeaturesButton" fx:id="saveFeaturesButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickSF" prefHeight="82.0" prefWidth="210.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="Save Features">
+                  <textFill>
+                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="1.0" green="1.0" blue="1.0" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </textFill>
+                  <effect>
+                     <Blend />
+                  </effect>
+               </Button>
+               <Button id="userManualButton" fx:id="userManualButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickUM" prefHeight="86.0" prefWidth="225.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="User Manual">
+                  <textFill>
+                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="1.0" green="1.0" blue="1.0" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </textFill>
+                  <effect>
+                     <Blend />
+                  </effect>
+               </Button>
+            </children>
+         </VBox>
+         <AnchorPane layoutX="206.0" prefHeight="470.0" prefWidth="445.0">
+            <children>
+               <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0">
+                  <children>
+                     <Label layoutX="111.0" layoutY="200.0">
+                        <font>
+                           <Font name="MV Boli" size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+               <Pane id="newCoursePage" fx:id="newCoursePage" prefHeight="470.0" prefWidth="446.0" visible="false">
+                  <children>
+                     <Label layoutX="111.0" layoutY="200.0" text="NEW COURSE HOME">
+                        <font>
+                           <Font size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+               <Pane id="updateCoursePage" fx:id="updateCoursePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
+                  <children>
+                     <Label layoutX="94.0" layoutY="200.0" text="UPDATE COURSE HOME">
+                        <font>
+                           <Font size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+               <Pane id="displayVersionsPage" fx:id="displayVersionsPage" layoutX="3.0" prefHeight="470.0" prefWidth="446.0" visible="false">
+                  <children>
+                     <Label layoutX="94.0" layoutY="200.0" text="DISPLAY VERSIONS HOME">
+                        <font>
+                           <Font size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+               <Pane id="saveFeaturesPage" fx:id="saveFeaturesPage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
+                  <children>
+                     <Label layoutX="94.0" layoutY="200.0" text="SAVE FEATURES HOME">
+                        <font>
+                           <Font size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+               <Pane id="userManualPage" fx:id="userManualPage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
+                  <children>
+                     <Label layoutX="94.0" layoutY="200.0" text="USER MANUAL HOME">
+                        <font>
+                           <Font size="24.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </Pane>
+            </children>
+         </AnchorPane>
+      </children>
+   </AnchorPane>
+</StackPane>
