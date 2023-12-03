@@ -164,9 +164,9 @@
                </Pane>
                <Pane id="newCoursePage" fx:id="newCoursePage" prefHeight="470.0" prefWidth="446.0">
                   <children>
-                     <ScrollPane layoutX="-2.0" prefHeight="470.0" prefWidth="451.0">
+                     <ScrollPane layoutX="-2.0" pannable="true" prefHeight="470.0" prefViewportHeight="700.0" prefViewportWidth="700.0" prefWidth="451.0">
                        <content>
-                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="476.0" prefWidth="452.0">
+                         <AnchorPane minHeight="700.0" minWidth="700.0" prefHeight="476.0" prefWidth="452.0">
                               <children>
                                  <ComboBox fx:id="documentLanguageBox" layoutX="11.0" layoutY="55.0" prefHeight="25.0" prefWidth="205.0" promptText="Select Document Language">
                                     <cursor>
@@ -179,7 +179,7 @@
                                  <TextField layoutX="187.0" layoutY="144.0" prefHeight="25.0" prefWidth="86.0" promptText="ECTS" />
                                  <TextField layoutX="186.0" layoutY="188.0" prefHeight="25.0" prefWidth="157.0" promptText="Prerequisite Course Codes" />
                                  <ComboBox fx:id="courseLanguageBox" layoutX="13.0" layoutY="227.0" prefHeight="25.0" prefWidth="134.0" promptText="Course Language" />
-                                 <ComboBox fx:id="courseTypeBox" layoutX="264.0" layoutY="55.0" prefWidth="111.0" promptText="Course Type" />
+                                 <ComboBox fx:id="courseTypeBox" layoutX="295.0" layoutY="55.0" prefWidth="111.0" promptText="Course Type" />
                                  <ComboBox fx:id="courseLevelBox" layoutX="11.0" layoutY="273.0" prefHeight="25.0" prefWidth="111.0" promptText="Course Level" />
                                  <TextArea layoutX="11.0" layoutY="315.0" prefHeight="49.0" prefWidth="130.0" promptText="Teaching Methods and Techniques" />
                                  <TextField layoutX="187.0" layoutY="273.0" prefHeight="25.0" prefWidth="122.0" promptText="Course Coordinator" />
@@ -194,7 +194,8 @@
                                  <ComboBox fx:id="courseDeliveryBox" layoutX="12.0" layoutY="144.0" prefHeight="25.0" prefWidth="140.0" promptText="Mode of Delivery" />
                                  <TextArea layoutX="10.0" layoutY="379.0" prefHeight="62.0" prefWidth="133.0" promptText="Course Objectives" />
                                  <TextArea layoutX="182.0" layoutY="379.0" prefHeight="62.0" prefWidth="132.0" promptText="Learning Outcomes" />
-                                 <TextArea layoutX="320.0" layoutY="322.0" prefHeight="48.0" prefWidth="120.0" promptText="Course Description" />
+                                 <TextArea layoutX="11.0" layoutY="457.0" prefHeight="51.0" prefWidth="138.0" promptText="Course Description" />
+                                 <ComboBox layoutX="173.0" layoutY="470.0" prefWidth="150.0" />
                               </children></AnchorPane>
                        </content>
                      </ScrollPane>
