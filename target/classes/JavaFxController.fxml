@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -143,7 +144,7 @@
          </VBox>
          <AnchorPane layoutX="206.0" prefHeight="470.0" prefWidth="445.0">
             <children>
-               <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0">
+               <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
                   <children>
                      <Label layoutX="162.0" layoutY="43.0" prefHeight="72.0" prefWidth="111.0" text="Welcome!" textAlignment="CENTER">
                         <font>
@@ -161,15 +162,43 @@
                         </image></ImageView>
                   </children>
                </Pane>
-               <Pane id="newCoursePage" fx:id="newCoursePage" prefHeight="470.0" prefWidth="446.0" visible="false">
+               <Pane id="newCoursePage" fx:id="newCoursePage" prefHeight="470.0" prefWidth="446.0">
                   <children>
-                     <Label layoutX="111.0" layoutY="200.0" text="NEW COURSE HOME">
-                        <font>
-                           <Font size="24.0" />
-                        </font>
-                     </Label>
-                  </children>
-               </Pane>
+                     <ScrollPane layoutX="-2.0" pannable="true" prefHeight="470.0" prefWidth="451.0">
+                       <content>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="476.0" prefWidth="452.0">
+                              <children>
+                                 <ComboBox fx:id="documentLanguageBox" layoutX="11.0" layoutY="55.0" prefHeight="25.0" prefWidth="205.0" promptText="Select Document Language">
+                                    <cursor>
+                                       <Cursor fx:constant="HAND" />
+                                    </cursor></ComboBox>
+                                 <TextField layoutX="188.0" layoutY="98.0" prefHeight="25.0" prefWidth="84.0" promptText="Course Code" style="-fx-font-style: italic;" />
+                                 <TextField layoutX="304.0" layoutY="98.0" prefHeight="25.0" prefWidth="104.0" promptText="Theory Hour" style="-fx-font-style: italic;" />
+                                 <TextField layoutX="304.0" layoutY="144.0" prefHeight="25.0" prefWidth="129.0" promptText="Application/Lab Hour" />
+                                 <TextField layoutX="12.0" layoutY="188.0" prefHeight="25.0" prefWidth="126.0" promptText="Local Credit" />
+                                 <TextField layoutX="187.0" layoutY="144.0" prefHeight="25.0" prefWidth="86.0" promptText="ECTS" />
+                                 <TextField layoutX="186.0" layoutY="188.0" prefHeight="25.0" prefWidth="157.0" promptText="Prerequisite Course Codes" />
+                                 <ComboBox fx:id="courseLanguageBox" layoutX="13.0" layoutY="227.0" prefHeight="25.0" prefWidth="134.0" promptText="Course Language" />
+                                 <ComboBox fx:id="courseTypeBox" layoutX="264.0" layoutY="55.0" prefWidth="111.0" promptText="Course Type" />
+                                 <ComboBox fx:id="courseLevelBox" layoutX="11.0" layoutY="273.0" prefHeight="25.0" prefWidth="111.0" promptText="Course Level" />
+                                 <TextArea layoutX="11.0" layoutY="315.0" prefHeight="49.0" prefWidth="130.0" promptText="Teaching Methods and Techniques" />
+                                 <TextField layoutX="187.0" layoutY="273.0" prefHeight="25.0" prefWidth="122.0" promptText="Course Coordinator" />
+                                 <TextField layoutX="186.0" layoutY="226.0" prefHeight="25.0" prefWidth="126.0" promptText="Course Lecturer(s)" />
+                                 <TextField layoutX="185.0" layoutY="321.0" prefHeight="25.0" prefWidth="131.0" promptText="Assistant(s)" />
+                                 <ComboBox fx:id="courseTermBox" layoutX="11.0" layoutY="98.0" prefHeight="25.0" prefWidth="127.0" promptText="Course Term" />
+                                 <Label layoutX="11.0" layoutY="14.0" prefHeight="35.0" prefWidth="172.0" text="1. GENERAL INFORMATION">
+                                    <font>
+                                       <Font name="System Bold" size="12.0" />
+                                    </font>
+                                 </Label>
+                                 <ComboBox fx:id="courseDeliveryBox" layoutX="12.0" layoutY="144.0" prefHeight="25.0" prefWidth="140.0" promptText="Mode of Delivery" />
+                                 <TextArea layoutX="10.0" layoutY="379.0" prefHeight="62.0" prefWidth="133.0" promptText="Course Objectives" />
+                                 <TextArea layoutX="182.0" layoutY="379.0" prefHeight="62.0" prefWidth="132.0" promptText="Learning Outcomes" />
+                                 <TextArea layoutX="7.0" layoutY="441.0" prefHeight="48.0" prefWidth="120.0" promptText="Course Description" />
+                              </children></AnchorPane>
+                       </content>
+                     </ScrollPane>
+                  </children></Pane>
                <Pane id="updateCoursePage" fx:id="updateCoursePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
                   <children>
                      <Label layoutX="94.0" layoutY="200.0" text="UPDATE COURSE HOME">
