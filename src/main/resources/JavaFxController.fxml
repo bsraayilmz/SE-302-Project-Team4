@@ -11,7 +11,7 @@
 <StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <AnchorPane>
       <children>
-         <VBox prefHeight="469.0" prefWidth="205.0" style="-fx-background-color: #30115E;">
+         <VBox prefHeight="480.0" prefWidth="206.0" style="-fx-background-color: #03045E;">
             <children>
                <Pane prefHeight="89.0" prefWidth="205.0" style="-fx-background-color: #03045E;">
                   <children>
@@ -78,27 +78,6 @@
                   </effect>
                </Button>
                <Button id="displayVersionsButton" fx:id="displayVersionsButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickDV" prefHeight="78.0" prefWidth="211.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="Display Versions">
-                  <textFill>
-                     <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
-                        <stops>
-                           <Stop>
-                              <color>
-                                 <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
-                              </color>
-                           </Stop>
-                           <Stop offset="1.0">
-                              <color>
-                                 <Color red="1.0" green="1.0" blue="1.0" />
-                              </color>
-                           </Stop>
-                        </stops>
-                     </LinearGradient>
-                  </textFill>
-                  <effect>
-                     <Blend />
-                  </effect>
-               </Button>
-               <Button id="saveFeaturesButton" fx:id="saveFeaturesButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickSF" prefHeight="82.0" prefWidth="210.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="Save Features">
                   <textFill>
                      <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
                         <stops>
@@ -340,15 +319,6 @@
                <Pane id="displayVersionsPage" fx:id="displayVersionsPage" layoutX="3.0" prefHeight="470.0" prefWidth="446.0" visible="false">
                   <children>
                      <Label layoutX="94.0" layoutY="200.0" text="DISPLAY VERSIONS HOME">
-                        <font>
-                           <Font size="24.0" />
-                        </font>
-                     </Label>
-                  </children>
-               </Pane>
-               <Pane id="saveFeaturesPage" fx:id="saveFeaturesPage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
-                  <children>
-                     <Label layoutX="94.0" layoutY="200.0" text="SAVE FEATURES HOME">
                         <font>
                            <Font size="24.0" />
                         </font>

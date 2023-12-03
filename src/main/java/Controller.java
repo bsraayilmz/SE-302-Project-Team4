@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     public CoursesModel model = new CoursesModel();
     @FXML
-    Pane displayVersionsPage, newCoursePage, updateCoursePage, userManualPage, homePage, saveFeaturesPage;
+    Pane displayVersionsPage, newCoursePage, updateCoursePage, userManualPage, homePage;
 
     @FXML
     Button newCourseButton;
@@ -22,7 +22,6 @@ public class Controller implements Initializable {
             newCoursePage.setVisible(true);
             updateCoursePage.setVisible(false);
             displayVersionsPage.setVisible(false);
-            saveFeaturesPage.setVisible(false);
             userManualPage.setVisible(false);
         });
     }
@@ -35,7 +34,6 @@ public class Controller implements Initializable {
             newCoursePage.setVisible(false);
             updateCoursePage.setVisible(true);
             displayVersionsPage.setVisible(false);
-            saveFeaturesPage.setVisible(false);
             userManualPage.setVisible(false);
         });
     }
@@ -49,7 +47,6 @@ public class Controller implements Initializable {
             newCoursePage.setVisible(false);
             updateCoursePage.setVisible(false);
             displayVersionsPage.setVisible(true);
-            saveFeaturesPage.setVisible(false);
             userManualPage.setVisible(false);
         });
     }
@@ -63,22 +60,7 @@ public class Controller implements Initializable {
             newCoursePage.setVisible(false);
             updateCoursePage.setVisible(false);
             displayVersionsPage.setVisible(false);
-            saveFeaturesPage.setVisible(false);
             userManualPage.setVisible(true);
-        });
-    }
-
-    @FXML
-    Button saveFeaturesButton;
-
-    public void clickSF(){
-        saveFeaturesButton.setOnAction(event -> {
-            homePage.setVisible(false);
-            newCoursePage.setVisible(false);
-            updateCoursePage.setVisible(false);
-            displayVersionsPage.setVisible(false);
-            saveFeaturesPage.setVisible(true);
-            userManualPage.setVisible(false);
         });
     }
 
