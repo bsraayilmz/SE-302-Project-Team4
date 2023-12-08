@@ -3,6 +3,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
 import java.net.URL;
@@ -14,7 +15,18 @@ public class Controller implements Initializable {
     Pane displayVersionsPage, newCoursePage, updateCoursePage, userManualPage, homePage;
 
     @FXML
+
+    ComboBox<String> documentLang;
+    String English = "English";
+    String Turkish = "Turkish";
+    ObservableList<String> documentLanguageList = FXCollections.observableArrayList(English, Turkish);
+
+    @FXML
     Button newCourseButton;
+
+    public void clickDocumentLangCB(){
+        documentLang.getItems().addAll(documentLanguageList);
+    }
 
     public void clickNC(){
         newCourseButton.setOnAction(event -> {
@@ -72,6 +84,7 @@ public class Controller implements Initializable {
         } else {
             System.out.println("The connection is failed.");
         }
+        clickDocumentLangCB();
     }
 
 }

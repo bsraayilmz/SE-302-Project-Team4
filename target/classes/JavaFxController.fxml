@@ -143,12 +143,12 @@
                </Pane>
                <Pane id="newCoursePage" fx:id="newCoursePage" prefHeight="470.0" prefWidth="446.0" visible="false">
                   <children>
-                     <ScrollPane layoutX="-2.0" pannable="true" prefHeight="1676.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
+                     <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2846.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
                        <content>
-                         <AnchorPane minHeight="3000.0" minWidth="700.0" prefHeight="476.0" prefWidth="452.0">
+                         <AnchorPane minHeight="5210.0" minWidth="700.0" prefHeight="476.0" prefWidth="452.0">
                               <children>
                                  <TextField layoutX="19.0" layoutY="142.0" prefHeight="26.0" prefWidth="78.0" style="-fx-font-style: italic;" />
-                                 <Label alignment="CENTER" layoutX="137.0" layoutY="14.0" prefHeight="35.0" prefWidth="186.0" text="GENERAL INFORMATION" textFill="#6c0000">
+                                 <Label alignment="CENTER" layoutX="118.0" layoutY="26.0" prefHeight="35.0" prefWidth="206.0" text="1. GENERAL INFORMATION" textFill="#6c0000">
                                     <font>
                                        <Font name="System Bold" size="15.0" />
                                     </font>
@@ -274,7 +274,7 @@
                                  <CheckBox layoutX="151.0" layoutY="988.0" mnemonicParsing="false" text="Communication and Management Skills Course" />
                                  <CheckBox layoutX="151.0" layoutY="964.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="121.0" text="Supportive Course" />
                                  <Line endX="331.0" layoutX="109.0" layoutY="1055.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                 <Label alignment="CENTER" layoutX="40.0" layoutY="1070.0" prefHeight="35.0" prefWidth="362.0" text=" WEEKLY SUBJECTS AND REQUIRED MATERIALS" textFill="#6c0000">
+                                 <Label alignment="CENTER" layoutX="40.0" layoutY="1070.0" prefHeight="35.0" prefWidth="362.0" text=" 2. WEEKLY SUBJECTS AND REQUIRED MATERIALS" textFill="#6c0000">
                                     <font>
                                        <Font name="System Bold" size="15.0" />
                                     </font>
@@ -295,12 +295,66 @@
                                     <font>
                                        <Font size="11.0" />
                                     </font></Label>
-                                 <Label alignment="CENTER" layoutX="166.0" layoutY="1500.0" prefHeight="35.0" prefWidth="111.0" text="ASSESSMENT" textFill="#6c0000">
+                                 <Label alignment="CENTER" layoutX="159.0" layoutY="1501.0" prefHeight="35.0" prefWidth="120.0" text="3. ASSESSMENT" textFill="#6c0000">
                                     <font>
                                        <Font name="System Bold" size="15.0" />
                                     </font>
                                  </Label>
                                  <Line endX="331.0" layoutX="107.0" layoutY="1487.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
+                                 <TableView editable="true" layoutX="2.0" layoutY="1544.0" prefHeight="230.0" prefWidth="431.0">
+                                    <columns>
+                                       <TableColumn prefWidth="112.80004572868347" text="Semester Activities" />
+                                       <TableColumn prefWidth="52.79998779296875" text="Number" />
+                                       <TableColumn prefWidth="61.60003662109375" text="Weighting" />
+                                       <TableColumn prefWidth="27.199966430664062" text="L01" />
+                                       <TableColumn prefWidth="28.79998779296875" text="L02" />
+                                       <TableColumn prefWidth="27.99993896484375" text="L03" />
+                                       <TableColumn prefWidth="29.5999755859375" text="L04" />
+                                       <TableColumn prefWidth="29.60003662109375" text="L05" />
+                                       <TableColumn prefWidth="27.20001220703125" text="L06" />
+                                       <TableColumn prefWidth="29.60002441406249" text="L07" />
+                                    </columns>
+                                 </TableView>
+                                 <TableView editable="true" layoutX="14.0" layoutY="1809.0" prefHeight="230.0" prefWidth="412.0">
+                                    <columns>
+                                       <TableColumn prefWidth="245.99998474121094" text="Total Weight" />
+                                       <TableColumn prefWidth="73.20001220703125" text="Number" />
+                                       <TableColumn prefWidth="90.79998779296875" text="Point" />
+                                    </columns>
+                                 </TableView>
+                                 <Line endX="331.0" layoutX="108.0" layoutY="1793.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
+                                 <Line endX="331.0" layoutX="108.0" layoutY="2056.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
+                                 <Label alignment="CENTER" layoutX="115.0" layoutY="2074.0" prefHeight="35.0" prefWidth="214.0" text="4. ECTS / WORKLOAD TABLE" textFill="#6c0000">
+                                    <font>
+                                       <Font name="System Bold" size="15.0" />
+                                    </font>
+                                 </Label>
+                                 <TableView editable="true" layoutX="14.0" layoutY="2119.0" prefHeight="230.0" prefWidth="412.0">
+                                    <columns>
+                                       <TableColumn prefWidth="182.40002155303955" text="Semester Activities" />
+                                       <TableColumn prefWidth="62.39997863769531" text="Number" />
+                                       <TableColumn prefWidth="102.39996337890625" text="Duration (Hours)" />
+                                       <TableColumn prefWidth="65.5999755859375" text="Workload" />
+                                    </columns>
+                                 </TableView>
+                                 <Label alignment="CENTER" layoutX="71.0" layoutY="2413.0" prefHeight="35.0" prefWidth="318.0" text="5. COURSE/PROGRAM OUTCOME MATRIX" textFill="#6c0000">
+                                    <font>
+                                       <Font name="System Bold" size="15.0" />
+                                    </font>
+                                 </Label>
+                                 <Line endX="331.0" layoutX="110.0" layoutY="2397.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
+                                 <TableView editable="true" layoutX="17.0" layoutY="2481.0" prefHeight="230.0" prefWidth="412.0">
+                                    <columns>
+                                       <TableColumn prefWidth="28.0" text="#" />
+                                       <TableColumn prefWidth="217.60004806518555" text="Program Competencies/Outcomes" />
+                                       <TableColumn prefWidth="121.60003662109375" text="Contribution Level" />
+                                       <TableColumn prefWidth="43.20001220703125" text="LO#" />
+                                    </columns>
+                                 </TableView>
+                                 <Label layoutX="21.0" layoutY="2455.0" prefHeight="18.0" prefWidth="368.0" style="-fx-font-style: italic;" text="Please enter a number between 1 and 5 for contribution level." />
+                                 <Button id="saveButton" fx:id="saveButton" layoutX="173.0" layoutY="2765.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" styleClass="saveButton" stylesheets="@application.css" text="SAVE" />
+                                 <Line endX="331.0" layoutX="111.0" layoutY="2733.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
+                                 <ComboBox fx:id="documentLang" layoutX="-1.0" prefHeight="26.0" prefWidth="122.0" promptText="Doc. Language" styleClass="documentLang" stylesheets="@application.css" />
                               </children>
                          </AnchorPane>
                        </content>
