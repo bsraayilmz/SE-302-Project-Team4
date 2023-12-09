@@ -179,6 +179,9 @@ public class Controller implements Initializable {
         } else {
             System.out.println("The connection is failed.");
         }
+        tableViewInitializer();
+    }
+    public void tableViewInitializer(){
 
         semesterActivities = FXCollections.observableArrayList(
                 new SemesterActivityRow("Participation"),
@@ -255,7 +258,43 @@ public class Controller implements Initializable {
 //           // Düzenleme işlemlerini burada gerçekleştir
             tableView.getItems().get(rowIndex).setSemesterActivitiesColumn(newValue);
         });*/
-
+    }
+    //Methods to be able to edit the corresponding columns' cells, i.e., number column's first cell.
+    public void changeNumberCellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setNumberColumn(editedCell.getNewValue().toString());
+    }
+    public void changeWeightCellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setWeightingColumn(editedCell.getNewValue().toString());
+    }
+    public void changeL01CellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setL01Column(editedCell.getNewValue().toString());
+    }
+    public void changeL02CellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setL02Column(editedCell.getNewValue().toString());
+    }
+    public void changeL03CellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setL03Column(editedCell.getNewValue().toString());
+    }
+    public void changeL04CellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setL04Column(editedCell.getNewValue().toString());
+    }
+    public void changeL05CellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setL05Column(editedCell.getNewValue().toString());
+    }
+    public void changeL06CellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setL06Column(editedCell.getNewValue().toString());
+    }
+    public void changeL07CellEvent(TableColumn.CellEditEvent editedCell){
+        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+        selectedRow.setL07Column(editedCell.getNewValue().toString());
     }
 }
 
