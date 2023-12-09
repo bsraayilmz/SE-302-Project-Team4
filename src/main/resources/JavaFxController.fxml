@@ -427,20 +427,20 @@
                                             </Label>
                                             <Line endX="331.0" layoutX="107.0" layoutY="1487.0" smooth="false"
                                                   startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5"/>
-                                            <TableView editable="true" layoutX="2.0" layoutY="1544.0" prefHeight="230.0"
+                                            <TableView fx:id="tableView" editable="true" layoutX="2.0" layoutY="1544.0" prefHeight="230.0"
                                                        prefWidth="431.0">
                                                 <columns>
-                                                    <TableColumn prefWidth="112.80004572868347"
+                                                    <TableColumn fx:id="semesterActivitiesColumn" prefWidth="112.80004572868347"
                                                                  text="Semester Activities"/>
-                                                    <TableColumn prefWidth="52.79998779296875" text="Number"/>
-                                                    <TableColumn prefWidth="61.60003662109375" text="Weighting"/>
-                                                    <TableColumn prefWidth="27.199966430664062" text="L01"/>
-                                                    <TableColumn prefWidth="28.79998779296875" text="L02"/>
-                                                    <TableColumn prefWidth="27.99993896484375" text="L03"/>
-                                                    <TableColumn prefWidth="29.5999755859375" text="L04"/>
-                                                    <TableColumn prefWidth="29.60003662109375" text="L05"/>
-                                                    <TableColumn prefWidth="27.20001220703125" text="L06"/>
-                                                    <TableColumn prefWidth="29.60002441406249" text="L07"/>
+                                                    <TableColumn fx:id="numberColumn" prefWidth="61.60003662109375" text="Number"/>
+                                                    <TableColumn fx:id="weightingColumn" prefWidth="61.60003662109375" text="Weighting"/>
+                                                    <TableColumn fx:id="l01Column" prefWidth="27.199966430664062" text="L01"/>
+                                                    <TableColumn fx:id="l02Column" prefWidth="28.79998779296875" text="L02"/>
+                                                    <TableColumn fx:id="l03Column" prefWidth="27.99993896484375" text="L03"/>
+                                                    <TableColumn fx:id="l04Column" prefWidth="29.5999755859375" text="L04"/>
+                                                    <TableColumn fx:id="l05Column" prefWidth="29.60003662109375" text="L05"/>
+                                                    <TableColumn fx:id="l06Column" prefWidth="27.20001220703125" text="L06"/>
+                                                    <TableColumn fx:id="l07Column" prefWidth="29.60002441406249" text="L07"/>
                                                 </columns>
                                             </TableView>
                                             <TableView editable="true" layoutX="14.0" layoutY="1809.0"

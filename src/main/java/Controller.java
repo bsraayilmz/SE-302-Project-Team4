@@ -1,8 +1,12 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -125,6 +129,48 @@ public class Controller implements Initializable {
         });
     }
 
+    public ObservableList<SemesterActivityRow> semesterActivities;
+    @FXML
+    public TableView<SemesterActivityRow> tableView;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> semesterActivitiesColumn;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> numberColumn;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> weightingColumn ;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> l01Column;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> l02Column ;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> l03Column;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> l04Column;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> l05Column ;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> l06Column ;
+    @FXML
+    public TableColumn<SemesterActivityRow, String> l07Column;
+
+
+//    public ObservableList<SemesterActivityRow> semesterActivities2;
+
+//    @FXML
+//    public TableView<SemesterActivityRow> tableViews;
+
+//    @FXML
+//    public TableColumn<SemesterActivityRow, String> semesterActColumn;
+//
+//    @FXML
+//    public TableColumn<SemesterActivityRow, String> numbColumn;
+//
+//    @FXML
+//    public TableColumn<SemesterActivityRow, String> durationColumn;
+//
+//    @FXML
+//    public TableColumn<SemesterActivityRow, String> workloadColumn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (model.isDatabaseConnected()) {
@@ -133,6 +179,83 @@ public class Controller implements Initializable {
         } else {
             System.out.println("The connection is failed.");
         }
+
+        semesterActivities = FXCollections.observableArrayList(
+                new SemesterActivityRow("Participation"),
+                new SemesterActivityRow("Laboratory/Application"),
+                new SemesterActivityRow("Field Work"),
+                new SemesterActivityRow("Quiz/Studio Critique"),
+                new SemesterActivityRow("Homework/Assignment"),
+                new SemesterActivityRow("Presentation/Jury"),
+                new SemesterActivityRow("Project"),
+                new SemesterActivityRow("Seminar/Workshop"),
+                new SemesterActivityRow("Oral Exam"),
+                new SemesterActivityRow("Midterm"),
+                new SemesterActivityRow("Final Exam"),
+                new SemesterActivityRow("Total")
+        );
+
+        semesterActivitiesColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("semesterActivitiesColumn"));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("numberColumn"));
+        weightingColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("weightingColumn"));
+        l01Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l01Column"));
+        l02Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l02Column"));
+        l03Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l03Column"));
+        l04Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l04Column"));
+        l05Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l05Column"));
+        l06Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l06Column"));
+        l07Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l07Column"));
+
+        tableView.setItems(semesterActivities);
+
+        // Düzenleme için TextFieldTableCell kullan
+
+        numberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        weightingColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        l01Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l02Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l03Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l04Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l05Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l06Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l07Column.setCellFactory(TextFieldTableCell.forTableColumn());
+
+
+  /*      semesterActivities2 = FXCollections.observableArrayList(
+                new SemesterActivityRow("Course Hours (Including exam week: 16 x total hours)"),
+                new SemesterActivityRow("Laboratory/Application Hours (Including exam week: 16 x total hours)"),
+                new SemesterActivityRow("Study Hours out of Class"),
+                new SemesterActivityRow("Field Work"),
+                new SemesterActivityRow("Quiz/Studio Critique"),
+                new SemesterActivityRow("Homework/Assignment"),
+                new SemesterActivityRow("Presentation/Jury"),
+                new SemesterActivityRow("Project"),
+                new SemesterActivityRow("Seminar/Workshop"),
+                new SemesterActivityRow("Oral Exam"),
+                new SemesterActivityRow("Midterm"),
+                new SemesterActivityRow("Final Exam"),
+                new SemesterActivityRow("Total")
+        );
+
+        semesterActivitiesColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("semesterActivitiesColumn"));
+        numbColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("numbColumn"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("durationColumn"));
+        workloadColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("workloadColumn"));
+
+
+        tableViews.setItems(semesterActivities2);
+
+        numbColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        workloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        semesterActivitiesColumn.setOnEditCommit(event -> {
+            int rowIndex = event.getTablePosition().getRow();
+            var newValue = event.getNewValue();
+//           // Düzenleme işlemlerini burada gerçekleştir
+            tableView.getItems().get(rowIndex).setSemesterActivitiesColumn(newValue);
+        });*/
+
     }
 }
 
