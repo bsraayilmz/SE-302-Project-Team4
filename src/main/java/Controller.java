@@ -19,31 +19,100 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    /* Database controller variables */
     public CoursesModel model = new CoursesModel();
     public courseInfoController courseInfoController = new courseInfoController(this);
-    public ObservableList<SemesterActivityRow> semesterActivities;
+
+    /* Variables for Section 2: Week Table */
+    public ObservableList<WeeklySubjects> weeklySubjects;
     @FXML
-    public TableView<SemesterActivityRow> tableView;
+    public TableView<WeeklySubjects> weekTable;
     @FXML
-    public TableColumn<SemesterActivityRow, String> semesterActivitiesColumn;
+    public TableColumn<WeeklySubjects,String> weekColumn;
     @FXML
-    public TableColumn<SemesterActivityRow, String> numberColumn;
+    public TableColumn<WeeklySubjects,String> subjectColumn;
     @FXML
-    public TableColumn<SemesterActivityRow, String> weightingColumn;
+    public TableColumn<WeeklySubjects,String> reqColumn;
+
+    /* Variables for Section 3: Assessment Table */
+    public ObservableList<AssessmentSemAct> semesterActivities;
     @FXML
-    public TableColumn<SemesterActivityRow, String> l01Column;
+    public TableView<AssessmentSemAct> tableView;
     @FXML
-    public TableColumn<SemesterActivityRow, String> l02Column;
+    public TableColumn<AssessmentSemAct, String> semesterActivitiesColumn;
     @FXML
-    public TableColumn<SemesterActivityRow, String> l03Column;
+    public TableColumn<AssessmentSemAct, String> numberColumn;
     @FXML
-    public TableColumn<SemesterActivityRow, String> l04Column;
+    public TableColumn<AssessmentSemAct, String> weightingColumn ;
     @FXML
-    public TableColumn<SemesterActivityRow, String> l05Column;
+    public TableColumn<AssessmentSemAct, String> l01Column;
     @FXML
-    public TableColumn<SemesterActivityRow, String> l06Column;
+    public TableColumn<AssessmentSemAct, String> l02Column ;
     @FXML
-    public TableColumn<SemesterActivityRow, String> l07Column;
+    public TableColumn<AssessmentSemAct, String> l03Column;
+    @FXML
+    public TableColumn<AssessmentSemAct, String> l04Column;
+    @FXML
+    public TableColumn<AssessmentSemAct, String> l05Column ;
+    @FXML
+    public TableColumn<AssessmentSemAct, String> l06Column ;
+    @FXML
+    public TableColumn<AssessmentSemAct, String> l07Column;
+
+    /* Variables for Section 4: ECTS/Workload Table */
+    public ObservableList<WorkloadSemAct> semesterWorkload;
+
+    @FXML
+    public TableView<WorkloadSemAct> tableWorkload;
+
+    @FXML
+    public TableColumn<WorkloadSemAct, String> semesterActColumn;
+
+    @FXML
+    public TableColumn<WorkloadSemAct, String> numbColumn;
+
+    @FXML
+    public TableColumn<WorkloadSemAct, String> durationColumn;
+
+    @FXML
+    public TableColumn<WorkloadSemAct, String> workloadColumn;
+
+    /* Variables for Section 5: Course/Program Outcome Matrix */
+    public ObservableList<CourseOutcome> courseOutcomes; /* represents the non-editable first columns: # and program competencies / outcomes. */
+    @FXML
+    public TableView<CourseOutcome> outcomeTable;
+    @FXML
+    public TableColumn<CourseOutcome, String> sharpColumn;
+    @FXML
+    public TableColumn<CourseOutcome, String> outcomeColumn;
+    @FXML
+    public TableColumn<CourseOutcome, String> contColumn;
+    @FXML
+    public TableColumn<CourseOutcome, String> subContCol1;
+    @FXML
+    public TableColumn<CourseOutcome, String> subContCol2;
+    @FXML
+    public TableColumn<CourseOutcome, String> subContCol3;
+    @FXML
+    public TableColumn<CourseOutcome, String> subContCol4;
+    @FXML
+    public TableColumn<CourseOutcome, String> subContCol5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //to be able to refresh the all information
     ObservableList<courseInfo> courseList = FXCollections.observableArrayList();
     String queryCourseInfo = null;
@@ -93,6 +162,13 @@ public class Controller implements Initializable {
     String cName, cCode, semester, languageS, prerequisites, type, teachingMethods, objectives, outcomes, description, category;
     int theoryTime, labTime, credit, courseECTS;
 
+
+
+
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (model.isDatabaseConnected()) {
@@ -101,9 +177,203 @@ public class Controller implements Initializable {
         } else {
             System.out.println("The connection is failed.");
         }
-        tableViewInitializer();
+        weekTableInitializer();
+        assessmentTableInitializer();
+        workloadTableInitializer();
+        outcomeTableInitializer();
         courseInfoController.loadData();
     }
+
+    //Initializing method for the Week table
+    public void weekTableInitializer(){
+        weeklySubjects = FXCollections.observableArrayList(
+                new WeeklySubjects("1"),
+                new WeeklySubjects("2"),
+                new WeeklySubjects("3"),
+                new WeeklySubjects("4"),
+                new WeeklySubjects("5"),
+                new WeeklySubjects("6"),
+                new WeeklySubjects("7"),
+                new WeeklySubjects("8"),
+                new WeeklySubjects("9"),
+                new WeeklySubjects("10"),
+                new WeeklySubjects("11"),
+                new WeeklySubjects("12"),
+                new WeeklySubjects("13"),
+                new WeeklySubjects("14"),
+                new WeeklySubjects("15"),
+                new WeeklySubjects("16")
+        );
+
+        weekColumn.setCellValueFactory(new PropertyValueFactory<WeeklySubjects, String>("weekColumn"));
+        subjectColumn.setCellValueFactory(new PropertyValueFactory<WeeklySubjects, String>("subjectColumn"));
+        reqColumn.setCellValueFactory(new PropertyValueFactory<WeeklySubjects, String>("reqColumn"));
+
+        weekTable.setItems(weeklySubjects);
+
+        subjectColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        reqColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+    //Initializing method for the Assessment table
+    public void assessmentTableInitializer(){
+        semesterActivities = FXCollections.observableArrayList(
+                new AssessmentSemAct("Participation"),
+                new AssessmentSemAct("Laboratory/Application"),
+                new AssessmentSemAct("Field Work"),
+                new AssessmentSemAct("Quiz/Studio Critique"),
+                new AssessmentSemAct("Homework/Assignment"),
+                new AssessmentSemAct("Presentation/Jury"),
+                new AssessmentSemAct("Project"),
+                new AssessmentSemAct("Seminar/Workshop"),
+                new AssessmentSemAct("Oral Exam"),
+                new AssessmentSemAct("Midterm"),
+                new AssessmentSemAct("Final Exam"),
+                new AssessmentSemAct("Total")
+        );
+
+        semesterActivitiesColumn.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("semesterActivitiesColumn"));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("numberColumn"));
+        weightingColumn.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("weightingColumn"));
+        l01Column.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("l01Column"));
+        l02Column.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("l02Column"));
+        l03Column.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("l03Column"));
+        l04Column.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("l04Column"));
+        l05Column.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("l05Column"));
+        l06Column.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("l06Column"));
+        l07Column.setCellValueFactory(new PropertyValueFactory<AssessmentSemAct, String>("l07Column"));
+
+        tableView.setItems(semesterActivities);
+
+        // Düzenleme için TextFieldTableCell kullan
+
+        numberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        weightingColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        l01Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l02Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l03Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l04Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l05Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l06Column.setCellFactory(TextFieldTableCell.forTableColumn());
+        l07Column.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+    //Initializing method for the Workload table
+    public void workloadTableInitializer(){
+        semesterWorkload = FXCollections.observableArrayList(
+                new WorkloadSemAct("Course Hours (Including exam week: 16 x total hours)"),
+                new WorkloadSemAct("Laboratory/Application Hours (Including exam week: 16 x total hours)"),
+                new WorkloadSemAct("Study Hours out of Class"),
+                new WorkloadSemAct("Field Work"),
+                new WorkloadSemAct("Quiz/Studio Critique"),
+                new WorkloadSemAct("Homework/Assignment"),
+                new WorkloadSemAct("Presentation/Jury"),
+                new WorkloadSemAct("Project"),
+                new WorkloadSemAct("Seminar/Workshop"),
+                new WorkloadSemAct("Oral Exam"),
+                new WorkloadSemAct("Midterm"),
+                new WorkloadSemAct("Final Exam"),
+                new WorkloadSemAct("Total")
+        );
+
+        semesterActColumn.setCellValueFactory(new PropertyValueFactory<WorkloadSemAct, String>("semesterActColumn"));
+        numbColumn.setCellValueFactory(new PropertyValueFactory<WorkloadSemAct, String>("numbColumn"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<WorkloadSemAct, String>("durationColumn"));
+        workloadColumn.setCellValueFactory(new PropertyValueFactory<WorkloadSemAct, String>("workloadColumn"));
+
+        tableWorkload.setItems(semesterWorkload);
+
+        numbColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        workloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+    //Initializing method for the Outcome table
+    public void outcomeTableInitializer(){
+        courseOutcomes = FXCollections.observableArrayList(
+                new CourseOutcome("1", "To have adequate knowledge in Mathematics, Science and\n" +
+                        "Computer Engineering; to be able to use theoretical and\n" +
+                        "applied information in these areas on complex engineering\n" +
+                        "problems."),
+                new CourseOutcome("2", "To be able to identify, define, formulate, and solve complex\n" +
+                        "Computer Engineering problems; to be able to select and apply\n" +
+                        "proper analysis and modeling methods for this purpose."),
+                new CourseOutcome("3", "To be able to design a complex system, process, device or\n" +
+                        "product under realistic constraints and conditions, in such a\n" +
+                        "way as to meet the requirements; to be able to apply modern\n" +
+                        "design methods for this purpose."),
+                new CourseOutcome("4", "To be able to devise, select, and use modern techniques and\n" +
+                        "tools needed for analysis and solution of complex problems in\n" +
+                        "Computer Engineering applications; to be able to use\n" +
+                        "information technologies effectively."),
+                new CourseOutcome("5", "To be able to design and conduct experiments, gather data,\n" +
+                        "analyze, and interpret results for investigating complex\n" +
+                        "engineering problems or Computer Engineering research\n" +
+                        "topics."),
+                new CourseOutcome("6", "To be able to work efficiently in Computer Engineering\n" +
+                        "disciplinary and multi-disciplinary teams; to be able to work\n" +
+                        "individually."),
+                new CourseOutcome("7", "To be able to communicate effectively in Turkish, both orally\n" +
+                        "and in writing; to be able to author and comprehend written\n" +
+                        "reports, to be able to prepare design and implementation\n" +
+                        "reports, to present effectively, to be able to give and receive\n" +
+                        "clear and comprehensible instructions."),
+                new CourseOutcome("8", "To have knowledge about global and social impact of Computer\n" +
+                        "Engineering practices on health, environment, and safety; to\n" +
+                        "have knowledge about contemporary issues as they pertain to\n" +
+                        "engineering; to be aware of the legal ramifications of Computer\n" +
+                        "Engineering solutions."),
+                new CourseOutcome("9", "To be aware of ethical behavior, professional and ethical\n" +
+                        "responsibility; to have knowledge about standards utilized in\n" +
+                        "engineering applications."),
+                new CourseOutcome("10", "To have knowledge about industrial practices such as project\n" +
+                        "management, risk management, and change management; to\n" +
+                        "have awareness of entrepreneurship and innovation; to have\n" +
+                        "knowledge about sustainable development."),
+                new CourseOutcome("11", "To be able to collect data in the area of Computer Engineering,\n" +
+                        "and to be able to communicate with colleagues in a foreign\n" +
+                        "language. (\"European Language Portfolio Global Scale\", Level\n" +
+                        "B1)"),
+                new CourseOutcome("12", "To be able to speak a second foreign language at a medium\n" +
+                        "level of fluency efficiently."),
+                new CourseOutcome("13", "To recognize the need for lifelong learning; to be able to access\n" +
+                        "information, to be able to stay current with developments in\n" +
+                        "science and technology; to be able to relate the knowledge accumulated throughout the human history to Computer\n" +
+                        "Engineering.")
+        );
+
+        sharpColumn.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("sharpColumn"));
+        outcomeColumn.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("outcomeColumn"));
+//        contColumn.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("contColumn"));
+        subContCol1.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("subContCol1"));
+        subContCol2.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("subContCol2"));
+        subContCol3.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("subContCol3"));
+        subContCol4.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("subContCol4"));
+        subContCol5.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("subContCol5"));
+        outcomeTable.setItems(courseOutcomes);
+
+//        addNestedColumns();
+//        contColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        subContCol1.setCellFactory(TextFieldTableCell.forTableColumn());
+        subContCol2.setCellFactory(TextFieldTableCell.forTableColumn());
+        subContCol3.setCellFactory(TextFieldTableCell.forTableColumn());
+        subContCol3.setCellFactory(TextFieldTableCell.forTableColumn());
+        subContCol4.setCellFactory(TextFieldTableCell.forTableColumn());
+        subContCol5.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void clickNC() {
         newCourseButton.setOnAction(event -> {
@@ -345,8 +615,7 @@ public class Controller implements Initializable {
         }
         return "Transferable Skill Course";
     }
-//
-
+    //Database adding methods
 
     @FXML
     public void saveENG() {
@@ -411,145 +680,88 @@ public class Controller implements Initializable {
         }
     }
 
-//    public ObservableList<SemesterActivityRow> semesterActivities2;
-
-//    @FXML
-//    public TableView<SemesterActivityRow> tableViews;
-
-//    @FXML
-//    public TableColumn<SemesterActivityRow, String> semesterActColumn;
-//
-//    @FXML
-//    public TableColumn<SemesterActivityRow, String> numbColumn;
-//
-//    @FXML
-//    public TableColumn<SemesterActivityRow, String> durationColumn;
-//
-//    @FXML
-//    public TableColumn<SemesterActivityRow, String> workloadColumn;
-
-    public void tableViewInitializer() {
-        semesterActivities = FXCollections.observableArrayList(
-                new SemesterActivityRow("Participation"),
-                new SemesterActivityRow("Laboratory/Application"),
-                new SemesterActivityRow("Field Work"),
-                new SemesterActivityRow("Quiz/Studio Critique"),
-                new SemesterActivityRow("Homework/Assignment"),
-                new SemesterActivityRow("Presentation/Jury"),
-                new SemesterActivityRow("Project"),
-                new SemesterActivityRow("Seminar/Workshop"),
-                new SemesterActivityRow("Oral Exam"),
-                new SemesterActivityRow("Midterm"),
-                new SemesterActivityRow("Final Exam"),
-                new SemesterActivityRow("Total")
-        );
-
-        semesterActivitiesColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("semesterActivitiesColumn"));
-        numberColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("numberColumn"));
-        weightingColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("weightingColumn"));
-        l01Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l01Column"));
-        l02Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l02Column"));
-        l03Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l03Column"));
-        l04Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l04Column"));
-        l05Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l05Column"));
-        l06Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l06Column"));
-        l07Column.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("l07Column"));
-
-        tableView.setItems(semesterActivities);
-
-        // Düzenleme için TextFieldTableCell kullan
-
-        numberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        weightingColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        l01Column.setCellFactory(TextFieldTableCell.forTableColumn());
-        l02Column.setCellFactory(TextFieldTableCell.forTableColumn());
-        l03Column.setCellFactory(TextFieldTableCell.forTableColumn());
-        l04Column.setCellFactory(TextFieldTableCell.forTableColumn());
-        l05Column.setCellFactory(TextFieldTableCell.forTableColumn());
-        l06Column.setCellFactory(TextFieldTableCell.forTableColumn());
-        l07Column.setCellFactory(TextFieldTableCell.forTableColumn());
-
-
-  /*      semesterActivities2 = FXCollections.observableArrayList(
-                new SemesterActivityRow("Course Hours (Including exam week: 16 x total hours)"),
-                new SemesterActivityRow("Laboratory/Application Hours (Including exam week: 16 x total hours)"),
-                new SemesterActivityRow("Study Hours out of Class"),
-                new SemesterActivityRow("Field Work"),
-                new SemesterActivityRow("Quiz/Studio Critique"),
-                new SemesterActivityRow("Homework/Assignment"),
-                new SemesterActivityRow("Presentation/Jury"),
-                new SemesterActivityRow("Project"),
-                new SemesterActivityRow("Seminar/Workshop"),
-                new SemesterActivityRow("Oral Exam"),
-                new SemesterActivityRow("Midterm"),
-                new SemesterActivityRow("Final Exam"),
-                new SemesterActivityRow("Total")
-        );
-
-        semesterActivitiesColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("semesterActivitiesColumn"));
-        numbColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("numbColumn"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("durationColumn"));
-        workloadColumn.setCellValueFactory(new PropertyValueFactory<SemesterActivityRow, String>("workloadColumn"));
-
-
-        tableViews.setItems(semesterActivities2);
-
-        numbColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        workloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        semesterActivitiesColumn.setOnEditCommit(event -> {
-            int rowIndex = event.getTablePosition().getRow();
-            var newValue = event.getNewValue();
-//           // Düzenleme işlemlerini burada gerçekleştir
-            tableView.getItems().get(rowIndex).setSemesterActivitiesColumn(newValue);
-        });*/
+    /* Methods to be able to edit the corresponding columns of Week table */
+    public void changeSubjectCellEvent(TableColumn.CellEditEvent editedCell){
+        WeeklySubjects selectedItem = weekTable.getSelectionModel().getSelectedItem();
+        selectedItem.setSubjectColumn(editedCell.getNewValue().toString());
+    }
+    public void changeReqCellEvent(TableColumn.CellEditEvent editedCell){
+        WeeklySubjects selectedItem = weekTable.getSelectionModel().getSelectedItem();
+        selectedItem.setReqColumn(editedCell.getNewValue().toString());
     }
 
-    //Methods to be able to edit the corresponding columns' cells, i.e., number column's first cell.
-    public void changeNumberCellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    /* Methods to be able to edit the corresponding columns' cells, i.e., number column's first cell. */
+    public void changeNumberCellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setNumberColumn(editedCell.getNewValue().toString());
     }
-
-    public void changeWeightCellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    public void changeWeightCellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setWeightingColumn(editedCell.getNewValue().toString());
     }
-
-    public void changeL01CellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    public void changeL01CellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setL01Column(editedCell.getNewValue().toString());
     }
-
-    public void changeL02CellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    public void changeL02CellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setL02Column(editedCell.getNewValue().toString());
     }
-
-    public void changeL03CellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    public void changeL03CellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setL03Column(editedCell.getNewValue().toString());
     }
-
-    public void changeL04CellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    public void changeL04CellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setL04Column(editedCell.getNewValue().toString());
     }
-
-    public void changeL05CellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    public void changeL05CellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setL05Column(editedCell.getNewValue().toString());
     }
-
-    public void changeL06CellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    public void changeL06CellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setL06Column(editedCell.getNewValue().toString());
     }
-
-    public void changeL07CellEvent(TableColumn.CellEditEvent editedCell) {
-        SemesterActivityRow selectedRow = tableView.getSelectionModel().getSelectedItem();
+    public void changeL07CellEvent(TableColumn.CellEditEvent editedCell){
+        AssessmentSemAct selectedRow = tableView.getSelectionModel().getSelectedItem();
         selectedRow.setL07Column(editedCell.getNewValue().toString());
+    }
+
+    /* Methods to be able to edit the corresponding columns of ECTS table */
+    public void changeNumbCellEvent(TableColumn.CellEditEvent editedCell){ //Number column of ECTS table.
+        WorkloadSemAct selectedItem = tableWorkload.getSelectionModel().getSelectedItem();
+        selectedItem.setNumbColumn(editedCell.getNewValue().toString());
+    }
+    public void changeDurationCellEvent(TableColumn.CellEditEvent editedCell){
+        WorkloadSemAct selectedItem = tableWorkload.getSelectionModel().getSelectedItem();
+        selectedItem.setDurationColumn(editedCell.getNewValue().toString());
+    }
+    public void changeWorkloadCellEvent(TableColumn.CellEditEvent editedCell){
+        WorkloadSemAct selectedItem = tableWorkload.getSelectionModel().getSelectedItem();
+        selectedItem.setWorkloadColumn(editedCell.getNewValue().toString());
+    }
+
+    /* Methods to be able to edit the corresponding columns of Outcome table */
+    public void changeSubContCol1CellEvent (TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTable.getSelectionModel().getSelectedItem();
+        selectedCell.setSubContCol1(editedCell.getNewValue().toString());
+    }
+    public void changeSubContCol2CellEvent (TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTable.getSelectionModel().getSelectedItem();
+        selectedCell.setSubContCol2(editedCell.getNewValue().toString());
+    }
+    public void changeSubContCol3CellEvent (TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTable.getSelectionModel().getSelectedItem();
+        selectedCell.setSubContCol3(editedCell.getNewValue().toString());
+    }
+    public void changeSubContCol4CellEvent (TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTable.getSelectionModel().getSelectedItem();
+        selectedCell.setSubContCol4(editedCell.getNewValue().toString());
+    }
+    public void changeSubContCol5CellEvent (TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTable.getSelectionModel().getSelectedItem();
+        selectedCell.setSubContCol5(editedCell.getNewValue().toString());
     }
 }
 
