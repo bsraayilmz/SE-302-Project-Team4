@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <AnchorPane>
         <children>
             <VBox prefHeight="480.0" prefWidth="206.0" style="-fx-background-color: #03045E;">
                 <children>
                     <Pane prefHeight="89.0" prefWidth="205.0" style="-fx-background-color: #03045E;">
                         <children>
-                            <Label layoutX="6.0" layoutY="13.0" text="SE302-App">
+                            <Label layoutX="38.0" layoutY="14.0" text="SE 302">
                                 <font>
                                     <Font name="MV Boli" size="35.0" />
                                 </font>
@@ -123,7 +138,7 @@
             </VBox>
             <AnchorPane layoutX="206.0" prefHeight="470.0" prefWidth="445.0">
                 <children>
-                    <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
+                    <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0">
                         <children>
                             <Label layoutX="163.0" layoutY="29.0" prefHeight="72.0" prefWidth="111.0" text="Welcome!" textAlignment="CENTER">
                                 <font>
@@ -142,7 +157,7 @@
                             </ImageView>
                         </children>
                     </Pane>
-                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0">
+                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0" visible="false">
                         <children>
                             <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2846.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
                                 <content>
@@ -615,29 +630,29 @@
                     </Pane>
                     <Pane id="userManualPage" fx:id="userManualPage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
                         <children>
-                     <ImageView fitHeight="98.0" fitWidth="140.0" layoutX="306.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@kisspng-computer-icons-product-manuals-owner-s-manual-icon-5aebc53edd14f7.3662109115254008949056.png" />
-                        </image>
-                     </ImageView>
-                     <TextArea layoutX="7.0" layoutY="93.0" prefHeight="98.0" prefWidth="432.0" promptText="This page is " text="•This page informs the user about how to use the application.&#10;It explains in detail every operation performed&#10;in the application. &#10;Please read the steps carefully. ‼">
-                        <font>
-                           <Font size="15.0" />
-                        </font>
-                     </TextArea>
-                     <TextArea layoutX="8.0" layoutY="200.0" prefHeight="50.0" prefWidth="432.0" text="•This is a syllabus system application. &#10;All the transactions you perform are recorded in the syllabus system.">
-                        <font>
-                           <Font size="13.0" />
-                        </font>
-                     </TextArea>
-                     <TextArea layoutX="7.0" layoutY="262.0" prefHeight="43.0" prefWidth="432.0" text="•As you can see, we have 4 options on the left side of the application. &#10;You can choose the action you want to perform here." />
-                     <TextArea layoutX="7.0" layoutY="316.0" prefHeight="38.0" prefWidth="432.0" text="•On the top left, it is indicated which project the application belongs to." />
-                     <TextField layoutX="7.0" layoutY="367.0" prefHeight="37.0" prefWidth="167.0" text="NEW COURSE➜">
-                        <font>
-                           <Font name="Comic Sans MS" size="18.0" />
-                        </font>
-                     </TextField>
-                     <TextArea layoutX="8.0" layoutY="413.0" prefHeight="43.0" prefWidth="432.0" text="⇀To add a new course, you need to press the &quot;New Course&quot; button on the left" />
+                     <ScrollPane layoutY="14.0" prefHeight="470.0" prefWidth="446.0">
+                       <content>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="902.0" prefWidth="438.0">
+                              <children>
+                                 <TextArea layoutX="3.0" layoutY="93.0" prefHeight="369.0" prefWidth="432.0" text="                                     USER MANUAL(EN)&#10;•This page informs the user about how to use the application.&#10;•It explains in detail every operation performed in the application. &#10;•Please read the steps carefully. ‼&#10;✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰&#10;•This is a syllabus system application. &#10;•All the transactions you perform are recorded in the syllabus system.&#10;✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰&#10;•On the top left, it is indicated which project the application belongs to.&#10;•As you can see, we have 4 options on the left side of the application. &#10;•You can choose the action you want to perform here.&#10;✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰&#10;NEW COURSE TAG ➜&#10;•First, when you press the &quot;New Course&quot; button, you will see the language selection of the document. Please select the language in which the document will be written here.&#10;Turkish or English. After selecting, press the &quot;OK&quot; button.&#10;•After selecting the language, you will see the content of the &quot;New Course&quot; page.&#10;GENERAL INFORMATION PART➜&#10;•First, enter the name of the new course you will create in the &quot;Course Name&quot; section.&#10;•What you need to enter next is the &quot;Code&quot; of the new course you are entering, the semester it is &quot;Fall&quot; or &quot;Spring&quot;, &quot;Theory&quot;, &quot;Application&quot;, &quot;L.Credits&quot; and ECTS score.&#10;•In the &quot;Prerequisites&quot; section, write the course that must meet the required requirements.&#10;•Select the language of the &quot;Course&quot;. Turkish or English.&#10;•Select the Type of &quot;Course&quot;. &quot;Required&quot; or &quot;Elective&quot;&#10;•Select the level of &quot;Course&quot;. &quot;Short Cycle&quot;,&quot;First Cycle&quot;,&quot;Second Cycle&quot;,&quot;Third Cycle&quot;.&#10;•The &quot;Mode of Delivery&quot; part of the Course is face-to-face, online or blended. Choose the appropriate one.&#10;•Enter teaching methods and techniques.&#10;•Enter the name of the course coordinator.&#10;•Enter the lecturers of the course.&#10;•Enter the assistants of the course.&#10;•Write the objectives of the course.&#10;•Write the learning outcomes.&#10;•Write a detailed description of the course.&#10;•In the &quot;Course Category&quot; section, please tick the box appropriate to the new course you have entered.&#10;WEEKLY SUBJECTS AND REQUIRED MATERIALS PART ➜&#10;•This section contains the topics that will be covered weekly and the required materials.&#10;•Write the books used in the course in the empty boxes below and enter the required materials and the materials you recommend.&#10;ASSESSMENT PART➜&#10;•This section contains the exams, quizzes and their scoring during the semester. Scoring and weighting are available for each.&#10;ECTS / WORKLOAD PART➜&#10;•In this section, you can see the workload and credits of the course. You can see the contribution of weekly hours to your ects score.&#10;•In this section, we see the outcome matrix of the Course or Program. &#10;•We have contiribution levels between 1 and 5. It tells us the outcomes that the student will or should gain after completing the course.&#10;✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰&#10;After filling in all the blanks and boxes, press the &quot;SAVE&quot; button at the bottom to save the lesson.&#10;★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★&#10;                                   USER MANUAL(TR)&#10;• Bu sayfa, kullanıcıya uygulamayı nasıl kullanacaklarını bilgilendirir.&#10;• Uygulamada gerçekleştirilen her işlemi detaylı bir şekilde açıklar.&#10;• Lütfen adımları dikkatlice okuyun. ‼&#10;✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰&#10;• Bu bir müfredat sistem uygulamasıdır.&#10;• Gerçekleştirdiğiniz tüm işlemler müfredat sistemine kaydedilir.&#10;✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰&#10;• Sol üst köşede uygulamanın hangi projeye ait olduğu belirtilmiştir.&#10;• Gördüğünüz gibi, uygulamanın sol tarafında 4 seçenek bulunmaktadır.&#10;• Buradan yapmak istediğiniz işlemi seçebilirsiniz.&#10;✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰&#10;YENİ DERS ETİKETİ ➜&#10;• İlk olarak, &quot;Yeni Ders&quot; düğmesine bastığınızda, belgenin dil seçeneğini göreceksiniz. Lütfen belgenin hangi dilde yazılacağını buradan seçin.&#10;Türkçe veya İngilizce. Dil seçtikten sonra &quot;Tamam&quot; düğmesine basın.&#10;• Dil seçtikten sonra &quot;Yeni Ders&quot; sayfasının içeriğini göreceksiniz.&#10;GENEL BİLGİ BÖLÜMÜ ➜&#10;• İlk olarak, oluşturacağınız yeni dersin adını &quot;Ders Adı&quot; bölümüne girin.&#10;• Ardından girmeniz gereken şey, yeni girdiğiniz dersin &quot;Kodu&quot;, hangi dönemde olduğu &quot;Güz&quot; veya &quot;Bahar&quot;, &quot;Teori&quot;, &quot;Uygulama&quot;, &quot;L.Krediler&quot; ve ECTS puanı.&#10;• &quot;Önkoşullar&quot; bölümüne, gerekli gereksinimleri karşılaması gereken dersi yazın.&#10;• &quot;Dersin&quot; dilini seçin. Türkçe veya İngilizce.&#10;• &quot;Dersin&quot; türünü seçin. &quot;Zorunlu&quot; veya &quot;Seçmeli&quot;&#10;• &quot;Dersin&quot; seviyesini seçin. &quot;Kısa Döngü&quot;, &quot;İlk Döngü&quot;, &quot;İkinci Döngü&quot;, &quot;Üçüncü Döngü&quot;.&#10;• Dersin &quot;Teslim Şekli&quot; bölümü yüz yüze, çevrimiçi veya karma. Uygun olanı seçin.&#10;• Öğretim yöntemlerini ve tekniklerini girin.&#10;• Ders koordinatörünün adını girin.&#10;• Dersin öğretim üyelerini girin.&#10;• Dersin asistanlarını girin.&#10;• Dersin amaçlarını yazın.&#10;• Öğrenme çıktılarını yazın.&#10;• Dersin detaylı açıklamasını yazın.&#10;• &quot;Ders Kategorisi&quot; bölümünde, girdiğiniz yeni ders için uygun kutuyu işaretleyin.&#10;HAFTALIK KONULAR VE GEREKLİ MALZEMELER BÖLÜMÜ ➜&#10;• Bu bölüm, haftalık olarak ele alınacak konuları ve gereken malzemeleri içerir.&#10;• Ders içinde kullanılan kitapları boş kutulara yazın ve gereken malzemeleri ve önerdiğiniz malzemeleri girin.&#10;DEĞERLENDİRME BÖLÜMÜ ➜&#10;• Bu bölüm, dönem boyunca yapılacak sınavları, quizleri ve bunların puanlamasını içerir. Her biri için puanlama ve ağırlık mevcuttur.&#10;ECTS / İŞ YÜKÜ BÖLÜMÜ ➜&#10;• Bu bölümde, dersin iş yükünü ve kredilerini görebilirsiniz. Haftalık saatlerin ECTS puanınıza katkısını görebilirsiniz.&#10;• Bu bölümde, Ders veya Programın çıktı matrisini görüyorsunuz.&#10;• 1 ile 5 arasında katkı seviyelerimiz var. Bu, öğrencinin dersi tamamladıktan sonra kazanması veya kazanması gereken çıktıları bize söyler.&#10;✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰✰&#10;Tüm boşlukları ve kutuları doldurduktan sonra, dersi kaydetmek için alttaki &quot;KAYDET&quot; düğmesine basın.">
+                                    <font>
+                                       <Font size="15.0" />
+                                    </font>
+                                 </TextArea>
+                                 <ImageView fitHeight="130.0" fitWidth="118.0" layoutX="320.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@kisspng-computer-icons-product-manuals-owner-s-manual-icon-5aebc53edd14f7.3662109115254008949056.png" />
+                                    </image>
+                                 </ImageView>
+                                 <Label layoutX="113.0" layoutY="36.0" text="USER MANUAL(EN-TR)">
+                                    <font>
+                                       <Font name="Franklin Gothic Medium" size="19.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </AnchorPane>
+                       </content>
+                     </ScrollPane>
                         </children>
                     </Pane>
                 </children>
