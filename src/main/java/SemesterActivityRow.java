@@ -1,4 +1,4 @@
-public class SemesterActivityRow {
+public class SemesterActivityRow{
 
     private String semesterActivitiesColumn;
     private String numberColumn;
