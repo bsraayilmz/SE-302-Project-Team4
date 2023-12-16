@@ -3,10 +3,10 @@ import javafx.fxml.FXML;
 import java.sql.SQLException;
 
 public class courseInfo{
-    String courseCode, courseName, prerequisites, teachingMethods, courseObj, outcomes, courseDesc;
-    int courseSemester, theoryTime, labTime, courseCredit, courseECTS,courseLang, courseType, courseCategory;
+    String courseCode, courseName, prerequisites, teachingMethods, courseObj, outcomes, courseDesc, courseCoordinator, courseLecturer, assistant, reading, textbook;
+    int courseSemester, theoryTime, labTime, courseCredit, courseECTS,courseLang, courseType, courseCategory, courseLevel, delivery;
 
-    public courseInfo(String courseCode, String courseName, int courseSemester, int theoryTime, int labTime, int courseCredit, int courseECTS, String prerequisites, int courseLang, int courseType, String teachingMethods, String courseObj, String outcomes, String courseDesc, int courseCategory) {
+    public courseInfo(String courseCode, String courseName, int courseSemester, int theoryTime, int labTime, int courseCredit, int courseECTS, String prerequisites, int courseLang, int courseType, String teachingMethods, String courseObj, String outcomes, String courseDesc, int courseCategory, int courseLevel, String courseCoordinator, String courseLecturer, String assistant, String reading, String textbook, int delivery) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.prerequisites = prerequisites;
@@ -22,6 +22,13 @@ public class courseInfo{
         this.courseLang = courseLang;
         this.courseType = courseType;
         this.courseCategory = courseCategory;
+        this.courseLevel = courseLevel;
+        this.courseCoordinator = courseCoordinator;
+        this.courseLecturer = courseLecturer;
+        this.assistant = assistant;
+        this.reading = reading;
+        this.textbook = textbook;
+        this.delivery = delivery;
     }
 
     public String getCourseCode() {
@@ -142,5 +149,61 @@ public class courseInfo{
 
     public void setCourseCategory(int courseCategory) {
         this.courseCategory = courseCategory;
+    }
+
+    public String getCourseCoordinator() {
+        return courseCoordinator;
+    }
+
+    public void setCourseCoordinator(String courseCoordinator) {
+        this.courseCoordinator = courseCoordinator;
+    }
+
+    public String getCourseLecturer() {
+        return courseLecturer;
+    }
+
+    public void setCourseLecturer(String courseLecturer) {
+        this.courseLecturer = courseLecturer;
+    }
+
+    public String getAssistant() {
+        return assistant;
+    }
+
+    public void setAssistant(String assistant) {
+        this.assistant = assistant;
+    }
+
+    public String getReading() {
+        return reading;
+    }
+
+    public void setReading(String reading) {
+        this.reading = reading;
+    }
+
+    public String getTextbook() {
+        return textbook;
+    }
+
+    public void setTextbook(String textbook) {
+        this.textbook = textbook;
+    }
+
+    public int getCourseLevel() {
+        return courseLevel;
+    }
+
+    public void setCourseLevel(int courseLevel) {
+        this.courseLevel = courseLevel;
+    }
+
+    public int getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(int delivery) {
+        this.delivery = delivery;
     }
 }

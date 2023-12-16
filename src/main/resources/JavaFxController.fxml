@@ -9,23 +9,23 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <AnchorPane>
         <children>
             <VBox prefHeight="480.0" prefWidth="206.0" style="-fx-background-color: #03045E;">
                 <children>
                     <Pane prefHeight="89.0" prefWidth="205.0" style="-fx-background-color: #03045E;">
                         <children>
-                            <Label layoutX="6.0" layoutY="13.0" text="SE302-App">
+                            <Label layoutX="8.0" layoutY="23.0" text="SE302-App">
                                 <font>
-                                    <Font name="MV Boli" size="35.0" />
+                                    <Font name="Verdana" size="35.0" />
                                 </font>
                                 <textFill>
-                                    <LinearGradient endX="1.0" endY="1.0" startX="0.4928909952606635" startY="0.7298578199052133">
+                                    <LinearGradient endX="1.0" endY="1.0" proportional="false" startX="0.4928909952606635" startY="0.7298578199052133">
                                         <stops>
                                             <Stop>
                                                 <color>
-                                                    <Color red="0.7894737124443054" green="0.36549708247184753" blue="0.36549708247184753" />
+                                                    <Color red="1.0" green="1.0" blue="1.0" />
                                                 </color>
                                             </Stop>
                                             <Stop offset="1.0">
@@ -39,13 +39,13 @@
                             </Label>
                         </children>
                     </Pane>
-                    <Button id="newCourseButton" fx:id="newCourseButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickNC" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="New Course">
+                    <Button id="newCourseButton" fx:id="newCourseButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickNC" prefHeight="66.0" prefWidth="224.0" style="-fx-background-color: #5D5E96; -fx-border-radius: 50px;" stylesheets="@application.css" text="New Course">
                         <textFill>
-                            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
+                            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" proportional="false" startX="0.11848341232227488">
                                 <stops>
                                     <Stop>
                                         <color>
-                                            <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
+                                            <Color red="1.0" green="1.0" blue="1.0" />
                                         </color>
                                     </Stop>
                                     <Stop offset="1.0">
@@ -56,35 +56,17 @@
                                 </stops>
                             </LinearGradient>
                         </textFill>
+                  <font>
+                     <Font name="Verdana" size="16.0" />
+                  </font>
                     </Button>
-                    <Button id="updateCourseButton" fx:id="updateCourseButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickUC" prefHeight="73.0" prefWidth="213.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="Update Course">
+                    <Button id="displayVersionsButton" fx:id="displayVersionsButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickDV" prefHeight="78.0" prefWidth="221.0" style="-fx-background-color: #5D5E96; -fx-border-radius: 5;" stylesheets="@application.css" text="Display Versions">
                         <textFill>
-                            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
+                            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" proportional="false" startX="0.11848341232227488">
                                 <stops>
                                     <Stop>
-                                        <color>
-                                            <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
-                                        </color>
-                                    </Stop>
-                                    <Stop offset="1.0">
                                         <color>
                                             <Color red="1.0" green="1.0" blue="1.0" />
-                                        </color>
-                                    </Stop>
-                                </stops>
-                            </LinearGradient>
-                        </textFill>
-                        <effect>
-                            <Blend />
-                        </effect>
-                    </Button>
-                    <Button id="displayVersionsButton" fx:id="displayVersionsButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickDV" prefHeight="78.0" prefWidth="211.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="Display Versions">
-                        <textFill>
-                            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
-                                <stops>
-                                    <Stop>
-                                        <color>
-                                            <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
                                         </color>
                                     </Stop>
                                     <Stop offset="1.0">
@@ -98,14 +80,17 @@
                         <effect>
                             <Blend />
                         </effect>
+                  <font>
+                     <Font name="Verdana Pro" size="16.0" />
+                  </font>
                     </Button>
-                    <Button id="userManualButton" fx:id="userManualButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickUM" prefHeight="86.0" prefWidth="225.0" style="-fx-background-color: #03045E;" stylesheets="@application.css" text="User Manual">
+                    <Button id="userManualButton" fx:id="userManualButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickUM" prefHeight="86.0" prefWidth="225.0" style="-fx-background-color: #5D5E96;" stylesheets="@application.css" text="User Manual">
                         <textFill>
-                            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.11848341232227488">
+                            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" proportional="false" startX="0.11848341232227488">
                                 <stops>
                                     <Stop>
                                         <color>
-                                            <Color red="1.0" green="0.2083333283662796" blue="0.2083333283662796" />
+                                            <Color red="1.0" green="1.0" blue="1.0" />
                                         </color>
                                     </Stop>
                                     <Stop offset="1.0">
@@ -119,7 +104,20 @@
                         <effect>
                             <Blend />
                         </effect>
+                  <font>
+                     <Font name="Verdana Pro" size="16.0" />
+                  </font>
                     </Button>
+               <ImageView fitHeight="176.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@Izmir-University-of-Economics-IUE-logo-1.png" />
+                    </image>
+                </ImageView>
+               <Label alignment="CENTER" prefHeight="44.0" prefWidth="212.0" text="Developed by Team 4" textFill="#5d5e96">
+                  <font>
+                     <Font name="Verdana Pro" size="14.0" />
+                  </font>
+               </Label>
                 </children>
             </VBox>
             <AnchorPane layoutX="206.0" prefHeight="470.0" prefWidth="445.0">
@@ -136,14 +134,14 @@
                                     <Font size="18.0" />
                                 </font>
                             </Label>
-                            <ImageView fitHeight="302.0" fitWidth="336.0" layoutX="50.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+                            <ImageView fitHeight="183.0" fitWidth="187.0" layoutX="127.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@iue_logo.png" />
+                                    <Image url="@course.jpg" />
                                 </image>
                             </ImageView>
                         </children>
                     </Pane>
-                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0">
+                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0" visible="false">
                         <children>
                             <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2846.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
                                 <content>
@@ -159,16 +157,23 @@
                                             <TextField fx:id="courseNameField" layoutX="147.0" layoutY="63.0" prefHeight="26.0" prefWidth="258.0" />
                                             <Label layoutX="38.0" layoutY="123.0" prefHeight="18.0" prefWidth="41.0" text="Code" textFill="#03045e" />
                                             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="123.0" prefHeight="18.0" prefWidth="41.0" text="Term" textFill="#03045e" />
-                                            <RadioButton fx:id="courseFallSemButton" layoutX="103.0" layoutY="143.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCourseFallSemButton" opacity="0.72" prefHeight="24.0" prefWidth="38.0" text="Fall" textAlignment="CENTER">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </RadioButton>
-                                            <RadioButton fx:id="courseSpringSemButton" layoutX="141.0" layoutY="143.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCourseSpringSemButton" opacity="0.72" prefHeight="24.0" prefWidth="52.0" text="Spring" textAlignment="CENTER">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </RadioButton>
+                                 <Pane fx:id="buttonGroup" layoutX="102.0" layoutY="142.0" prefHeight="35.0" prefWidth="98.0">
+                                    <children>
+                                                  <RadioButton fx:id="courseFallSemButton" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCourseFallSemButton" opacity="0.72" prefHeight="24.0" prefWidth="38.0" text="Fall" textAlignment="CENTER">
+                                                      <font>
+                                                          <Font size="10.0" />
+                                                      </font>
+                                          <toggleGroup>
+                                             <ToggleGroup fx:id="semesterGroup" />
+                                          </toggleGroup>
+                                                  </RadioButton>
+                                                  <RadioButton fx:id="courseSpringSemButton" layoutX="38.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCourseSpringSemButton" opacity="0.72" prefHeight="24.0" prefWidth="52.0" text="Spring" textAlignment="CENTER" toggleGroup="$semesterGroup">
+                                                      <font>
+                                                          <Font size="10.0" />
+                                                      </font>
+                                                  </RadioButton>
+                                    </children>
+                                 </Pane>
                                             <TextField fx:id="theoryTimeField" layoutX="205.0" layoutY="142.0" prefHeight="26.0" prefWidth="49.0" style="-fx-font-style: italic;" />
                                             <Label layoutX="190.0" layoutY="123.0" prefHeight="18.0" prefWidth="129.0" text="     Theory  Application" textFill="#03045e" />
                                             <TextField fx:id="labTimeField" layoutX="255.0" layoutY="142.0" prefHeight="26.0" prefWidth="49.0" style="-fx-font-style: italic;" />
@@ -180,72 +185,85 @@
                                             <Label layoutX="48.0" layoutY="257.0" prefHeight="18.0" prefWidth="118.0" text="Course Language" textFill="#03045e" />
                                             <Label layoutX="60.0" layoutY="309.0" prefHeight="18.0" prefWidth="118.0" text="Course Type" textFill="#03045e" />
                                             <Label layoutX="14.0" layoutY="366.0" prefHeight="18.0" prefWidth="118.0" text="Course Level" textFill="#03045e" />
-                                            <CheckBox fx:id="turkishLangButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="161.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleTurkishButton" text="Turkish">
+                                                  <RadioButton fx:id="turkishLangButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="162.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleTurkishButton" text="Turkish">
+                                                      <font>
+                                                          <Font size="10.0" />
+                                                      </font>
+                                    <toggleGroup>
+                                       <ToggleGroup fx:id="language" />
+                                    </toggleGroup>
+                                                  </RadioButton>
+                                                  <RadioButton fx:id="englishLangButton" alignment="CENTER_RIGHT" layoutX="230.0" layoutY="258.0" minWidth="40.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleEnglishButton" prefHeight="15.0" text="English" toggleGroup="$language">
+                                                      <font>
+                                                          <Font size="10.0" />
+                                                      </font>
+                                                  </RadioButton>
+                                                  <RadioButton fx:id="secondLangButton" layoutX="295.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleSecondLButton" text="Second Foreign Language" toggleGroup="$language">
+                                                      <font>
+                                                          <Font size="10.0" />
+                                                      </font>
+                                                  </RadioButton>
+
+                                            <RadioButton fx:id="requiredTypeButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="184.0" layoutY="311.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleRequiredButton" text="Required">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="englishLangButton" alignment="CENTER_RIGHT" layoutX="230.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleEnglishButton" text="English">
+                                    <toggleGroup>
+                                       <ToggleGroup fx:id="type" />
+                                    </toggleGroup>
+                                            </RadioButton>
+                                            <RadioButton fx:id="electiveTypeButton" alignment="CENTER_RIGHT" layoutX="286.0" layoutY="311.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleElectiveButton" text="Elective" toggleGroup="$type">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="secondLangButton" layoutX="293.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleSecondLButton" text="Second Foreign Language">
+                                            </RadioButton>
+                                            <RadioButton fx:id="shortCycleButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="101.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleShortButton" prefHeight="13.0" prefWidth="70.0" text="Short Cycle">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="requiredTypeButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="184.0" layoutY="311.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleRequiredButton" text="Required">
+                                    <toggleGroup>
+                                       <ToggleGroup fx:id="level" />
+                                    </toggleGroup>
+                                            </RadioButton>
+                                            <RadioButton fx:id="firstCycleButton" alignment="CENTER_RIGHT" layoutX="187.0" layoutY="363.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleFirstButton" prefHeight="24.0" prefWidth="68.0" text="First Cycle" toggleGroup="$level">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="electiveTypeButton" alignment="CENTER_RIGHT" layoutX="286.0" layoutY="311.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleElectiveButton" text="Elective">
+                                            </RadioButton>
+                                            <RadioButton fx:id="secondCycleButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="271.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleSecondButton" prefWidth="78.0" text="Second Cycle" toggleGroup="$level">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="shortCycleButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="101.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="13.0" prefWidth="70.0" text="Short Cycle">
+                                            </RadioButton>
+                                            <RadioButton fx:id="thirdCycleButton" alignment="CENTER_RIGHT" layoutX="361.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleThirdButton" text="Third Cycle" toggleGroup="$level">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="firstCycleButton" alignment="CENTER_RIGHT" layoutX="187.0" layoutY="363.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="24.0" prefWidth="68.0" text="First Cycle">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="secondCycleButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="271.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefWidth="78.0" text="Second Cycle">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="thirdCycleButton" alignment="CENTER_RIGHT" layoutX="361.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Third Cycle">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
+                                            </RadioButton>
                                             <Label layoutX="40.0" layoutY="429.0" prefHeight="18.0" prefWidth="118.0" text="Mode of Delivery" textFill="#03045e" />
-                                            <CheckBox fx:id="f2fDel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="158.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Face-to-Face">
+                                            <RadioButton fx:id="f2fDel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="158.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleF2FButton" text="Face-to-Face">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="onlineDel" alignment="CENTER_RIGHT" layoutX="256.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Online">
+                                    <toggleGroup>
+                                       <ToggleGroup fx:id="delivery" />
+                                    </toggleGroup>
+                                            </RadioButton>
+                                            <RadioButton fx:id="onlineDel" alignment="CENTER_RIGHT" layoutX="256.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleOnlineButton" text="Online" toggleGroup="$delivery">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
-                                            <CheckBox fx:id="blendedDel" layoutX="331.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Blended">
+                                            </RadioButton>
+                                            <RadioButton fx:id="blendedDel" layoutX="331.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleBlendedButton" text="Blended" toggleGroup="$delivery">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                            </CheckBox>
+                                            </RadioButton>
                                             <Label layoutX="38.0" layoutY="487.0" prefHeight="18.0" prefWidth="125.0" text="Teaching Methods" textFill="#03045e" />
                                             <TextField fx:id="teachingMethodsField" layoutX="157.0" layoutY="492.0" prefHeight="26.0" prefWidth="258.0" />
                                             <Label layoutX="38.0" layoutY="505.0" prefHeight="18.0" prefWidth="125.0" text="and Techniques" textFill="#03045e" />
                                             <Label layoutX="38.0" layoutY="496.0" prefHeight="18.0" prefWidth="125.0" textFill="#03045e" />
-                                            <TextField layoutX="157.0" layoutY="549.0" prefHeight="26.0" prefWidth="258.0" />
+                                            <TextField fx:id="coordinatorField" layoutX="157.0" layoutY="549.0" prefHeight="26.0" prefWidth="258.0" />
                                             <Label layoutX="34.0" layoutY="553.0" prefHeight="18.0" prefWidth="125.0" text="Course Coordinator" textFill="#03045e" />
                                             <Line endX="331.0" layoutX="107.0" layoutY="108.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
                                             <Line endX="331.0" layoutX="110.0" layoutY="182.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
@@ -255,10 +273,10 @@
                                             <Line endX="331.0" layoutX="107.0" layoutY="410.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
                                             <Line endX="331.0" layoutX="107.0" layoutY="469.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
                                             <Line endX="331.0" layoutX="107.0" layoutY="533.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="157.0" layoutY="610.0" prefHeight="26.0" prefWidth="258.0" />
+                                            <TextField fx:id="lecturerField" layoutX="157.0" layoutY="610.0" prefHeight="26.0" prefWidth="258.0" />
                                             <Label layoutX="36.0" layoutY="614.0" prefHeight="18.0" prefWidth="125.0" text="Course Lecturer(s)" textFill="#03045e" />
                                             <Line endX="331.0" layoutX="109.0" layoutY="594.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="157.0" layoutY="667.0" prefHeight="26.0" prefWidth="258.0" />
+                                            <TextField fx:id="assistantField" layoutX="157.0" layoutY="667.0" prefHeight="26.0" prefWidth="258.0" />
                                             <Label layoutX="69.0" layoutY="671.0" prefHeight="18.0" prefWidth="125.0" text="Assistant(s)" textFill="#03045e" />
                                             <Line endX="331.0" layoutX="107.0" layoutY="651.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
                                             <TextField fx:id="objectivesField" layoutX="157.0" layoutY="725.0" prefHeight="26.0" prefWidth="258.0" />
@@ -273,11 +291,14 @@
                                             <Line endX="331.0" layoutX="109.0" layoutY="893.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
                                             <Label layoutX="36.0" layoutY="914.0" prefHeight="18.0" prefWidth="125.0" text="Course Category" textFill="#03045e" />
                                             <ListView layoutX="147.0" layoutY="908.0" prefHeight="129.0" prefWidth="282.0" />
-                                            <CheckBox fx:id="coreCategoryButton" layoutX="151.0" layoutY="914.0" mnemonicParsing="false" onAction="#handleCoreButton" text="Core Course" />
-                                            <CheckBox fx:id="majorAreaCategoryButton" layoutX="151.0" layoutY="940.0" mnemonicParsing="false" onAction="#handleMajorButton" text="Major Area Course" />
-                                            <CheckBox fx:id="transferableCategoryButton" layoutX="151.0" layoutY="1014.0" mnemonicParsing="false" onAction="#handleTransferableButton" prefHeight="18.0" prefWidth="159.0" text="Transferable Skill Course" />
-                                            <CheckBox fx:id="commCategoryButton" layoutX="151.0" layoutY="988.0" mnemonicParsing="false" onAction="#handleCommButton" text="Communication and Management Skills Course" />
-                                            <CheckBox fx:id="supportiveCategoryButton" layoutX="151.0" layoutY="964.0" mnemonicParsing="false" onAction="#handleSupportiveButton" prefHeight="18.0" prefWidth="121.0" text="Supportive Course" />
+                                            <RadioButton fx:id="coreCategoryButton" layoutX="151.0" layoutY="914.0" mnemonicParsing="false" onAction="#handleCoreButton" text="Core Course">
+                                    <toggleGroup>
+                                       <ToggleGroup fx:id="category" />
+                                    </toggleGroup></RadioButton>
+                                            <RadioButton fx:id="majorAreaCategoryButton" layoutX="151.0" layoutY="940.0" mnemonicParsing="false" onAction="#handleMajorButton" text="Major Area Course" toggleGroup="$category" />
+                                            <RadioButton fx:id="transferableCategoryButton" layoutX="151.0" layoutY="1014.0" mnemonicParsing="false" onAction="#handleTransferableButton" prefHeight="18.0" prefWidth="159.0" text="Transferable Skill Course" toggleGroup="$category" />
+                                            <RadioButton fx:id="commCategoryButton" layoutX="151.0" layoutY="988.0" mnemonicParsing="false" onAction="#handleCommButton" text="Communication and Management Skills Course" toggleGroup="$category" />
+                                            <RadioButton fx:id="supportiveCategoryButton" layoutX="151.0" layoutY="964.0" mnemonicParsing="false" onAction="#handleSupportiveButton" prefHeight="18.0" prefWidth="121.0" text="Supportive Course" toggleGroup="$category" />
                                             <Line endX="331.0" layoutX="109.0" layoutY="1055.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
                                             <Label alignment="CENTER" layoutX="40.0" layoutY="1070.0" prefHeight="35.0" prefWidth="362.0" text=" 2. WEEKLY SUBJECTS AND REQUIRED MATERIALS" textFill="#6c0000">
                                                 <font>
@@ -292,10 +313,10 @@
                                                 </columns>
                                             </TableView>
                                             <Line endX="331.0" layoutX="110.0" layoutY="1359.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="157.0" layoutY="1376.0" prefHeight="26.0" prefWidth="258.0" />
+                                            <TextField fx:id="textbooksField" layoutX="157.0" layoutY="1376.0" prefHeight="26.0" prefWidth="258.0" />
                                             <Label layoutX="23.0" layoutY="1380.0" prefHeight="18.0" prefWidth="138.0" text="Course Notes/Textbooks" textFill="#03045e" />
                                             <Line endX="331.0" layoutX="107.0" layoutY="1421.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="159.0" layoutY="1437.0" prefHeight="26.0" prefWidth="258.0" />
+                                            <TextField fx:id="readingField" layoutX="159.0" layoutY="1437.0" prefHeight="26.0" prefWidth="258.0" />
                                             <Label layoutX="8.0" layoutY="1441.0" prefHeight="18.0" prefWidth="167.0" text="Suggested Readings/Materials" textFill="#03045e">
                                                 <font>
                                                     <Font size="11.0" />
@@ -307,7 +328,7 @@
                                                 </font>
                                             </Label>
                                             <Line endX="331.0" layoutX="107.0" layoutY="1487.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TableView fx:id="tableView" editable="true" layoutX="2.0" layoutY="1544.0" prefHeight="230.0" prefWidth="431.0">
+                                            <TableView fx:id="tableView" editable="true" layoutX="2.0" layoutY="1544.0" prefHeight="230.0" prefWidth="446.0">
                                                 <columns>
                                                     <TableColumn fx:id="semesterActivitiesColumn" prefWidth="112.80004572868347" text="Semester Activities" />
                                                     <TableColumn fx:id="numberColumn" onEditCommit="#changeNumberCellEvent" prefWidth="61.60003662109375" text="Number" />
@@ -321,21 +342,13 @@
                                                     <TableColumn fx:id="l07Column" onEditCommit="#changeL07CellEvent" prefWidth="29.60002441406249" text="L07" />
                                                 </columns>
                                             </TableView>
-                                            <TableView editable="true" layoutX="14.0" layoutY="1809.0" prefHeight="230.0" prefWidth="412.0">
-                                                <columns>
-                                                    <TableColumn prefWidth="245.99998474121094" text="Total Weight" />
-                                                    <TableColumn prefWidth="73.20001220703125" text="Number" />
-                                                    <TableColumn prefWidth="90.79998779296875" text="Point" />
-                                                </columns>
-                                            </TableView>
                                             <Line endX="331.0" layoutX="108.0" layoutY="1793.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="108.0" layoutY="2056.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Label alignment="CENTER" layoutX="115.0" layoutY="2074.0" prefHeight="35.0" prefWidth="214.0" text="4. ECTS / WORKLOAD TABLE" textFill="#6c0000">
+                                            <Label alignment="CENTER" layoutX="118.0" layoutY="1812.0" prefHeight="35.0" prefWidth="214.0" text="4. ECTS / WORKLOAD TABLE" textFill="#6c0000">
                                                 <font>
                                                     <Font name="System Bold" size="15.0" />
                                                 </font>
                                             </Label>
-                                            <TableView fx:id="tableWorkload" editable="true" layoutX="14.0" layoutY="2119.0" prefHeight="230.0" prefWidth="412.0">
+                                            <TableView fx:id="tableWorkload" editable="true" layoutX="12.0" layoutY="1856.0" prefHeight="230.0" prefWidth="412.0">
                                                 <columns>
                                                     <TableColumn fx:id="semesterActColumn" prefWidth="182.40002155303955" text="Semester Activities" />
                                                     <TableColumn fx:id="numbColumn" onEditCommit="#changeNumbCellEvent" prefWidth="62.39997863769531" text="Number" />
@@ -343,29 +356,23 @@
                                                     <TableColumn fx:id="workloadColumn" onEditCommit="#changeWorkloadCellEvent" prefWidth="65.5999755859375" text="Workload" />
                                                 </columns>
                                             </TableView>
-                                            <Label alignment="CENTER" layoutX="71.0" layoutY="2413.0" prefHeight="35.0" prefWidth="318.0" text="5. COURSE/PROGRAM OUTCOME MATRIX" textFill="#6c0000">
+                                            <Label alignment="CENTER" layoutX="70.0" layoutY="2131.0" prefHeight="35.0" prefWidth="318.0" text="5. COURSE/PROGRAM OUTCOME MATRIX" textFill="#6c0000">
                                                 <font>
                                                     <Font name="System Bold" size="15.0" />
                                                 </font>
                                             </Label>
-                                            <Line endX="331.0" layoutX="110.0" layoutY="2397.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TableView fx:id="outcomeTable" editable="true" layoutX="17.0" layoutY="2481.0" prefHeight="230.0" prefWidth="412.0">
+                                            <Line endX="331.0" layoutX="109.0" layoutY="2115.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
+                                            <TableView fx:id="outcomeTable" editable="true" layoutX="15.0" layoutY="2200.0" prefHeight="230.0" prefWidth="412.0">
                                                 <columns>
                                                     <TableColumn fx:id="sharpColumn" prefWidth="28.0" text="#" />
                                                     <TableColumn fx:id="outcomeColumn" prefWidth="217.60004806518555" text="Program Competencies/Outcomes" />
-                                                    <TableColumn fx:id="contColumn" prefWidth="165.0" text="Contribution Level">
-                                          <columns>
-                                             <TableColumn fx:id="subContCol1" onEditCommit="#changeSubContCol1CellEvent" prefWidth="33.0" text="1" />
-                                             <TableColumn fx:id="subContCol2" onEditCommit="#changeSubContCol2CellEvent" prefWidth="33.0" text="2" />
-                                             <TableColumn fx:id="subContCol3" onEditCommit="#changeSubContCol3CellEvent" prefWidth="33.0" text="3" />
-                                             <TableColumn fx:id="subContCol4" onEditCommit="#changeSubContCol4CellEvent" prefWidth="33.0" text="4" />
-                                             <TableColumn fx:id="subContCol5" onEditCommit="#changeSubContCol5CellEvent" prefWidth="33.0" text="5" />
-                                          </columns></TableColumn>
+                                                    <TableColumn fx:id="contColumn" onEditCommit="#changeContColCellEvent" prefWidth="111.60000610351562" text="Contribution Level" />
+                                       <TableColumn fx:id="loCol" onEditCommit="#changeLOCellEvent" prefWidth="52.800048828125" text="LO#" />
                                                 </columns>
                                             </TableView>
-                                            <Label layoutX="21.0" layoutY="2455.0" prefHeight="18.0" prefWidth="368.0" style="-fx-font-style: italic;" text="Please enter a number between 1 and 5 for contribution level." />
-                                            <Button id="saveButton" fx:id="saveButtonEN" layoutX="173.0" layoutY="2765.0" mnemonicParsing="false" onAction="#saveENG" prefHeight="42.0" prefWidth="100.0" styleClass="saveButton" stylesheets="@application.css" text="SAVE" />
-                                            <Line endX="331.0" layoutX="111.0" layoutY="2733.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
+                                            <Label layoutX="27.0" layoutY="2166.0" prefHeight="18.0" prefWidth="368.0" style="-fx-font-style: italic;" text="Please enter a number between 1 and 5 for contribution level." />
+                                            <Button id="saveButton" fx:id="saveButtonEN" layoutX="168.0" layoutY="2505.0" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="100.0" styleClass="saveButton" stylesheets="@application.css" text="SAVE" />
+                                            <Line endX="331.0" layoutX="106.0" layoutY="2473.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
                                             <!--                                 <ComboBox fx:id="documentLangEn" layoutX="-1.0" onAction="#selectDocLangEn" prefHeight="26.0" prefWidth="122.0" promptText="Doc. Language" styleClass="documentLang" stylesheets="@application.css" />-->
                                         </children>
                                     </AnchorPane>
@@ -602,18 +609,9 @@
                             </ScrollPane>
                         </children>
                     </Pane>
-                    <Pane id="updateCoursePage" fx:id="updateCoursePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
-                        <children>
-                            <Label layoutX="94.0" layoutY="200.0" text="UPDATE COURSE HOME">
-                                <font>
-                                    <Font size="24.0" />
-                                </font>
-                            </Label>
-                        </children>
-                    </Pane>
                     <Pane id="displayVersionsPage" fx:id="displayVersionsPage" layoutX="3.0" prefHeight="470.0" prefWidth="446.0" visible="false">
                         <children>
-                            <ScrollPane prefHeight="480.0" prefWidth="452.0">
+                            <ScrollPane prefHeight="865.0" prefWidth="452.0">
                                 <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="436.0">
                                         <children>
@@ -640,9 +638,9 @@
                                             </Label>
                                             <ScrollPane layoutX="25.0" layoutY="140.0" prefHeight="200.0" prefWidth="402.0">
                                                 <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="1000.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="402.0">
                                                         <children>
-                                                            <TableView fx:id="courseInfoTable" prefHeight="200.0" prefWidth="1000.0">
+                                                            <TableView fx:id="courseInfoTable" layoutX="-2.0" prefHeight="200.0" prefWidth="402.0">
                                                                 <columns>
                                                                     <TableColumn fx:id="courseCodeCol" prefWidth="89.19999694824219" text="Course Code" />
                                                                     <TableColumn fx:id="nameCol" prefWidth="38.0" text="Name" />
@@ -654,11 +652,18 @@
                                                                     <TableColumn fx:id="prerequisitesCol" prefWidth="77.79998779296875" text="Prerequisites" />
                                                                     <TableColumn fx:id="languageCol" prefWidth="65.5999755859375" text="Language" />
                                                                     <TableColumn fx:id="typeCol" prefWidth="36.0" text="Type" />
+                                                   <TableColumn fx:id="levelCol" prefWidth="81.0" text="Course Level" />
+                                                   <TableColumn fx:id="deliveryCol" prefWidth="68.0" text="Delivery" />
                                                                     <TableColumn fx:id="teachingMethodsCol" prefWidth="109.79998779296875" text="Teaching Methods" />
+                                                   <TableColumn fx:id="coordinatorCol" text="Coordinator" />
+                                                   <TableColumn fx:id="lecturersCol" prefWidth="78.0" text="Lecturer(s)" />
+                                                   <TableColumn fx:id="assistantsCol" prefWidth="78.0" text="Assistant(s)" />
                                                                     <TableColumn fx:id="objectivesCol" prefWidth="65.4000244140625" text="Objectives" />
                                                                     <TableColumn fx:id="outcomesCol" prefWidth="65.4000244140625" text="Outcomes" />
                                                                     <TableColumn fx:id="descriptionCol" prefWidth="78.5999755859375" text="Description" />
                                                                     <TableColumn fx:id="categoryCol" prefWidth="68.0" text="Category" />
+                                                   <TableColumn fx:id="textbooksCol" prefWidth="68.0" text="Textbooks" />
+                                                   <TableColumn fx:id="readingCol" prefWidth="68.0" text="Reading Materials" />
                                                                 </columns>
                                                             </TableView>
                                                         </children>
@@ -666,6 +671,37 @@
                                                 </content>
                                             </ScrollPane>
                                             <Button fx:id="refreshButton" alignment="CENTER" contentDisplay="CENTER" layoutX="354.0" layoutY="33.0" mnemonicParsing="false" onAction="#refreshTable" style="-fx-background-color: white; -fx-border-color: #03045E; -fx-border-radius: 1;" text="Refresh" textFill="#103f7c" />
+                                 <ScrollPane layoutX="25.0" layoutY="406.0" prefHeight="210.0" prefWidth="395.0">
+                                   <content>
+                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="213.0" prefWidth="402.0">
+                                          <children>
+                                             <TableView fx:id="weeklyScheduleTable" prefHeight="200.0" prefWidth="400.0">
+                                               <columns>
+                                                 <TableColumn fx:id="weekNumberCol" prefWidth="100.0" text="Week Number" />
+                                                 <TableColumn fx:id="subjectsCol" prefWidth="150.0" text="Subjects" />
+                                                   <TableColumn fx:id="requiredMaterialsCol" prefWidth="150.0" text="Required Materials" />
+                                               </columns>
+                                             </TableView>
+                                          </children>
+                                       </AnchorPane>
+                                   </content>
+                                 </ScrollPane>
+                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="25.0" layoutY="387.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing weekly schedule.">
+                                    <font>
+                                       <Font size="11.0" />
+                                    </font>
+                                    <cursor>
+                                       <Cursor fx:constant="NONE" />
+                                    </cursor>
+                                    <effect>
+                                       <Blend opacity="0.19" />
+                                    </effect>
+                                 </Label>
+                                 <Label layoutX="25.0" layoutY="360.0" prefHeight="18.0" prefWidth="464.0" text="Weekly Schedule" textFill="#610000">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
                                         </children>
                                     </AnchorPane>
                                 </content>
