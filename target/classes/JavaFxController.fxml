@@ -39,7 +39,7 @@
                             </Label>
                         </children>
                     </Pane>
-                    <Button id="newCourseButton" fx:id="newCourseButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickNC" prefHeight="65.0" prefWidth="224.0" style="-fx-background-color: #5D5E96; -fx-border-radius: 50px;" stylesheets="@application.css" text="New Course">
+                    <Button id="newCourseButton" fx:id="newCourseButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickNC" prefHeight="66.0" prefWidth="224.0" style="-fx-background-color: #5D5E96; -fx-border-radius: 50px;" stylesheets="@application.css" text="New Course">
                         <textFill>
                             <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" proportional="false" startX="0.11848341232227488">
                                 <stops>
@@ -60,7 +60,7 @@
                      <Font name="Verdana" size="16.0" />
                   </font>
                     </Button>
-                    <Button id="displayVersionsButton" fx:id="displayVersionsButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickDV" prefHeight="78.0" prefWidth="220.0" style="-fx-background-color: #5D5E96; -fx-border-radius: 5;" stylesheets="@application.css" text="Display Versions">
+                    <Button id="displayVersionsButton" fx:id="displayVersionsButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickDV" prefHeight="78.0" prefWidth="221.0" style="-fx-background-color: #5D5E96; -fx-border-radius: 5;" stylesheets="@application.css" text="Display Versions">
                         <textFill>
                             <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" proportional="false" startX="0.11848341232227488">
                                 <stops>
@@ -141,7 +141,7 @@
                             </ImageView>
                         </children>
                     </Pane>
-                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0" visible="false">
+                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0">
                         <children>
                             <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2846.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
                                 <content>

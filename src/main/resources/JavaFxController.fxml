@@ -141,7 +141,7 @@
                             </ImageView>
                         </children>
                     </Pane>
-                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0" visible="false">
+                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0">
                         <children>
                             <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2846.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
                                 <content>

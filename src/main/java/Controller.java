@@ -11,21 +11,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    public ArrayList<WeeklySubjects> subjects = new ArrayList<>();
+    public ArrayList<WeeklySubjects> subjectsList = new ArrayList<>();
+    public ArrayList<AssessmentSemAct> assessmentsList = new ArrayList<>();
+    public ArrayList<WorkloadSemAct> workloadSemActsList = new ArrayList<>();
+    public ArrayList<CourseOutcome> courseOutcomesList = new ArrayList<>();
+
+
     /* Database controller variables */
     public CoursesModel model = new CoursesModel();
-    public WeeklySubjects weeklySubjects = new WeeklySubjects(this);
     public courseInfoController courseInfoController = new courseInfoController(this);
     /* Variables for Section 2: Week Table */
     public ObservableList<WeeklySubjects> weeklySubjectsList;
@@ -59,14 +61,11 @@ public class Controller implements Initializable {
     public TableColumn<CourseOutcome, String> sharpColumn, outcomeColumn, contColumn, loCol;
     //to be able to refresh the all information
     ObservableList<courseInfo> courseList = FXCollections.observableArrayList();
-    ObservableList<WeeklySubjects> SubjectsMaterialsList = FXCollections.observableArrayList();
     String queryCourseInfo = null;
     String queryWeeklySchedule = null;
     Connection connection = null;
     PreparedStatement preparedStatementCourseInfo = null;
-    PreparedStatement preparedStatementWeeklySchedule = null;
     ResultSet resultSetCourseInfo = null;
-    ResultSet resultSetWeeklySchedule = null;
     //text fields are for courseInfo table
     @FXML
     TextField courseNameField, courseCodeField, theoryTimeField, labTimeField, prerequisitesField, coordinatorField, courseCreditsField, courseECTSField, teachingMethodsField, lecturerField, textbooksField, readingField, objectivesField, assistantField, outcomesField, descriptionField;
@@ -94,7 +93,6 @@ public class Controller implements Initializable {
     @FXML
     Button refreshButton, newCourseButton;
 
-
     //entering for the newCoursePage
     String English = "English";
     String Turkish = "Turkish";
@@ -115,9 +113,9 @@ public class Controller implements Initializable {
     String cName, cCode, semester, languageS, prerequisites, type, teachingMethods, objectives, outcomes, description, category, textbooks, reading, lecturers, assistants, coordinator, level, delivery;
     int theoryTime, labTime, credit, courseECTS;
     PreparedStatement preparedStatementWeekN;
-    String updateQuery = null;
     PreparedStatement preparedStatementForWeeks = null;
     WeeklySubjects selectedItem;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -132,8 +130,9 @@ public class Controller implements Initializable {
         workloadTableInitializer();
         outcomeTableInitializer();
         courseInfoController.loadData();
-//        weeklySubjects.loadData();
     }
+
+    //*** INITIALIZATION OF ALL TABLEVIEWS IN THE NEW COURSE PAGE
 
     //Initializing method for the Week table
     public void weekTableInitializer() {
@@ -171,138 +170,6 @@ public class Controller implements Initializable {
 
     }
 
-    private void insertWeekNumber(ObservableList<WeeklySubjects> weeklySubjectsL) {
-        connection = SQLConnection.Connector();
-        //Week Number Column Addition
-        String insertWNQuery = "INSERT INTO WeeklySchedule (WeekNumber) VALUES (?)";
-        try {
-            preparedStatementWeekN = connection.prepareStatement(insertWNQuery);
-            for (WeeklySubjects weeklySubjects : weeklySubjectsL) {
-                if (weeklySubjects.getWeekColumn().isEmpty()) {
-                    preparedStatementWeekN.setString(1, weeklySubjects.getWeekColumn());
-                    preparedStatementWeekN.executeUpdate();
-                    System.out.println("The Week Column was completed.");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Close the database connection not to block the database.
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    //to take the data that is entered to the weekTable TableView
-    private void getData() {
-        //not to conflict with the previous data
-        subjects.clear();
-        for (int i = 0; i < weekTable.getItems().size(); i++) {
-            //all items are taken from the all rows
-            WeeklySubjects selectedItem = weekTable.getItems().get(i);
-            if (selectedItem != null) {
-                WeeklySubjects updatedSubject = new WeeklySubjects(selectedItem);
-                subjects.add(updatedSubject);
-            }
-        }
-    }
-
-    private void insertWeeklyScheduleSubjectsDB() {
-        //firstly data are taken.
-        getData();
-        if (!subjects.isEmpty()) {
-            connection = SQLConnection.Connector();
-            try {
-                //to update the Subjects column in the WeeklySchedule table.
-                //CASE WHEN: allows updating based on the week number.
-                StringBuilder insertQuery = new StringBuilder("UPDATE WeeklySchedule SET Subjects = CASE WeekNumber ");
-                for (int i = 0; i < subjects.size(); i++) {
-                    /*In the getData method, all the data entered by the user has been added to the subjects list. In this section, each element of
-                    subjects is assigned to a WeeklySubjects object.*/
-                    WeeklySubjects newSubject = subjects.get(i);
-                    //WHEN WeekColumn --> adding to the relational week number row. And then Subject Column.
-                    insertQuery.append(" WHEN ").append(newSubject.getWeekColumn()).append(" THEN '").append(newSubject.getSubjectColumn()).append("' ");
-                }
-                insertQuery.append(" END WHERE WeekNumber IN (");
-                for (WeeklySubjects subject : subjects) {
-                    insertQuery.append(subject.getWeekColumn()).append(", ");
-                }
-                //to modify the code.
-                insertQuery.deleteCharAt(insertQuery.length() - 2);
-                insertQuery.append(")");
-
-
-                preparedStatementForWeeks = connection.prepareStatement(insertQuery.toString());
-                int result = preparedStatementForWeeks.executeUpdate();
-
-                if (result > 0) {
-                    System.out.println("Data updated successfully for subjects column.");
-                    refreshWeeklySchedule();
-                    subjects.clear();
-                } else {
-                    System.out.println("Data failed.");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                {
-                    try {
-                        connection.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } else {
-            System.out.println("No data updated");
-        }
-    }
-
-    private void insertWeeklyScheduleReqMatDB() {
-        getData();
-        if (!subjects.isEmpty()) {
-            connection = SQLConnection.Connector();
-            try {
-                StringBuilder insertQuery = new StringBuilder("UPDATE WeeklySchedule SET RequiredMaterials = CASE WeekNumber ");
-                for (int i = 0; i < subjects.size(); i++) {
-                    WeeklySubjects newSubject = subjects.get(i);
-                    insertQuery.append(" WHEN ").append(newSubject.getWeekColumn()).append(" THEN '").append(newSubject.getReqColumn()).append("' ");
-                }
-                insertQuery.append(" END WHERE WeekNumber IN (");
-                for (WeeklySubjects subject : subjects) {
-                    insertQuery.append(subject.getWeekColumn()).append(", ");
-                }
-                insertQuery.deleteCharAt(insertQuery.length() - 2);
-                insertQuery.append(")");
-
-                preparedStatementForWeeks = connection.prepareStatement(insertQuery.toString());
-                int result = preparedStatementForWeeks.executeUpdate();
-                if (result > 0) {
-                    System.out.println("Data updated successfully for required materials column.");
-                    refreshWeeklySchedule();
-                    subjects.clear();
-                } else {
-                    System.out.println("Data failed.");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                {
-                    try {
-                        connection.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } else {
-            System.out.println("No data updated");
-        }
-    }
-
     //Initializing method for the Assessment table
     public void assessmentTableInitializer() {
         semesterActivities = FXCollections.observableArrayList(
@@ -334,7 +201,7 @@ public class Controller implements Initializable {
 
         tableView.setItems(semesterActivities);
 
-        // Düzenleme için TextFieldTableCell kullan
+        // To edit, use TextFieldTableCell
 
         numberColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         weightingColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -346,31 +213,8 @@ public class Controller implements Initializable {
         l06Column.setCellFactory(TextFieldTableCell.forTableColumn());
         l07Column.setCellFactory(TextFieldTableCell.forTableColumn());
     }
-    PreparedStatement preparedStatementSemAct;
-    private void insertSemesterActivities(ObservableList<AssessmentSemAct> assessmentSemActs) {
-        connection = SQLConnection.Connector();
-        //Week Number Column Addition
-        String insertAssessmentAct = "INSERT INTO Assessment (SemesterActivities) VALUES (?)";
-        try {
-            preparedStatementSemAct = connection.prepareStatement(insertAssessmentAct);
-            for (AssessmentSemAct assessmentSemAct : assessmentSemActs) {
-                if (assessmentSemAct.getSemesterActivitiesColumn().isEmpty()) {
-                    preparedStatementSemAct.setString(1, assessmentSemAct.getSemesterActivitiesColumn());
-                    preparedStatementSemAct.executeUpdate();
-                }
-            }
-            System.out.println("The Semester Activities column was completed.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Close the database connection not to block the database.
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
+
 
     //Initializing method for the Workload table
     public void workloadTableInitializer() {
@@ -401,31 +245,6 @@ public class Controller implements Initializable {
         numbColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         workloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-    }
-    PreparedStatement preparedStatementWorkloadSemAct;
-    public void insertWorkloadSemAct(ObservableList<WorkloadSemAct> workloadSemActs){
-        connection = SQLConnection.Connector();
-        //Week Number Column Addition
-        String insertAssessmentAct = "INSERT INTO WorkloadTable (SemesterActivities) VALUES (?)";
-        try {
-            preparedStatementWorkloadSemAct = connection.prepareStatement(insertAssessmentAct);
-            for (WorkloadSemAct workloadSemAct : workloadSemActs) {
-                if (workloadSemAct.getSemesterActColumn().isEmpty()) {
-                    preparedStatementWorkloadSemAct.setString(1, workloadSemAct.getSemesterActColumn());
-                    preparedStatementWorkloadSemAct.executeUpdate();
-                }
-            }
-            System.out.println("The Semester Activities column for Workload Table was completed.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Close the database connection not to block the database.
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 
@@ -483,7 +302,7 @@ public class Controller implements Initializable {
                         "Engineering.")
         );
 
-        //insertOutcome(courseOutcomes);
+        insertOutcome(courseOutcomes);
 
         sharpColumn.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("sharpColumn"));
         outcomeColumn.setCellValueFactory(new PropertyValueFactory<CourseOutcome, String>("outcomeColumn"));
@@ -495,7 +314,12 @@ public class Controller implements Initializable {
         contColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         loCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-    }
+    }//THE COMPLETION OF THE INITIALIZATION TABLES ON THE NEW COURSE PAGE
+
+
+    //*** HOME PAGE BUTTONS FUNCTIONALITY
+
+    //To go to the new course page
     public void clickNC() {
         newCourseButton.setOnAction(event -> {
             showLanguageSelectionDialog();
@@ -554,7 +378,7 @@ public class Controller implements Initializable {
         });
     }
 
-
+    //for the display versions page
     public void clickDV() {
         displayVersionsButton.setOnAction(event -> {
             homePage.setVisible(false);
@@ -565,8 +389,7 @@ public class Controller implements Initializable {
         });
     }
 
-    //for the courseInfo table
-
+    //for the user manual page
     public void clickUM() {
         userManualButton.setOnAction(event -> {
             homePage.setVisible(false);
@@ -575,8 +398,602 @@ public class Controller implements Initializable {
             userManualPage.setVisible(true);
             newCourseTRPage.setVisible(false);
         });
+    } //THE COMPLETION OF THE BUTTONS FUNCTIONALITIES ON THE HOME PAGE
+
+
+    //*** ADDING DEFAULT VALUES THAT ARE NOT EDITABLE BY THE USER TO THE DATABASE TABLES --> NEW COURSE PAGE
+
+    //for the WeekNumber default values in the weeklySubjectsL to the WeeklySchedule Database Table
+    private void insertWeekNumber(ObservableList<WeeklySubjects> weeklySubjectsL) {
+        connection = SQLConnection.Connector();
+        //Week Number Column Addition
+        String insertWNQuery = "INSERT INTO WeeklySchedule (WeekNumber) VALUES (?)";
+        try {
+            preparedStatementWeekN = connection.prepareStatement(insertWNQuery);
+            for (WeeklySubjects weeklySubjects : weeklySubjectsL) {
+                if (!weeklySubjects.getWeekColumn().isEmpty()) {
+                    preparedStatementWeekN.setString(1, weeklySubjects.getWeekColumn());
+                    preparedStatementWeekN.executeUpdate();
+                }
+            }
+            System.out.println("The Week Number column was completed.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the database connection not to block the database.
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
+    //for the SemesterActivities default values in the assessmentSemActs list to the Assessment Database Table
+    PreparedStatement preparedStatementSemAct;
+    private void insertSemesterActivities(ObservableList<AssessmentSemAct> assessmentSemActs) {
+        connection = SQLConnection.Connector();
+        //Week Number Column Addition
+        String insertAssessmentAct = "INSERT INTO Assessment (SemesterActivities) VALUES (?)";
+        try {
+            preparedStatementSemAct = connection.prepareStatement(insertAssessmentAct);
+            for (AssessmentSemAct assessmentSemAct : assessmentSemActs) {
+                if (!assessmentSemAct.getSemesterActivitiesColumn().isEmpty()) {
+                    preparedStatementSemAct.setString(1, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementSemAct.executeUpdate();
+                }
+            }
+            System.out.println("The Semester Activities column was completed.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the database connection not to block the database.
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //for the SemesterActivities default values in the workloadSemAct list to the WorkloadTable Database Table
+    PreparedStatement preparedStatementWorkloadSemAct;
+    public void insertWorkloadSemAct(ObservableList<WorkloadSemAct> workloadSemActs){
+        connection = SQLConnection.Connector();
+        //Week Number Column Addition
+        String insertAssessmentAct = "INSERT INTO WorkloadTable (SemesterActivities) VALUES (?)";
+        try {
+            preparedStatementWorkloadSemAct = connection.prepareStatement(insertAssessmentAct);
+            for (WorkloadSemAct workloadSemAct : workloadSemActs) {
+                if (!workloadSemAct.getSemesterActColumn().isEmpty()) {
+                    preparedStatementWorkloadSemAct.setString(1, workloadSemAct.getSemesterActColumn());
+                    preparedStatementWorkloadSemAct.executeUpdate();
+                }
+            }
+            System.out.println("The Semester Activities column for Workload Table was completed.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the database connection not to block the database.
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //for the #, ProgramOutcomes default values in the courseOutcomes list to the OutcomeMatrix Database Table
+    public void insertOutcome(ObservableList<CourseOutcome> courseOutcomes){
+        connection = SQLConnection.Connector();
+
+        String insertOutcomeDefault = "INSERT INTO OutcomeMatrix ('#', 'ProgramOutcomes') VALUES (?, ?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(insertOutcomeDefault);
+            for(CourseOutcome courseOutcome:courseOutcomes){
+
+                if(!courseOutcome.getSharpColumn().isEmpty()){
+                    preparedStatement.setString(1, courseOutcome.getSharpColumn());
+                    preparedStatement.setString(2, courseOutcome.getOutcomeColumn());
+
+                    preparedStatement.addBatch();
+                    preparedStatement.executeBatch();
+                }
+            }
+            System.out.println("The # and ProgramOutcomes columns for Workload Table were completed.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }  //THE COMPLETION OF THE ADDING DEFAULT VALUES THAT ARE NOT EDITABLE
+
+
+    //*** GETTING DATA ENTERED TO THE TABLEVIEW TABLES BY THE USER TO INSERT INTO THE DATABASE TABLES--> NEW COURSE PAGE
+
+    //to take the data that is entered to the "weekTable" TableView
+    private void getDataForWeekTable() {
+        //not to conflict with the previous data
+        subjectsList.clear();
+        for (int i = 0; i < weekTable.getItems().size(); i++) {
+            //all items are taken from the all rows
+            WeeklySubjects selectedItem = weekTable.getItems().get(i);
+            if (selectedItem != null) {
+                WeeklySubjects updatedSubject = new WeeklySubjects(selectedItem);
+                subjectsList.add(updatedSubject);
+            }
+        }
+    }
+    //to take the data that is entered to the "tableView" TableView
+    private void getDataForAssessmentTable(){
+        for (int i= 0; i<tableView.getItems().size();i++){
+            AssessmentSemAct assessmentSemAct = tableView.getItems().get(i);
+            if(assessmentSemAct != null){
+                assessmentsList.add(assessmentSemAct);
+            }
+        }
+    }
+    //to take the data that is entered to the "tableWorkload" TableView
+    private void getDataForWorkloadTable(){
+        for (int i= 0; i<tableWorkload.getItems().size();i++){
+            WorkloadSemAct workloadSemAct = tableWorkload.getItems().get(i);
+            if(workloadSemAct != null){
+                workloadSemActsList.add(workloadSemAct);
+            }
+        }
+    }
+    // to take the data that is entered to the "outcomeTable" TableView
+    private void getDataForOutcomeTable(){
+        for (int i= 0; i<outcomeTable.getItems().size();i++){
+            CourseOutcome courseOutcome = outcomeTable.getItems().get(i);
+            if(courseOutcome != null){
+                courseOutcomesList.add(courseOutcome);
+            }
+        }
+    }//THE COMPLETION OF GETTING DATA ENTERED TO THE TABLEVIEW TABLES
+
+
+    //*** INSERTING TO THE DATABASE HELPING WITH THE GET DATA METHODS
+
+    //CourseInfo Table
+    //According to the Text fields, to add below text fields data.
+    public void insertCourseInfo() {
+        connection = SQLConnection.Connector();
+        cName = courseNameField.getText();
+        cCode = courseCodeField.getText();
+        semester = null;
+        languageS = null;
+        prerequisites = prerequisitesField.getText();
+        type = null;
+        level = null;
+        delivery = null;
+        teachingMethods = teachingMethodsField.getText();
+        coordinator = coordinatorField.getText();
+        lecturers = lecturerField.getText();
+        assistants = assistantField.getText();
+        objectives = objectivesField.getText();
+        outcomes = outcomesField.getText();
+        description = descriptionField.getText();
+        category = null;
+        textbooks = textbooksField.getText();
+        reading = readingField.getText();
+
+        System.out.println("\nThe pressed key information has been recorded, and String conversion processes have been completed:");
+        convertSemesterValue();
+        convertLanguageValue();
+        convertCourseType();
+        convertLevelType();
+        convertDeliveryType();
+        convertCategoryType();
+
+        if (courseInfoController.controlBlank()) {
+            try {
+                theoryTime = Integer.parseInt(theoryTimeField.getText());
+                labTime = Integer.parseInt(labTimeField.getText());
+                credit = Integer.parseInt(courseCreditsField.getText());
+                courseECTS = Integer.parseInt(courseECTSField.getText());
+                if (credit == 0 || courseECTS == 0) {
+                    Alert notBlank = new Alert(Alert.AlertType.WARNING);
+                    notBlank.setTitle("Value Selection");
+                    notBlank.setHeaderText("The L.Credits and ECTS fields,both,must be a non-zero value.");
+                    notBlank.initModality(Modality.APPLICATION_MODAL);
+                    notBlank.showAndWait();
+                } else if ((labTime == 0 && theoryTime == 0)) {
+                    Alert notBlank = new Alert(Alert.AlertType.WARNING);
+                    notBlank.setTitle("Value Selection");
+                    notBlank.setHeaderText("At least one of the Lab Hour and Theory Hour must be a non-zero value.");
+                    notBlank.initModality(Modality.APPLICATION_MODAL);
+                    notBlank.showAndWait();
+                } else {
+                    courseInfoController.getQuery(cName, cCode, semester, theoryTime, labTime, credit, courseECTS, prerequisites, languageS, type, teachingMethods, objectives, outcomes, description, category, level, coordinator, lecturers, assistants, reading, textbooks, delivery);
+                    courseInfoController.insertTable();
+                    //to refresh after sending to the database table
+                    courseNameField.setText("");
+                    courseCodeField.setText("");
+                    theoryTimeField.setText("");
+                    labTimeField.setText("");
+                    prerequisitesField.setText("");
+                    coordinatorField.setText("");
+                    courseCreditsField.setText("");
+                    courseECTSField.setText("");
+                    teachingMethodsField.setText("");
+                    lecturerField.setText("");
+                    textbooksField.setText("");
+                    readingField.setText("");
+                    objectivesField.setText("");
+                    assistantField.setText("");
+                    outcomesField.setText("");
+                    descriptionField.setText("");
+                    courseFallSemButton.setSelected(false);
+                    courseSpringSemButton.setSelected(false);
+                    turkishLangButton.setSelected(false);
+                    englishLangButton.setSelected(false);
+                    secondLangButton.setSelected(false);
+                    requiredTypeButton.setSelected(false);
+                    electiveTypeButton.setSelected(false);
+                    shortCycleButton.setSelected(false);
+                    firstCycleButton.setSelected(false);
+                    secondCycleButton.setSelected(false);
+                    thirdCycleButton.setSelected(false);
+                    f2fDel.setSelected(false);
+                    onlineDel.setSelected(false);
+                    blendedDel.setSelected(false);
+                    coreCategoryButton.setSelected(false);
+                    majorAreaCategoryButton.setSelected(false);
+                    supportiveCategoryButton.setSelected(false);
+                    commCategoryButton.setSelected(false);
+                    transferableCategoryButton.setSelected(false);
+
+                }
+            } catch (NumberFormatException e) {
+                Alert notBlank = new Alert(Alert.AlertType.WARNING);
+                notBlank.setTitle("Value Selection");
+                notBlank.setHeaderText("The theory time, lab time, credit and ECTS must be integer.");
+                notBlank.initModality(Modality.APPLICATION_MODAL);
+                notBlank.showAndWait();
+            }
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //WeeklySchedule Table
+    //According to the WeekNumber, to add the subjects that is entered by the user to the DB.
+    private void insertWeeklyScheduleSubjectsDB() {
+        //firstly data are taken.
+        getDataForWeekTable();
+        if (!subjectsList.isEmpty()) {
+            connection = SQLConnection.Connector();
+            try {
+                //to update the Subjects column in the WeeklySchedule table.
+                //CASE WHEN: allows updating based on the week number.
+                StringBuilder insertQuery = new StringBuilder("UPDATE WeeklySchedule SET Subjects = CASE WeekNumber ");
+                for (int i = 0; i < subjectsList.size(); i++) {
+                    /*In the getDataForWeekTable method, all the data entered by the user has been added to the subjectsList list. In this section, each element of
+                    subjectsList is assigned to a WeeklySubjects object.*/
+                    WeeklySubjects newSubject = subjectsList.get(i);
+                    //WHEN WeekColumn --> adding to the relational week number row. And then Subject Column.
+                    insertQuery.append(" WHEN ").append(newSubject.getWeekColumn()).append(" THEN '").append(newSubject.getSubjectColumn()).append("' ");
+                }
+                insertQuery.append(" END WHERE WeekNumber IN (");
+                for (WeeklySubjects subject : subjectsList) {
+                    insertQuery.append(subject.getWeekColumn()).append(", ");
+                }
+                //to modify the code.
+                insertQuery.deleteCharAt(insertQuery.length() - 2);
+                insertQuery.append(")");
+
+
+                preparedStatementForWeeks = connection.prepareStatement(insertQuery.toString());
+                int result = preparedStatementForWeeks.executeUpdate();
+
+                if (result > 0) {
+                    System.out.println("Data updated successfully for subjectsList column.");
+                    refreshWeeklySchedule();
+                    subjectsList.clear();
+                } else {
+                    System.out.println("Data failed.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            System.out.println("No data updated");
+        }
+    }
+
+    //According to the WeekNumber, to add the required materials that is entered by the user to the DB.
+    private void insertWeeklyScheduleReqMatDB() {
+        getDataForWeekTable();
+        if (!subjectsList.isEmpty()) {
+            connection = SQLConnection.Connector();
+            try {
+                StringBuilder insertQuery = new StringBuilder("UPDATE WeeklySchedule SET RequiredMaterials = CASE WeekNumber ");
+                for (int i = 0; i < subjectsList.size(); i++) {
+                    WeeklySubjects newSubject = subjectsList.get(i);
+                    insertQuery.append(" WHEN ").append(newSubject.getWeekColumn()).append(" THEN '").append(newSubject.getReqColumn()).append("' ");
+                }
+                insertQuery.append(" END WHERE WeekNumber IN (");
+                for (WeeklySubjects subject : subjectsList) {
+                    insertQuery.append(subject.getWeekColumn()).append(", ");
+                }
+                insertQuery.deleteCharAt(insertQuery.length() - 2);
+                insertQuery.append(")");
+
+                preparedStatementForWeeks = connection.prepareStatement(insertQuery.toString());
+                int result = preparedStatementForWeeks.executeUpdate();
+                if (result > 0) {
+                    System.out.println("Data updated successfully for required materials column.");
+                    refreshWeeklySchedule();
+                    subjectsList.clear();
+                } else {
+                    System.out.println("Data failed.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            System.out.println("No data updated");
+        }
+    }
+
+    //Assessment Table
+    //According to the SemesterActivities, to add the Number, Weighting, LO1, LO2, LO3, LO4, LO5, LO6, LO7 that are entered by the user to the DB.
+
+    PreparedStatement preparedStatementAssessment = null;
+    PreparedStatement preparedStatementAssessmentW = null;
+    PreparedStatement preparedStatementAssessmentL1 = null;
+    PreparedStatement preparedStatementAssessmentL2= null;
+    PreparedStatement preparedStatementAssessmentL3 = null;
+    PreparedStatement preparedStatementAssessmentL4 = null;
+    PreparedStatement preparedStatementAssessmentL5 = null;
+    PreparedStatement preparedStatementAssessmentL6 = null;
+    PreparedStatement preparedStatementAssessmentL7 = null;
+    private void insertAssessmentTable() {
+        getDataForAssessmentTable();
+        if (!assessmentsList.isEmpty()) {
+            connection = SQLConnection.Connector();
+            try {
+                String updateQuery = "UPDATE Assessment SET Number = ? WHERE SemesterActivities = ?";
+                String WeightingQuery = "UPDATE Assessment SET Weighting = ? WHERE SemesterActivities = ?";
+                String L1Query = "UPDATE Assessment SET LO1 = ? WHERE SemesterActivities = ?";
+                String L2Query = "UPDATE Assessment SET LO2 = ? WHERE SemesterActivities = ?";
+                String L3Query = "UPDATE Assessment SET LO3 = ? WHERE SemesterActivities = ?";
+                String L4Query = "UPDATE Assessment SET LO4 = ? WHERE SemesterActivities = ?";
+                String L5Query = "UPDATE Assessment SET LO5 = ? WHERE SemesterActivities = ?";
+                String L6Query = "UPDATE Assessment SET LO6 = ? WHERE SemesterActivities = ?";
+                String L7Query = "UPDATE Assessment SET LO7 = ? WHERE SemesterActivities = ?";
+
+                preparedStatementAssessment = connection.prepareStatement(updateQuery);
+                preparedStatementAssessmentW = connection.prepareStatement(WeightingQuery);
+                preparedStatementAssessmentL1 = connection.prepareStatement(L1Query);
+                preparedStatementAssessmentL2 = connection.prepareStatement(L2Query);
+                preparedStatementAssessmentL3 = connection.prepareStatement(L3Query);
+                preparedStatementAssessmentL4 = connection.prepareStatement(L4Query);
+                preparedStatementAssessmentL5 = connection.prepareStatement(L5Query);
+                preparedStatementAssessmentL6 = connection.prepareStatement(L6Query);
+                preparedStatementAssessmentL7 = connection.prepareStatement(L7Query);
+
+                for (AssessmentSemAct assessmentSemAct : assessmentsList) {
+                    //for entered values except Semester Activities
+                    preparedStatementAssessment.setString(1, assessmentSemAct.getNumberColumn());
+                    preparedStatementAssessmentW.setString(1,assessmentSemAct.getWeightingColumn());
+                    preparedStatementAssessmentL1.setString(1,assessmentSemAct.getL01Column());
+                    preparedStatementAssessmentL2.setString(1,assessmentSemAct.getL02Column());
+                    preparedStatementAssessmentL3.setString(1,assessmentSemAct.getL03Column());
+                    preparedStatementAssessmentL4.setString(1,assessmentSemAct.getL04Column());
+                    preparedStatementAssessmentL5.setString(1,assessmentSemAct.getL05Column());
+                    preparedStatementAssessmentL6.setString(1,assessmentSemAct.getL06Column());
+                    preparedStatementAssessmentL7.setString(1,assessmentSemAct.getL07Column());
+
+                    //for SemesterActivities to control
+                    preparedStatementAssessment.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementAssessmentW.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementAssessmentL1.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementAssessmentL2.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementAssessmentL3.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementAssessmentL4.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementAssessmentL5.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementAssessmentL6.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+                    preparedStatementAssessmentL7.setString(2, assessmentSemAct.getSemesterActivitiesColumn());
+
+                    //sending queries in bulk instead of individually.
+                    preparedStatementAssessment.addBatch();
+                    preparedStatementAssessmentW.addBatch();
+                    preparedStatementAssessmentL1.addBatch();
+                    preparedStatementAssessmentL2.addBatch();
+                    preparedStatementAssessmentL3.addBatch();
+                    preparedStatementAssessmentL4.addBatch();
+                    preparedStatementAssessmentL5.addBatch();
+                    preparedStatementAssessmentL6.addBatch();
+                    preparedStatementAssessmentL7.addBatch();
+                }
+                preparedStatementAssessment.executeBatch();
+                preparedStatementAssessmentW.executeBatch();
+                preparedStatementAssessmentL1.executeBatch();
+                preparedStatementAssessmentL2.executeBatch();
+                preparedStatementAssessmentL3.executeBatch();
+                preparedStatementAssessmentL4.executeBatch();
+                preparedStatementAssessmentL5.executeBatch();
+                preparedStatementAssessmentL6.executeBatch();
+                preparedStatementAssessmentL7.executeBatch();
+
+                if (preparedStatementAssessment.getUpdateCount() > 0) {
+                    System.out.println("Data updated successfully for number column.");
+                    // refreshWeeklySchedule();
+                    assessmentsList.clear();
+                } else if(preparedStatementAssessmentW.getUpdateCount() > 0){
+                    System.out.println("Data updated successfully for number column.");
+                    assessmentsList.clear();
+                }else {
+                    System.out.println("Data failed.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            System.out.println("No data updated");
+        }
+    }
+
+    //Workload Table
+    //According to the SemesterActivities, to add the WorkloadNumber, WorkloadDuration, TotalWorkload that are entered by the user to the DB.
+
+    PreparedStatement preparedStatementWorkloadNumber = null;
+    PreparedStatement preparedStatementWorkloadDuration = null;
+    PreparedStatement preparedStatementTotalWorkload= null;
+    private void insertWorkLoadTable() {
+        getDataForWorkloadTable();
+        if (!workloadSemActsList.isEmpty()) {
+            connection = SQLConnection.Connector();
+            try {
+                String WorkloadNumber = "UPDATE WorkloadTable SET WorkloadNumber = ? WHERE SemesterActivities = ?";
+                String WorkloadDuration = "UPDATE WorkloadTable SET WorkloadDuration = ? WHERE SemesterActivities = ?";
+                String TotalWorkload = "UPDATE WorkloadTable SET TotalWorkload = ? WHERE SemesterActivities = ?";
+
+                preparedStatementWorkloadNumber = connection.prepareStatement(WorkloadNumber);
+                preparedStatementWorkloadDuration = connection.prepareStatement(WorkloadDuration);
+                preparedStatementTotalWorkload = connection.prepareStatement(TotalWorkload);
+
+                for (WorkloadSemAct workloadSemAct : workloadSemActsList) {
+                    //for entered values except Semester Activities
+                    preparedStatementWorkloadNumber.setString(1, workloadSemAct.getNumbColumn());
+                    preparedStatementWorkloadDuration.setString(1,workloadSemAct.getDurationColumn());
+                    preparedStatementTotalWorkload.setString(1,workloadSemAct.getWorkloadColumn());
+
+                    //for SemesterActivities to control
+                    preparedStatementWorkloadNumber.setString(2, workloadSemAct.getSemesterActColumn());
+                    preparedStatementWorkloadDuration.setString(2, workloadSemAct.getSemesterActColumn());
+                    preparedStatementTotalWorkload.setString(2, workloadSemAct.getSemesterActColumn());
+
+                    //sending queries in bulk instead of individually.
+                    preparedStatementWorkloadNumber.addBatch();
+                    preparedStatementWorkloadDuration.addBatch();
+                    preparedStatementTotalWorkload.addBatch();}
+
+                preparedStatementWorkloadNumber.executeBatch();
+                preparedStatementWorkloadDuration.executeBatch();
+                preparedStatementTotalWorkload.executeBatch();
+
+                if (preparedStatementWorkloadNumber.getUpdateCount() > 0) {
+                    System.out.println("Data updated successfully for workload number column.");
+                    // refreshWeeklySchedule();
+                    workloadSemActsList.clear();
+                } else if(preparedStatementWorkloadDuration.getUpdateCount() > 0){
+                    System.out.println("Data updated successfully for workload duration column.");
+                    workloadSemActsList.clear();
+                }else {
+                    System.out.println("Data failed.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            System.out.println("No data updated");
+        }
+    }
+
+    //OutcomeMatrix Table
+    //According to the ProgramOutcomes, to add the ContributionLevel, LO that are entered by the user to the DB.
+
+    PreparedStatement preparedStatementConLev = null;
+    PreparedStatement preparedStatementLO = null;
+
+    private void insertOutcomeTable() {
+        getDataForOutcomeTable();
+        if (!courseOutcomes.isEmpty()) {
+            connection = SQLConnection.Connector();
+            try {
+                String ContributionLevQ = "UPDATE OutcomeMatrix SET ContributionLevel = ? WHERE ProgramOutcomes = ?";
+                String LOQuery = "UPDATE OutcomeMatrix SET LO = ? WHERE ProgramOutcomes = ?";
+
+                preparedStatementConLev = connection.prepareStatement(ContributionLevQ);
+                preparedStatementLO = connection.prepareStatement(LOQuery);
+
+                for (CourseOutcome courseOutcome : courseOutcomesList) {
+                    //for entered values except Semester Activities
+                    preparedStatementConLev.setString(1, courseOutcome.getContColumn());
+                    preparedStatementLO.setString(1,courseOutcome.getSubContL0());
+
+                    //for SemesterActivities to control
+                    preparedStatementConLev.setString(2, courseOutcome.getOutcomeColumn());
+                    preparedStatementLO.setString(2, courseOutcome.getOutcomeColumn());
+
+                    //sending queries in bulk instead of individually.
+                    preparedStatementConLev.addBatch();
+                    preparedStatementLO.addBatch();
+                }
+                preparedStatementConLev.executeBatch();
+                preparedStatementLO.executeBatch();
+
+                if (preparedStatementConLev.getUpdateCount() > 0) {
+                    System.out.println("Data updated successfully for contribution level number column for OutcomeMatrix table.");
+                    // refreshWeeklySchedule();
+                    courseOutcomesList.clear();
+                } else if(preparedStatementWorkloadDuration.getUpdateCount() > 0){
+                    System.out.println("Data updated successfully for workload duration column.");
+                    courseOutcomesList.clear();
+                }else {
+                    System.out.println("Data failed.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                {
+                    try {
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            System.out.println("No data updated");
+        }
+    } // COMPLETION TO INSERTING THE DATABASE HELPING WITH THE GET DATA METHODS
+
+
+
+    //*** REFRESH METHODS IN THE DISPLAY VERSIONS PAGE
     @FXML
     void refreshTable() {
         //to refresh the tables in the database
@@ -661,8 +1078,10 @@ public class Controller implements Initializable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        } // COMPLETION REFRESH METHODS IN THE DISPLAY VERSIONS PAGE
 
+
+    //*** FOR ORGANIZATION OF THE RADIO BUTTONS, HANDLE AND CONVERT METHODS
     @FXML
     public String handleCourseFallSemButton() {
         if (courseFallSemButton.isSelected()) {
@@ -834,85 +1253,6 @@ public class Controller implements Initializable {
         }
         return "Transferable Skill Course";
     }
-//    String queryForWeeks;
-//    PreparedStatement preparedStatementForWeeks;
-//    public void getQuerySchedule(ObservableList<WeeklySubjects> numberList, String subjects,String requiredMaterials ) {
-//        connection = SQLConnection.Connector();
-//        queryForWeeks = "INSERT INTO WeeklySchedule('WeekNumber') VALUES ('"+weeklySubjectsList+"')";
-
-    @FXML
-    public void save() {
-        //for Subjects column is WeeklySchedule table
-        insertWeeklyScheduleSubjectsDB();
-        //for Required Materials column is WeeklySchedule table
-        insertWeeklyScheduleReqMatDB();
-        saveCourseInfo();
-    }
-
-    public void saveCourseInfo() {
-        connection = SQLConnection.Connector();
-        cName = courseNameField.getText();
-        cCode = courseCodeField.getText();
-        semester = null;
-        languageS = null;
-        prerequisites = prerequisitesField.getText();
-        type = null;
-        level = null;
-        delivery = null;
-        teachingMethods = teachingMethodsField.getText();
-        coordinator = coordinatorField.getText();
-        lecturers = lecturerField.getText();
-        assistants = assistantField.getText();
-        objectives = objectivesField.getText();
-        outcomes = outcomesField.getText();
-        description = descriptionField.getText();
-        category = null;
-        textbooks = textbooksField.getText();
-        reading = readingField.getText();
-
-        convertSemesterValue();
-        convertLanguageValue();
-        convertCourseType();
-        convertLevelType();
-        convertDeliveryType();
-        convertCategoryType();
-
-        if (courseInfoController.controlBlank()) {
-            try {
-                theoryTime = Integer.parseInt(theoryTimeField.getText());
-                labTime = Integer.parseInt(labTimeField.getText());
-                credit = Integer.parseInt(courseCreditsField.getText());
-                courseECTS = Integer.parseInt(courseECTSField.getText());
-                if (credit == 0 || courseECTS == 0) {
-                    Alert notBlank = new Alert(Alert.AlertType.WARNING);
-                    notBlank.setTitle("Value Selection");
-                    notBlank.setHeaderText("The L.Credits and ECTS fields,both,must be a non-zero value.");
-                    notBlank.initModality(Modality.APPLICATION_MODAL);
-                    notBlank.showAndWait();
-                } else if ((labTime == 0 && theoryTime == 0)) {
-                    Alert notBlank = new Alert(Alert.AlertType.WARNING);
-                    notBlank.setTitle("Value Selection");
-                    notBlank.setHeaderText("At least one of the Lab Hour and Theory Hour must be a non-zero value.");
-                    notBlank.initModality(Modality.APPLICATION_MODAL);
-                    notBlank.showAndWait();
-                } else {
-                    courseInfoController.getQuery(cName, cCode, semester, theoryTime, labTime, credit, courseECTS, prerequisites, languageS, type, teachingMethods, objectives, outcomes, description, category, level, coordinator, lecturers, assistants, reading, textbooks, delivery);
-                    courseInfoController.insertTable();
-                }
-            } catch (NumberFormatException e) {
-                Alert notBlank = new Alert(Alert.AlertType.WARNING);
-                notBlank.setTitle("Value Selection");
-                notBlank.setHeaderText("The theory time, lab time, credit and ECTS must be integer.");
-                notBlank.initModality(Modality.APPLICATION_MODAL);
-                notBlank.showAndWait();
-            }
-        }
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void convertSemesterValue() {
         if (semesterValue == 1) {
@@ -974,8 +1314,10 @@ public class Controller implements Initializable {
         } else if (categoryType == 5) {
             category = handleTransferableButton();
         }
-    }
+    }// COMPLETION RADIO BUTTONS ORGANIZATION METHODS
 
+
+    //*** HELPER METHODS FOR EDITABLE WEEK TABLES IN THE COURSE PAGE
     /* Methods to be able to edit the corresponding columns of Week table */
     public void changeSubjectCellEvent(TableColumn.CellEditEvent editedCell) {
         selectedItem = weekTable.getSelectionModel().getSelectedItem();
@@ -1058,6 +1400,31 @@ public class Controller implements Initializable {
     public void changeLOCellEvent(TableColumn.CellEditEvent editedCell) {
         CourseOutcome selectedCell = outcomeTable.getSelectionModel().getSelectedItem();
         selectedCell.setSubContL0(editedCell.getNewValue().toString());
+    }//COMPLETION OF HELPER METHODS
+
+    //SAVE TO THE DATABASE BUTTON
+    @FXML
+    public void save() {
+        //for Subjects column is WeeklySchedule table
+        insertWeeklyScheduleSubjectsDB();
+        //for Required Materials column is WeeklySchedule table
+        insertWeeklyScheduleReqMatDB();
+        insertAssessmentTable();
+        insertWorkLoadTable();
+        insertOutcomeTable();
+        insertCourseInfo();
+
+        //to refresh the screen
+        weekTableInitializer();
+        assessmentTableInitializer();
+        workloadTableInitializer();
+        outcomeTableInitializer();
+
+
+
+
+
+
     }
 }
 
