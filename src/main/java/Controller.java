@@ -100,9 +100,11 @@ public class Controller implements Initializable {
     TableColumn<CourseOutcome, String>sharpOutcomeCol,programOutcomesColumn,contributionLevOutcome,loOutcomeColumn;
 
     @FXML
-    TableColumn<courseInfo, String> courseCodeCol, nameCol, prerequisitesCol, teachingMethodsCol, objectivesCol, outcomesCol, textbooksCol, readingCol, descriptionCol, lecturersCol, assistantsCol, coordinatorCol, levelCol, subjectsCol, requiredMaterialsCol;
+    TableColumn<courseInfo, String> courseCodeCol, nameCol, prerequisitesCol, teachingMethodsCol, objectivesCol, outcomesCol, textbooksCol, readingCol, descriptionCol, lecturersCol, assistantsCol, coordinatorCol, levelCol;
     @FXML
-    TableColumn<courseInfo, Integer> semesterCol, theoryCol, labCol, creditsCol, ectsCol, languageCol, typeCol, categoryCol, deliveryCol, weekNumberCol;
+    TableColumn<courseInfo, Integer> semesterCol, theoryCol, labCol, creditsCol, ectsCol, languageCol, typeCol, categoryCol, deliveryCol;
+   @FXML
+   TableColumn<WeeklySubjects, String>weekNumberCol,subjectsCol,requiredMaterialsCol;
     @FXML
     Button refreshButton, newCourseButton;
 
@@ -137,6 +139,14 @@ public class Controller implements Initializable {
         } else {
             System.out.println("The connection is failed.");
         }
+        subjectsCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        requiredMaterialsCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        numberWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        durationWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        workloadWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        contributionLevOutcome.setCellFactory(TextFieldTableCell.forTableColumn());
+        loOutcomeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
         weekTableInitializer();
         refreshWeeklySchedule();
         assessmentTableInitializer();
@@ -1408,6 +1418,59 @@ public class Controller implements Initializable {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
         selectedCell.setTheoryTime(Integer.parseInt(editedCell.getNewValue().toString()));
     }
+
+
+    //For Weekly Schedule Table
+//    public void onWeekNumber(TableColumn.CellEditEvent editedCell) {
+//        WeeklySubjects selectedCell = weeklyScheduleTable.getSelectionModel().getSelectedItem();
+//        selectedCell.setWeekColumn(editedCell.getNewValue().toString());
+////        weekColumn.setCellValueFactory(new PropertyValueFactory<WeeklySubjects, String>("weekColumn"));
+//    }
+    public void onSubjects(TableColumn.CellEditEvent editedCell) {
+        WeeklySubjects selectedCell = weeklyScheduleTable.getSelectionModel().getSelectedItem();
+        selectedCell.setSubjectColumn(editedCell.getNewValue().toString());
+    }
+    public void onReqMat(TableColumn.CellEditEvent editedCell) {
+        WeeklySubjects selectedCell = weeklyScheduleTable.getSelectionModel().getSelectedItem();
+        selectedCell.setReqColumn(editedCell.getNewValue().toString());
+    }
+
+    //For Workload Table
+    public void onSemActWork(TableColumn.CellEditEvent editedCell) {
+        WorkloadSemAct selectedCell = workloadTable.getSelectionModel().getSelectedItem();
+        selectedCell.setSemesterActColumn(editedCell.getNewValue().toString());
+    }
+    public void onNumberWork(TableColumn.CellEditEvent editedCell) {
+        WorkloadSemAct selectedCell = workloadTable.getSelectionModel().getSelectedItem();
+        selectedCell.setNumbColumn(editedCell.getNewValue().toString());
+    }
+    public void onDurationWork(TableColumn.CellEditEvent editedCell) {
+        WorkloadSemAct selectedCell = workloadTable.getSelectionModel().getSelectedItem();
+        selectedCell.setDurationColumn(editedCell.getNewValue().toString());
+    }
+    public void onWorkloadWork(TableColumn.CellEditEvent editedCell) {
+        WorkloadSemAct selectedCell = workloadTable.getSelectionModel().getSelectedItem();
+        selectedCell.setWorkloadColumn(editedCell.getNewValue().toString());
+    }
+
+    //For Outcome Table
+    public void onSharp(TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTableD.getSelectionModel().getSelectedItem();
+        selectedCell.setSharpColumn(editedCell.getNewValue().toString());
+    }
+    public void onOutcomes(TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTableD.getSelectionModel().getSelectedItem();
+        selectedCell.setOutcomeColumn(editedCell.getNewValue().toString());
+    }
+    public void onContribution(TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTableD.getSelectionModel().getSelectedItem();
+        selectedCell.setContColumn(editedCell.getNewValue().toString());
+    }
+    public void onLO(TableColumn.CellEditEvent editedCell) {
+        CourseOutcome selectedCell = outcomeTableD.getSelectionModel().getSelectedItem();
+        selectedCell.setSubContL0(editedCell.getNewValue().toString());
+    }
+
 
 
 

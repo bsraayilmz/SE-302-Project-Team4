@@ -673,11 +673,11 @@
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="204.0" prefWidth="408.0">
                                           <children>
-                                             <TableView fx:id="weeklyScheduleTable" prefHeight="221.0" prefWidth="400.0">
+                                             <TableView fx:id="weeklyScheduleTable" editable="true" prefHeight="221.0" prefWidth="400.0">
                                                <columns>
                                                  <TableColumn fx:id="weekNumberCol" prefWidth="100.0" text="Week Number" />
-                                                 <TableColumn fx:id="subjectsCol" prefWidth="150.0" text="Subjects" />
-                                                   <TableColumn fx:id="requiredMaterialsCol" prefWidth="150.0" text="Required Materials" />
+                                                 <TableColumn fx:id="subjectsCol" onEditCommit="#onSubjects" prefWidth="150.0" text="Subjects" />
+                                                   <TableColumn fx:id="requiredMaterialsCol" onEditCommit="#onReqMat" prefWidth="150.0" text="Required Materials" />
                                                </columns>
                                              </TableView>
                                           </children>
@@ -758,12 +758,12 @@
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="395.0">
                                           <children>
-                                             <TableView fx:id="workloadTable" prefHeight="216.0" prefWidth="390.0">
+                                             <TableView fx:id="workloadTable" editable="true" prefHeight="216.0" prefWidth="390.0">
                                                 <columns>
-                                                   <TableColumn fx:id="semActWorkloadColumn" prefWidth="123.99999314546585" text="Semester Activities" />
-                                                   <TableColumn fx:id="numberWorkloadColumn" prefWidth="62.39996337890625" text="Number" />
-                                                   <TableColumn fx:id="durationWorkloadColumn" prefWidth="108.00003051757812" text="Duration (Hours)" />
-                                                   <TableColumn fx:id="workloadWorkloadColumn" prefWidth="96.79998779296875" text="Workload" />
+                                                   <TableColumn fx:id="semActWorkloadColumn" onEditCommit="#onSemActWork" prefWidth="123.99999314546585" text="Semester Activities" />
+                                                   <TableColumn fx:id="numberWorkloadColumn" onEditCommit="#onNumberWork" prefWidth="62.39996337890625" text="Number" />
+                                                   <TableColumn fx:id="durationWorkloadColumn" onEditCommit="#onDurationWork" prefWidth="108.00003051757812" text="Duration (Hours)" />
+                                                   <TableColumn fx:id="workloadWorkloadColumn" onEditCommit="#onWorkloadWork" prefWidth="96.79998779296875" text="Workload" />
                                                 </columns>
                                              </TableView>
                                           </children>
@@ -790,12 +790,12 @@
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="398.0">
                                           <children>
-                                             <TableView fx:id="outcomeTableD" prefHeight="224.0" prefWidth="394.0">
+                                             <TableView fx:id="outcomeTableD" editable="true" prefHeight="224.0" prefWidth="394.0">
                                                 <columns>
-                                                   <TableColumn fx:id="sharpOutcomeCol" prefWidth="27.20001220703125" text="#" />
-                                                   <TableColumn fx:id="programOutcomesColumn" prefWidth="209.5999870300293" text="Program Competencies / Outcomes" />
-                                                   <TableColumn fx:id="contributionLevOutcome" minWidth="2.4000244140625" prefWidth="120.0" text="Contribution Level" />
-                                                   <TableColumn fx:id="loOutcomeColumn" minWidth="0.0" prefWidth="38.39996337890625" text="LO#" />
+                                                   <TableColumn fx:id="sharpOutcomeCol" onEditCommit="#onSharp" prefWidth="27.20001220703125" text="#" />
+                                                   <TableColumn fx:id="programOutcomesColumn" onEditCommit="#onOutcomes" prefWidth="209.5999870300293" text="Program Competencies / Outcomes" />
+                                                   <TableColumn fx:id="contributionLevOutcome" minWidth="2.4000244140625" onEditCommit="#onContribution" prefWidth="120.0" text="Contribution Level" />
+                                                   <TableColumn fx:id="loOutcomeColumn" minWidth="0.0" onEditCommit="#onLO" prefWidth="38.39996337890625" text="LO#" />
                                                 </columns>
                                              </TableView>
                                           </children>
