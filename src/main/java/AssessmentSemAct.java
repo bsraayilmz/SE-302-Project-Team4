@@ -15,6 +15,9 @@ public class AssessmentSemAct {
         this.semesterActivitiesColumn = semesterActivitiesColumn;
         // this.semesterActColumn = semesterActColumn;
     }
+    public AssessmentSemAct(){
+
+    }
 
     public String getSemesterActivitiesColumn() {
         return semesterActivitiesColumn;

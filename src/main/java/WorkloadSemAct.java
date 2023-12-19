@@ -8,6 +8,7 @@ public class WorkloadSemAct {
         this.semesterActColumn = semesterActColumn;
     }
 
+    public WorkloadSemAct(){}
     public String getSemesterActColumn() {
         return semesterActColumn;
     }

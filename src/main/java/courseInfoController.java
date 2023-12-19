@@ -12,7 +12,6 @@ public class courseInfoController{
     }
     void loadData() {
         controller.connection = SQLConnection.Connector();
-        controller.refreshTable();
 
         controller.courseCodeCol.setCellValueFactory(new PropertyValueFactory<>("courseCode"));
         controller.nameCol.setCellValueFactory(new PropertyValueFactory<>("courseName"));
@@ -46,8 +45,6 @@ public class courseInfoController{
             controller.connection = SQLConnection.Connector();
             controller.preparedStatementAddition = controller.connection.prepareStatement(controller.queryAdditionForCourseInfo);
             controller.preparedStatementAddition.execute();
-//            courseNameLabel.setText(courseCodeField.getText());
-            controller.refreshTable();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

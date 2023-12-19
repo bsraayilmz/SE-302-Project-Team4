@@ -122,7 +122,7 @@
             </VBox>
             <AnchorPane layoutX="206.0" prefHeight="470.0" prefWidth="445.0">
                 <children>
-                    <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0">
+                    <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
                         <children>
                             <Label layoutX="163.0" layoutY="29.0" prefHeight="72.0" prefWidth="111.0" text="Welcome!" textAlignment="CENTER">
                                 <font>
@@ -141,7 +141,7 @@
                             </ImageView>
                         </children>
                     </Pane>
-                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0">
+                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0" visible="false">
                         <children>
                             <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2846.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
                                 <content>
@@ -373,7 +373,6 @@
                                             <Label layoutX="27.0" layoutY="2166.0" prefHeight="18.0" prefWidth="368.0" style="-fx-font-style: italic;" text="Please enter a number between 1 and 5 for contribution level." />
                                             <Button id="saveButton" fx:id="saveButtonEN" layoutX="168.0" layoutY="2505.0" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="100.0" styleClass="saveButton" stylesheets="@application.css" text="SAVE" />
                                             <Line endX="331.0" layoutX="106.0" layoutY="2473.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <!--                                 <ComboBox fx:id="documentLangEn" layoutX="-1.0" onAction="#selectDocLangEn" prefHeight="26.0" prefWidth="122.0" promptText="Doc. Language" styleClass="documentLang" stylesheets="@application.css" />-->
                                         </children>
                                     </AnchorPane>
                                 </content>
@@ -609,11 +608,11 @@
                             </ScrollPane>
                         </children>
                     </Pane>
-                    <Pane id="displayVersionsPage" fx:id="displayVersionsPage" layoutX="3.0" prefHeight="470.0" prefWidth="446.0" visible="false">
+                    <Pane id="displayVersionsPage" fx:id="displayVersionsPage" layoutX="3.0" prefHeight="470.0" prefWidth="446.0">
                         <children>
-                            <ScrollPane prefHeight="865.0" prefWidth="452.0">
+                            <ScrollPane prefHeight="1552.0" prefWidth="452.0">
                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="436.0">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2750.0" prefWidth="460.0">
                                         <children>
                                             <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="14.0" layoutY="105.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing course information.">
                                                 <font>
@@ -638,9 +637,9 @@
                                             </Label>
                                             <ScrollPane layoutX="25.0" layoutY="140.0" prefHeight="200.0" prefWidth="402.0">
                                                 <content>
-                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="402.0">
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="700.0">
                                                         <children>
-                                                            <TableView fx:id="courseInfoTable" layoutX="-2.0" prefHeight="200.0" prefWidth="402.0">
+                                                            <TableView fx:id="courseInfoTable" layoutX="-2.0" prefHeight="200.0" prefWidth="706.0">
                                                                 <columns>
                                                                     <TableColumn fx:id="courseCodeCol" prefWidth="89.19999694824219" text="Course Code" />
                                                                     <TableColumn fx:id="nameCol" prefWidth="38.0" text="Name" />
@@ -648,8 +647,8 @@
                                                                     <TableColumn fx:id="theoryCol" prefWidth="81.0" text="Theory Time" />
                                                                     <TableColumn fx:id="labCol" prefWidth="60.800018310546875" text="Lab Time" />
                                                                     <TableColumn fx:id="creditsCol" prefWidth="55.0" text="L.Credits" />
-                                                                    <TableColumn fx:id="ectsCol" prefWidth="37.0" text="ECTS" />
-                                                                    <TableColumn fx:id="prerequisitesCol" prefWidth="77.79998779296875" text="Prerequisites" />
+                                                                    <TableColumn fx:id="ectsCol" prefWidth="48.4000244140625" text="ECTS" />
+                                                                    <TableColumn fx:id="prerequisitesCol" prefWidth="80.39990234375" text="Prerequisites" />
                                                                     <TableColumn fx:id="languageCol" prefWidth="65.5999755859375" text="Language" />
                                                                     <TableColumn fx:id="typeCol" prefWidth="36.0" text="Type" />
                                                    <TableColumn fx:id="levelCol" prefWidth="81.0" text="Course Level" />
@@ -670,12 +669,11 @@
                                                     </AnchorPane>
                                                 </content>
                                             </ScrollPane>
-                                            <Button fx:id="refreshButton" alignment="CENTER" contentDisplay="CENTER" layoutX="354.0" layoutY="33.0" mnemonicParsing="false" onAction="#refreshTable" style="-fx-background-color: white; -fx-border-color: #03045E; -fx-border-radius: 1;" text="Refresh" textFill="#103f7c" />
-                                 <ScrollPane layoutX="25.0" layoutY="406.0" prefHeight="210.0" prefWidth="395.0">
+                                 <ScrollPane layoutX="25.0" layoutY="406.0" prefHeight="217.0" prefWidth="402.0">
                                    <content>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="213.0" prefWidth="402.0">
+                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="204.0" prefWidth="408.0">
                                           <children>
-                                             <TableView fx:id="weeklyScheduleTable" prefHeight="200.0" prefWidth="400.0">
+                                             <TableView fx:id="weeklyScheduleTable" prefHeight="221.0" prefWidth="400.0">
                                                <columns>
                                                  <TableColumn fx:id="weekNumberCol" prefWidth="100.0" text="Week Number" />
                                                  <TableColumn fx:id="subjectsCol" prefWidth="150.0" text="Subjects" />
@@ -698,6 +696,124 @@
                                     </effect>
                                  </Label>
                                  <Label layoutX="25.0" layoutY="360.0" prefHeight="18.0" prefWidth="464.0" text="Weekly Schedule" textFill="#610000">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                                 <ScrollPane layoutX="25.0" layoutY="695.0" prefHeight="224.0" prefWidth="400.0">
+                                   <content>
+                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="410.0">
+                                          <children>
+                                             <TableView fx:id="assessmentTable" prefHeight="224.0" prefWidth="452.0">
+                                                <columns>
+                                                   <TableColumn fx:id="semActAssessmentCol" prefWidth="115.00001525878906" text="Semester Activities" />
+                                                   <TableColumn fx:id="numberAssessmentCol" prefWidth="53.60003662109375" text="Number" />
+                                                   <TableColumn fx:id="weightingAssessmentCol" prefWidth="65.0" text="Weighting" />
+                                                   <TableColumn fx:id="LO1AssessmentCol" prefWidth="25.60003662109375" text="LO1" />
+                                                   <TableColumn fx:id="LO2AssessmentCol" prefWidth="28.39996337890625" text="LO2" />
+                                                   <TableColumn fx:id="LO3AssessmentCol" prefWidth="25.800048828125" text="LO3" />
+                                                   <TableColumn fx:id="LO4AssessmentCol" prefWidth="28.5999755859375" text="LO4" />
+                                                   <TableColumn fx:id="LO5AssessmentCol" prefWidth="26.0" text="LO5" />
+                                                   <TableColumn fx:id="LO6AssessmentCol" prefWidth="25.800048828125" text="LO6" />
+                                                   <TableColumn fx:id="LO7AssessmentCol" prefWidth="25.800048828125" text="LO7" />
+                                                </columns>
+                                             </TableView>
+                                          </children>
+                                       </AnchorPane>
+                                   </content>
+                                 </ScrollPane>
+                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="667.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing assessment schedule.">
+                                    <font>
+                                       <Font size="11.0" />
+                                    </font>
+                                    <cursor>
+                                       <Cursor fx:constant="NONE" />
+                                    </cursor>
+                                    <effect>
+                                       <Blend opacity="0.19" />
+                                    </effect>
+                                 </Label>
+                                 <Label layoutX="28.0" layoutY="640.0" prefHeight="18.0" prefWidth="464.0" text="Assessment" textFill="#610000">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="958.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing ECTS / Workload schedule.">
+                                    <font>
+                                       <Font size="11.0" />
+                                    </font>
+                                    <cursor>
+                                       <Cursor fx:constant="NONE" />
+                                    </cursor>
+                                    <effect>
+                                       <Blend opacity="0.19" />
+                                    </effect>
+                                 </Label>
+                                 <Label layoutX="28.0" layoutY="931.0" prefHeight="18.0" prefWidth="464.0" text="ECTS / Workload" textFill="#610000">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                                 <ScrollPane layoutX="31.0" layoutY="989.0" prefHeight="214.0" prefWidth="387.0">
+                                   <content>
+                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="395.0">
+                                          <children>
+                                             <TableView fx:id="workloadTable" prefHeight="216.0" prefWidth="390.0">
+                                                <columns>
+                                                   <TableColumn fx:id="semActWorkloadColumn" prefWidth="123.99999314546585" text="Semester Activities" />
+                                                   <TableColumn fx:id="numberWorkloadColumn" prefWidth="62.39996337890625" text="Number" />
+                                                   <TableColumn fx:id="durationWorkloadColumn" prefWidth="108.00003051757812" text="Duration (Hours)" />
+                                                   <TableColumn fx:id="workloadWorkloadColumn" prefWidth="96.79998779296875" text="Workload" />
+                                                </columns>
+                                             </TableView>
+                                          </children>
+                                       </AnchorPane>
+                                   </content>
+                                 </ScrollPane>
+                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="53.0" layoutY="2206.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing ECTS / Workload schedule.">
+                                    <font>
+                                       <Font size="11.0" />
+                                    </font>
+                                    <cursor>
+                                       <Cursor fx:constant="NONE" />
+                                    </cursor>
+                                    <effect>
+                                       <Blend opacity="0.19" />
+                                    </effect>
+                                 </Label>
+                                 <Label layoutX="53.0" layoutY="2179.0" prefHeight="18.0" prefWidth="464.0" text="ECTS / Workload" textFill="#610000">
+                                    <font>
+                                       <Font size="14.0" />
+                                    </font>
+                                 </Label>
+                                 <ScrollPane layoutX="23.0" layoutY="1274.0" prefHeight="232.0" prefWidth="404.0">
+                                   <content>
+                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="398.0">
+                                          <children>
+                                             <TableView fx:id="outcomeTableD" prefHeight="224.0" prefWidth="394.0">
+                                                <columns>
+                                                   <TableColumn fx:id="sharpOutcomeCol" prefWidth="27.20001220703125" text="#" />
+                                                   <TableColumn fx:id="programOutcomesColumn" prefWidth="209.5999870300293" text="Program Competencies / Outcomes" />
+                                                   <TableColumn fx:id="contributionLevOutcome" minWidth="2.4000244140625" prefWidth="120.0" text="Contribution Level" />
+                                                   <TableColumn fx:id="loOutcomeColumn" minWidth="0.0" prefWidth="38.39996337890625" text="LO#" />
+                                                </columns>
+                                             </TableView>
+                                          </children>
+                                       </AnchorPane>
+                                   </content>
+                                 </ScrollPane>
+                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="1243.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing Outcome Matrix schedule.">
+                                    <font>
+                                       <Font size="11.0" />
+                                    </font>
+                                    <cursor>
+                                       <Cursor fx:constant="NONE" />
+                                    </cursor>
+                                    <effect>
+                                       <Blend opacity="0.19" />
+                                    </effect>
+                                 </Label>
+                                 <Label layoutX="28.0" layoutY="1216.0" prefHeight="18.0" prefWidth="464.0" text="Course / Program Outcome Matrix" textFill="#610000">
                                     <font>
                                        <Font size="14.0" />
                                     </font>

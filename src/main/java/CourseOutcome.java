@@ -12,6 +12,7 @@ public class CourseOutcome {
         this.sharpColumn = sharpColumn;
         this.outcomeColumn = outcomeColumn;
     }
+    public CourseOutcome(){}
 
     public void setSharpColumn(String sharpColumn) {
         this.sharpColumn = sharpColumn;
