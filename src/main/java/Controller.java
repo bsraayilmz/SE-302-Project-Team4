@@ -1396,6 +1396,21 @@ public class Controller implements Initializable {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
         selectedCell.setCourseCode(editedCell.getNewValue().toString());
     }
+    public void onName(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseName(editedCell.getNewValue().toString());
+    }
+    public void onSemester(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseSemester(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onTheoryTime(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setTheoryTime(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+
+
+
 
 
 
