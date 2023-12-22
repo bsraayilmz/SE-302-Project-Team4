@@ -147,6 +147,17 @@ public class Controller implements Initializable {
         contributionLevOutcome.setCellFactory(TextFieldTableCell.forTableColumn());
         loOutcomeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
+    //    semActAssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        numberAssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        weightingAssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO1AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO2AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO3AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO4AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO5AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO6AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO7AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
         weekTableInitializer();
         refreshWeeklySchedule();
         assessmentTableInitializer();
@@ -1434,6 +1445,61 @@ public class Controller implements Initializable {
         WeeklySubjects selectedCell = weeklyScheduleTable.getSelectionModel().getSelectedItem();
         selectedCell.setReqColumn(editedCell.getNewValue().toString());
     }
+
+    //For Assessment Table
+
+
+    public void onSemAct(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setSemesterActivitiesColumn(editedCell.getNewValue().toString());
+    }
+
+    public void onNumber(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setNumberColumn(editedCell.getNewValue().toString());
+    }
+
+    public void onWeighting(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setWeightingColumn(editedCell.getNewValue().toString());
+    }
+
+    public void onLO1(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setL01Column(editedCell.getNewValue().toString());
+    }
+
+    public void onLO2(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setL02Column(editedCell.getNewValue().toString());
+    }
+
+    public void onLO3(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setL03Column(editedCell.getNewValue().toString());
+    }
+
+    public void onLO4(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setL04Column(editedCell.getNewValue().toString());
+    }
+
+    public void onLO5(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setL05Column(editedCell.getNewValue().toString());
+    }
+
+    public void onLO6(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setL06Column(editedCell.getNewValue().toString());
+    }
+
+    public void onLO7(TableColumn.CellEditEvent editedCell) {
+        AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
+        selectedCell.setL07Column(editedCell.getNewValue().toString());
+    }
+
+
 
     //For Workload Table
     public void onSemActWork(TableColumn.CellEditEvent editedCell) {

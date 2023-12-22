@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <AnchorPane>
         <children>
             <VBox prefHeight="480.0" prefWidth="206.0" style="-fx-background-color: #03045E;">
@@ -56,9 +56,9 @@
                                 </stops>
                             </LinearGradient>
                         </textFill>
-                  <font>
-                     <Font name="Verdana" size="16.0" />
-                  </font>
+                        <font>
+                            <Font name="Verdana" size="16.0" />
+                        </font>
                     </Button>
                     <Button id="displayVersionsButton" fx:id="displayVersionsButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickDV" prefHeight="78.0" prefWidth="221.0" style="-fx-background-color: #5D5E96; -fx-border-radius: 5;" stylesheets="@application.css" text="Display Versions">
                         <textFill>
@@ -80,9 +80,9 @@
                         <effect>
                             <Blend />
                         </effect>
-                  <font>
-                     <Font name="Verdana Pro" size="16.0" />
-                  </font>
+                        <font>
+                            <Font name="Verdana Pro" size="16.0" />
+                        </font>
                     </Button>
                     <Button id="userManualButton" fx:id="userManualButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#clickUM" prefHeight="86.0" prefWidth="225.0" style="-fx-background-color: #5D5E96;" stylesheets="@application.css" text="User Manual">
                         <textFill>
@@ -104,20 +104,20 @@
                         <effect>
                             <Blend />
                         </effect>
-                  <font>
-                     <Font name="Verdana Pro" size="16.0" />
-                  </font>
+                        <font>
+                            <Font name="Verdana Pro" size="16.0" />
+                        </font>
                     </Button>
-               <ImageView fitHeight="176.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@Izmir-University-of-Economics-IUE-logo-1.png" />
-                    </image>
-                </ImageView>
-               <Label alignment="CENTER" prefHeight="44.0" prefWidth="212.0" text="Developed by Team 4" textFill="#5d5e96">
-                  <font>
-                     <Font name="Verdana Pro" size="14.0" />
-                  </font>
-               </Label>
+                    <ImageView fitHeight="176.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@Izmir-University-of-Economics-IUE-logo-1.png" />
+                        </image>
+                    </ImageView>
+                    <Label alignment="CENTER" prefHeight="44.0" prefWidth="212.0" text="Developed by Team 4" textFill="#5d5e96">
+                        <font>
+                            <Font name="Verdana Pro" size="14.0" />
+                        </font>
+                    </Label>
                 </children>
             </VBox>
             <AnchorPane layoutX="206.0" prefHeight="470.0" prefWidth="445.0">
@@ -157,23 +157,23 @@
                                             <TextField fx:id="courseNameField" layoutX="147.0" layoutY="63.0" prefHeight="26.0" prefWidth="258.0" />
                                             <Label layoutX="38.0" layoutY="123.0" prefHeight="18.0" prefWidth="41.0" text="Code" textFill="#03045e" />
                                             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="123.0" prefHeight="18.0" prefWidth="41.0" text="Term" textFill="#03045e" />
-                                 <Pane fx:id="buttonGroup" layoutX="102.0" layoutY="142.0" prefHeight="35.0" prefWidth="98.0">
-                                    <children>
-                                                  <RadioButton fx:id="courseFallSemButton" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCourseFallSemButton" opacity="0.72" prefHeight="24.0" prefWidth="38.0" text="Fall" textAlignment="CENTER">
-                                                      <font>
-                                                          <Font size="10.0" />
-                                                      </font>
-                                          <toggleGroup>
-                                             <ToggleGroup fx:id="semesterGroup" />
-                                          </toggleGroup>
-                                                  </RadioButton>
-                                                  <RadioButton fx:id="courseSpringSemButton" layoutX="38.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCourseSpringSemButton" opacity="0.72" prefHeight="24.0" prefWidth="52.0" text="Spring" textAlignment="CENTER" toggleGroup="$semesterGroup">
-                                                      <font>
-                                                          <Font size="10.0" />
-                                                      </font>
-                                                  </RadioButton>
-                                    </children>
-                                 </Pane>
+                                            <Pane fx:id="buttonGroup" layoutX="102.0" layoutY="142.0" prefHeight="35.0" prefWidth="98.0">
+                                                <children>
+                                                    <RadioButton fx:id="courseFallSemButton" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCourseFallSemButton" opacity="0.72" prefHeight="24.0" prefWidth="38.0" text="Fall" textAlignment="CENTER">
+                                                        <font>
+                                                            <Font size="10.0" />
+                                                        </font>
+                                                        <toggleGroup>
+                                                            <ToggleGroup fx:id="semesterGroup" />
+                                                        </toggleGroup>
+                                                    </RadioButton>
+                                                    <RadioButton fx:id="courseSpringSemButton" layoutX="38.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleCourseSpringSemButton" opacity="0.72" prefHeight="24.0" prefWidth="52.0" text="Spring" textAlignment="CENTER" toggleGroup="$semesterGroup">
+                                                        <font>
+                                                            <Font size="10.0" />
+                                                        </font>
+                                                    </RadioButton>
+                                                </children>
+                                            </Pane>
                                             <TextField fx:id="theoryTimeField" layoutX="205.0" layoutY="142.0" prefHeight="26.0" prefWidth="49.0" style="-fx-font-style: italic;" />
                                             <Label layoutX="190.0" layoutY="123.0" prefHeight="18.0" prefWidth="129.0" text="     Theory  Application" textFill="#03045e" />
                                             <TextField fx:id="labTimeField" layoutX="255.0" layoutY="142.0" prefHeight="26.0" prefWidth="49.0" style="-fx-font-style: italic;" />
@@ -185,32 +185,32 @@
                                             <Label layoutX="48.0" layoutY="257.0" prefHeight="18.0" prefWidth="118.0" text="Course Language" textFill="#03045e" />
                                             <Label layoutX="60.0" layoutY="309.0" prefHeight="18.0" prefWidth="118.0" text="Course Type" textFill="#03045e" />
                                             <Label layoutX="14.0" layoutY="366.0" prefHeight="18.0" prefWidth="118.0" text="Course Level" textFill="#03045e" />
-                                                  <RadioButton fx:id="turkishLangButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="162.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleTurkishButton" text="Turkish">
-                                                      <font>
-                                                          <Font size="10.0" />
-                                                      </font>
-                                    <toggleGroup>
-                                       <ToggleGroup fx:id="language" />
-                                    </toggleGroup>
-                                                  </RadioButton>
-                                                  <RadioButton fx:id="englishLangButton" alignment="CENTER_RIGHT" layoutX="230.0" layoutY="258.0" minWidth="40.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleEnglishButton" prefHeight="15.0" text="English" toggleGroup="$language">
-                                                      <font>
-                                                          <Font size="10.0" />
-                                                      </font>
-                                                  </RadioButton>
-                                                  <RadioButton fx:id="secondLangButton" layoutX="295.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleSecondLButton" text="Second Foreign Language" toggleGroup="$language">
-                                                      <font>
-                                                          <Font size="10.0" />
-                                                      </font>
-                                                  </RadioButton>
+                                            <RadioButton fx:id="turkishLangButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="162.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleTurkishButton" text="Turkish">
+                                                <font>
+                                                    <Font size="10.0" />
+                                                </font>
+                                                <toggleGroup>
+                                                    <ToggleGroup fx:id="language" />
+                                                </toggleGroup>
+                                            </RadioButton>
+                                            <RadioButton fx:id="englishLangButton" alignment="CENTER_RIGHT" layoutX="230.0" layoutY="258.0" minWidth="40.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleEnglishButton" prefHeight="15.0" text="English" toggleGroup="$language">
+                                                <font>
+                                                    <Font size="10.0" />
+                                                </font>
+                                            </RadioButton>
+                                            <RadioButton fx:id="secondLangButton" layoutX="295.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleSecondLButton" text="Second Foreign Language" toggleGroup="$language">
+                                                <font>
+                                                    <Font size="10.0" />
+                                                </font>
+                                            </RadioButton>
 
                                             <RadioButton fx:id="requiredTypeButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="184.0" layoutY="311.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleRequiredButton" text="Required">
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                    <toggleGroup>
-                                       <ToggleGroup fx:id="type" />
-                                    </toggleGroup>
+                                                <toggleGroup>
+                                                    <ToggleGroup fx:id="type" />
+                                                </toggleGroup>
                                             </RadioButton>
                                             <RadioButton fx:id="electiveTypeButton" alignment="CENTER_RIGHT" layoutX="286.0" layoutY="311.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleElectiveButton" text="Elective" toggleGroup="$type">
                                                 <font>
@@ -221,9 +221,9 @@
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                    <toggleGroup>
-                                       <ToggleGroup fx:id="level" />
-                                    </toggleGroup>
+                                                <toggleGroup>
+                                                    <ToggleGroup fx:id="level" />
+                                                </toggleGroup>
                                             </RadioButton>
                                             <RadioButton fx:id="firstCycleButton" alignment="CENTER_RIGHT" layoutX="187.0" layoutY="363.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleFirstButton" prefHeight="24.0" prefWidth="68.0" text="First Cycle" toggleGroup="$level">
                                                 <font>
@@ -245,9 +245,9 @@
                                                 <font>
                                                     <Font size="10.0" />
                                                 </font>
-                                    <toggleGroup>
-                                       <ToggleGroup fx:id="delivery" />
-                                    </toggleGroup>
+                                                <toggleGroup>
+                                                    <ToggleGroup fx:id="delivery" />
+                                                </toggleGroup>
                                             </RadioButton>
                                             <RadioButton fx:id="onlineDel" alignment="CENTER_RIGHT" layoutX="256.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleOnlineButton" text="Online" toggleGroup="$delivery">
                                                 <font>
@@ -292,9 +292,9 @@
                                             <Label layoutX="36.0" layoutY="914.0" prefHeight="18.0" prefWidth="125.0" text="Course Category" textFill="#03045e" />
                                             <ListView layoutX="147.0" layoutY="908.0" prefHeight="129.0" prefWidth="282.0" />
                                             <RadioButton fx:id="coreCategoryButton" layoutX="151.0" layoutY="914.0" mnemonicParsing="false" onAction="#handleCoreButton" text="Core Course">
-                                    <toggleGroup>
-                                       <ToggleGroup fx:id="category" />
-                                    </toggleGroup></RadioButton>
+                                                <toggleGroup>
+                                                    <ToggleGroup fx:id="category" />
+                                                </toggleGroup></RadioButton>
                                             <RadioButton fx:id="majorAreaCategoryButton" layoutX="151.0" layoutY="940.0" mnemonicParsing="false" onAction="#handleMajorButton" text="Major Area Course" toggleGroup="$category" />
                                             <RadioButton fx:id="transferableCategoryButton" layoutX="151.0" layoutY="1014.0" mnemonicParsing="false" onAction="#handleTransferableButton" prefHeight="18.0" prefWidth="159.0" text="Transferable Skill Course" toggleGroup="$category" />
                                             <RadioButton fx:id="commCategoryButton" layoutX="151.0" layoutY="988.0" mnemonicParsing="false" onAction="#handleCommButton" text="Communication and Management Skills Course" toggleGroup="$category" />
@@ -367,7 +367,7 @@
                                                     <TableColumn fx:id="sharpColumn" prefWidth="28.0" text="#" />
                                                     <TableColumn fx:id="outcomeColumn" prefWidth="217.60004806518555" text="Program Competencies/Outcomes" />
                                                     <TableColumn fx:id="contColumn" onEditCommit="#changeContColCellEvent" prefWidth="111.60000610351562" text="Contribution Level" />
-                                       <TableColumn fx:id="loCol" onEditCommit="#changeLOCellEvent" prefWidth="52.800048828125" text="LO#" />
+                                                    <TableColumn fx:id="loCol" onEditCommit="#changeLOCellEvent" prefWidth="52.800048828125" text="LO#" />
                                                 </columns>
                                             </TableView>
                                             <Label layoutX="27.0" layoutY="2166.0" prefHeight="18.0" prefWidth="368.0" style="-fx-font-style: italic;" text="Please enter a number between 1 and 5 for contribution level." />
@@ -651,173 +651,173 @@
                                                                     <TableColumn fx:id="prerequisitesCol" prefWidth="80.39990234375" text="Prerequisites" />
                                                                     <TableColumn fx:id="languageCol" prefWidth="65.5999755859375" text="Language" />
                                                                     <TableColumn fx:id="typeCol" prefWidth="36.0" text="Type" />
-                                                   <TableColumn fx:id="levelCol" prefWidth="81.0" text="Course Level" />
-                                                   <TableColumn fx:id="deliveryCol" prefWidth="68.0" text="Delivery" />
+                                                                    <TableColumn fx:id="levelCol" prefWidth="81.0" text="Course Level" />
+                                                                    <TableColumn fx:id="deliveryCol" prefWidth="68.0" text="Delivery" />
                                                                     <TableColumn fx:id="teachingMethodsCol" prefWidth="109.79998779296875" text="Teaching Methods" />
-                                                   <TableColumn fx:id="coordinatorCol" text="Coordinator" />
-                                                   <TableColumn fx:id="lecturersCol" prefWidth="78.0" text="Lecturer(s)" />
-                                                   <TableColumn fx:id="assistantsCol" prefWidth="78.0" text="Assistant(s)" />
+                                                                    <TableColumn fx:id="coordinatorCol" text="Coordinator" />
+                                                                    <TableColumn fx:id="lecturersCol" prefWidth="78.0" text="Lecturer(s)" />
+                                                                    <TableColumn fx:id="assistantsCol" prefWidth="78.0" text="Assistant(s)" />
                                                                     <TableColumn fx:id="objectivesCol" prefWidth="65.4000244140625" text="Objectives" />
                                                                     <TableColumn fx:id="outcomesCol" prefWidth="65.4000244140625" text="Outcomes" />
                                                                     <TableColumn fx:id="descriptionCol" prefWidth="78.5999755859375" text="Description" />
                                                                     <TableColumn fx:id="categoryCol" prefWidth="68.0" text="Category" />
-                                                   <TableColumn fx:id="textbooksCol" prefWidth="68.0" text="Textbooks" />
-                                                   <TableColumn fx:id="readingCol" prefWidth="68.0" text="Reading Materials" />
+                                                                    <TableColumn fx:id="textbooksCol" prefWidth="68.0" text="Textbooks" />
+                                                                    <TableColumn fx:id="readingCol" prefWidth="68.0" text="Reading Materials" />
                                                                 </columns>
                                                             </TableView>
                                                         </children>
                                                     </AnchorPane>
                                                 </content>
                                             </ScrollPane>
-                                 <ScrollPane layoutX="25.0" layoutY="406.0" prefHeight="217.0" prefWidth="402.0">
-                                   <content>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="204.0" prefWidth="408.0">
-                                          <children>
-                                             <TableView fx:id="weeklyScheduleTable" editable="true" prefHeight="221.0" prefWidth="400.0">
-                                               <columns>
-                                                 <TableColumn fx:id="weekNumberCol" prefWidth="100.0" text="Week Number" />
-                                                 <TableColumn fx:id="subjectsCol" onEditCommit="#onSubjects" prefWidth="150.0" text="Subjects" />
-                                                   <TableColumn fx:id="requiredMaterialsCol" onEditCommit="#onReqMat" prefWidth="150.0" text="Required Materials" />
-                                               </columns>
-                                             </TableView>
-                                          </children>
-                                       </AnchorPane>
-                                   </content>
-                                 </ScrollPane>
-                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="25.0" layoutY="387.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing weekly schedule.">
-                                    <font>
-                                       <Font size="11.0" />
-                                    </font>
-                                    <cursor>
-                                       <Cursor fx:constant="NONE" />
-                                    </cursor>
-                                    <effect>
-                                       <Blend opacity="0.19" />
-                                    </effect>
-                                 </Label>
-                                 <Label layoutX="25.0" layoutY="360.0" prefHeight="18.0" prefWidth="464.0" text="Weekly Schedule" textFill="#610000">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </Label>
-                                 <ScrollPane layoutX="25.0" layoutY="695.0" prefHeight="224.0" prefWidth="400.0">
-                                   <content>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="410.0">
-                                          <children>
-                                             <TableView fx:id="assessmentTable" prefHeight="224.0" prefWidth="452.0">
-                                                <columns>
-                                                   <TableColumn fx:id="semActAssessmentCol" prefWidth="115.00001525878906" text="Semester Activities" />
-                                                   <TableColumn fx:id="numberAssessmentCol" prefWidth="53.60003662109375" text="Number" />
-                                                   <TableColumn fx:id="weightingAssessmentCol" prefWidth="65.0" text="Weighting" />
-                                                   <TableColumn fx:id="LO1AssessmentCol" prefWidth="25.60003662109375" text="LO1" />
-                                                   <TableColumn fx:id="LO2AssessmentCol" prefWidth="28.39996337890625" text="LO2" />
-                                                   <TableColumn fx:id="LO3AssessmentCol" prefWidth="25.800048828125" text="LO3" />
-                                                   <TableColumn fx:id="LO4AssessmentCol" prefWidth="28.5999755859375" text="LO4" />
-                                                   <TableColumn fx:id="LO5AssessmentCol" prefWidth="26.0" text="LO5" />
-                                                   <TableColumn fx:id="LO6AssessmentCol" prefWidth="25.800048828125" text="LO6" />
-                                                   <TableColumn fx:id="LO7AssessmentCol" prefWidth="25.800048828125" text="LO7" />
-                                                </columns>
-                                             </TableView>
-                                          </children>
-                                       </AnchorPane>
-                                   </content>
-                                 </ScrollPane>
-                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="667.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing assessment schedule.">
-                                    <font>
-                                       <Font size="11.0" />
-                                    </font>
-                                    <cursor>
-                                       <Cursor fx:constant="NONE" />
-                                    </cursor>
-                                    <effect>
-                                       <Blend opacity="0.19" />
-                                    </effect>
-                                 </Label>
-                                 <Label layoutX="28.0" layoutY="640.0" prefHeight="18.0" prefWidth="464.0" text="Assessment" textFill="#610000">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </Label>
-                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="958.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing ECTS / Workload schedule.">
-                                    <font>
-                                       <Font size="11.0" />
-                                    </font>
-                                    <cursor>
-                                       <Cursor fx:constant="NONE" />
-                                    </cursor>
-                                    <effect>
-                                       <Blend opacity="0.19" />
-                                    </effect>
-                                 </Label>
-                                 <Label layoutX="28.0" layoutY="931.0" prefHeight="18.0" prefWidth="464.0" text="ECTS / Workload" textFill="#610000">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </Label>
-                                 <ScrollPane layoutX="31.0" layoutY="989.0" prefHeight="214.0" prefWidth="387.0">
-                                   <content>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="395.0">
-                                          <children>
-                                             <TableView fx:id="workloadTable" editable="true" prefHeight="216.0" prefWidth="390.0">
-                                                <columns>
-                                                   <TableColumn fx:id="semActWorkloadColumn" onEditCommit="#onSemActWork" prefWidth="123.99999314546585" text="Semester Activities" />
-                                                   <TableColumn fx:id="numberWorkloadColumn" onEditCommit="#onNumberWork" prefWidth="62.39996337890625" text="Number" />
-                                                   <TableColumn fx:id="durationWorkloadColumn" onEditCommit="#onDurationWork" prefWidth="108.00003051757812" text="Duration (Hours)" />
-                                                   <TableColumn fx:id="workloadWorkloadColumn" onEditCommit="#onWorkloadWork" prefWidth="96.79998779296875" text="Workload" />
-                                                </columns>
-                                             </TableView>
-                                          </children>
-                                       </AnchorPane>
-                                   </content>
-                                 </ScrollPane>
-                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="53.0" layoutY="2206.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing ECTS / Workload schedule.">
-                                    <font>
-                                       <Font size="11.0" />
-                                    </font>
-                                    <cursor>
-                                       <Cursor fx:constant="NONE" />
-                                    </cursor>
-                                    <effect>
-                                       <Blend opacity="0.19" />
-                                    </effect>
-                                 </Label>
-                                 <Label layoutX="53.0" layoutY="2179.0" prefHeight="18.0" prefWidth="464.0" text="ECTS / Workload" textFill="#610000">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </Label>
-                                 <ScrollPane layoutX="23.0" layoutY="1274.0" prefHeight="232.0" prefWidth="404.0">
-                                   <content>
-                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="398.0">
-                                          <children>
-                                             <TableView fx:id="outcomeTableD" editable="true" prefHeight="224.0" prefWidth="394.0">
-                                                <columns>
-                                                   <TableColumn fx:id="sharpOutcomeCol" onEditCommit="#onSharp" prefWidth="27.20001220703125" text="#" />
-                                                   <TableColumn fx:id="programOutcomesColumn" onEditCommit="#onOutcomes" prefWidth="209.5999870300293" text="Program Competencies / Outcomes" />
-                                                   <TableColumn fx:id="contributionLevOutcome" minWidth="2.4000244140625" onEditCommit="#onContribution" prefWidth="120.0" text="Contribution Level" />
-                                                   <TableColumn fx:id="loOutcomeColumn" minWidth="0.0" onEditCommit="#onLO" prefWidth="38.39996337890625" text="LO#" />
-                                                </columns>
-                                             </TableView>
-                                          </children>
-                                       </AnchorPane>
-                                   </content>
-                                 </ScrollPane>
-                                 <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="1243.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing Outcome Matrix schedule.">
-                                    <font>
-                                       <Font size="11.0" />
-                                    </font>
-                                    <cursor>
-                                       <Cursor fx:constant="NONE" />
-                                    </cursor>
-                                    <effect>
-                                       <Blend opacity="0.19" />
-                                    </effect>
-                                 </Label>
-                                 <Label layoutX="28.0" layoutY="1216.0" prefHeight="18.0" prefWidth="464.0" text="Course / Program Outcome Matrix" textFill="#610000">
-                                    <font>
-                                       <Font size="14.0" />
-                                    </font>
-                                 </Label>
+                                            <ScrollPane layoutX="25.0" layoutY="406.0" prefHeight="217.0" prefWidth="402.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="204.0" prefWidth="408.0">
+                                                        <children>
+                                                            <TableView fx:id="weeklyScheduleTable" editable="true" prefHeight="221.0" prefWidth="400.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="weekNumberCol" prefWidth="100.0" text="Week Number" />
+                                                                    <TableColumn fx:id="subjectsCol" onEditCommit="#onSubjects" prefWidth="150.0" text="Subjects" />
+                                                                    <TableColumn fx:id="requiredMaterialsCol" onEditCommit="#onReqMat" prefWidth="150.0" text="Required Materials" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="25.0" layoutY="387.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing weekly schedule.">
+                                                <font>
+                                                    <Font size="11.0" />
+                                                </font>
+                                                <cursor>
+                                                    <Cursor fx:constant="NONE" />
+                                                </cursor>
+                                                <effect>
+                                                    <Blend opacity="0.19" />
+                                                </effect>
+                                            </Label>
+                                            <Label layoutX="25.0" layoutY="360.0" prefHeight="18.0" prefWidth="464.0" text="Weekly Schedule" textFill="#610000">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                            <ScrollPane layoutX="25.0" layoutY="695.0" prefHeight="224.0" prefWidth="400.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="410.0">
+                                                        <children>
+                                                            <TableView fx:id="assessmentTable" editable="true" prefHeight="224.0" prefWidth="452.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="semActAssessmentCol" onEditCommit="#onSemAct" prefWidth="115.00001525878906" text="Semester Activities" />
+                                                                    <TableColumn fx:id="numberAssessmentCol" onEditCommit="#onNumber" prefWidth="53.60003662109375" text="Number" />
+                                                                    <TableColumn fx:id="weightingAssessmentCol" onEditCommit="#onWeighting" prefWidth="65.0" text="Weighting" />
+                                                                    <TableColumn fx:id="LO1AssessmentCol" onEditCommit="#onLO1" prefWidth="25.60003662109375" text="LO1" />
+                                                                    <TableColumn fx:id="LO2AssessmentCol" onEditCommit="#onLO2" prefWidth="28.39996337890625" text="LO2" />
+                                                                    <TableColumn fx:id="LO3AssessmentCol" onEditCommit="#onLO3" prefWidth="25.800048828125" text="LO3" />
+                                                                    <TableColumn fx:id="LO4AssessmentCol" onEditCommit="#onLO4" prefWidth="28.5999755859375" text="LO4" />
+                                                                    <TableColumn fx:id="LO5AssessmentCol" onEditCommit="#onLO5" prefWidth="26.0" text="LO5" />
+                                                                    <TableColumn fx:id="LO6AssessmentCol" onEditCommit="#onLO6" prefWidth="25.800048828125" text="LO6" />
+                                                                    <TableColumn fx:id="LO7AssessmentCol" onEditCommit="#onLO7" prefWidth="25.800048828125" text="LO7" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="667.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing assessment schedule.">
+                                                <font>
+                                                    <Font size="11.0" />
+                                                </font>
+                                                <cursor>
+                                                    <Cursor fx:constant="NONE" />
+                                                </cursor>
+                                                <effect>
+                                                    <Blend opacity="0.19" />
+                                                </effect>
+                                            </Label>
+                                            <Label layoutX="28.0" layoutY="640.0" prefHeight="18.0" prefWidth="464.0" text="Assessment" textFill="#610000">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="958.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing ECTS / Workload schedule.">
+                                                <font>
+                                                    <Font size="11.0" />
+                                                </font>
+                                                <cursor>
+                                                    <Cursor fx:constant="NONE" />
+                                                </cursor>
+                                                <effect>
+                                                    <Blend opacity="0.19" />
+                                                </effect>
+                                            </Label>
+                                            <Label layoutX="28.0" layoutY="931.0" prefHeight="18.0" prefWidth="464.0" text="ECTS / Workload" textFill="#610000">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                            <ScrollPane layoutX="31.0" layoutY="989.0" prefHeight="214.0" prefWidth="387.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="395.0">
+                                                        <children>
+                                                            <TableView fx:id="workloadTable" editable="true" prefHeight="216.0" prefWidth="390.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="semActWorkloadColumn" onEditCommit="#onSemActWork" prefWidth="123.99999314546585" text="Semester Activities" />
+                                                                    <TableColumn fx:id="numberWorkloadColumn" onEditCommit="#onNumberWork" prefWidth="62.39996337890625" text="Number" />
+                                                                    <TableColumn fx:id="durationWorkloadColumn" onEditCommit="#onDurationWork" prefWidth="108.00003051757812" text="Duration (Hours)" />
+                                                                    <TableColumn fx:id="workloadWorkloadColumn" onEditCommit="#onWorkloadWork" prefWidth="96.79998779296875" text="Workload" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="53.0" layoutY="2206.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing ECTS / Workload schedule.">
+                                                <font>
+                                                    <Font size="11.0" />
+                                                </font>
+                                                <cursor>
+                                                    <Cursor fx:constant="NONE" />
+                                                </cursor>
+                                                <effect>
+                                                    <Blend opacity="0.19" />
+                                                </effect>
+                                            </Label>
+                                            <Label layoutX="53.0" layoutY="2179.0" prefHeight="18.0" prefWidth="464.0" text="ECTS / Workload" textFill="#610000">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
+                                            <ScrollPane layoutX="23.0" layoutY="1274.0" prefHeight="232.0" prefWidth="404.0">
+                                                <content>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="398.0">
+                                                        <children>
+                                                            <TableView fx:id="outcomeTableD" editable="true" prefHeight="224.0" prefWidth="394.0">
+                                                                <columns>
+                                                                    <TableColumn fx:id="sharpOutcomeCol" onEditCommit="#onSharp" prefWidth="27.20001220703125" text="#" />
+                                                                    <TableColumn fx:id="programOutcomesColumn" onEditCommit="#onOutcomes" prefWidth="209.5999870300293" text="Program Competencies / Outcomes" />
+                                                                    <TableColumn fx:id="contributionLevOutcome" minWidth="2.4000244140625" onEditCommit="#onContribution" prefWidth="120.0" text="Contribution Level" />
+                                                                    <TableColumn fx:id="loOutcomeColumn" minWidth="0.0" onEditCommit="#onLO" prefWidth="38.39996337890625" text="LO#" />
+                                                                </columns>
+                                                            </TableView>
+                                                        </children>
+                                                    </AnchorPane>
+                                                </content>
+                                            </ScrollPane>
+                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="1243.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing Outcome Matrix schedule.">
+                                                <font>
+                                                    <Font size="11.0" />
+                                                </font>
+                                                <cursor>
+                                                    <Cursor fx:constant="NONE" />
+                                                </cursor>
+                                                <effect>
+                                                    <Blend opacity="0.19" />
+                                                </effect>
+                                            </Label>
+                                            <Label layoutX="28.0" layoutY="1216.0" prefHeight="18.0" prefWidth="464.0" text="Course / Program Outcome Matrix" textFill="#610000">
+                                                <font>
+                                                    <Font size="14.0" />
+                                                </font>
+                                            </Label>
                                         </children>
                                     </AnchorPane>
                                 </content>
