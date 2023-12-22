@@ -639,30 +639,30 @@
                                                 <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="700.0">
                                                         <children>
-                                                            <TableView fx:id="courseInfoTable" layoutX="-2.0" prefHeight="200.0" prefWidth="706.0">
+                                                            <TableView fx:id="courseInfoTable" editable="true" layoutX="-2.0" prefHeight="200.0" prefWidth="706.0">
                                                                 <columns>
                                                                     <TableColumn fx:id="courseCodeCol" onEditCommit="#onCourseCode" prefWidth="89.19999694824219" text="Course Code" />
                                                                     <TableColumn fx:id="nameCol" onEditCommit="#onName" prefWidth="38.0" text="Name" />
                                                                     <TableColumn fx:id="semesterCol" onEditCommit="#onSemester" prefWidth="59.20001220703125" text="Semester" />
                                                                     <TableColumn fx:id="theoryCol" onEditCommit="#onTheoryTime" prefWidth="81.0" text="Theory Time" />
-                                                                    <TableColumn fx:id="labCol" prefWidth="60.800018310546875" text="Lab Time" />
-                                                                    <TableColumn fx:id="creditsCol" prefWidth="55.0" text="L.Credits" />
-                                                                    <TableColumn fx:id="ectsCol" prefWidth="48.4000244140625" text="ECTS" />
-                                                                    <TableColumn fx:id="prerequisitesCol" prefWidth="80.39990234375" text="Prerequisites" />
-                                                                    <TableColumn fx:id="languageCol" prefWidth="65.5999755859375" text="Language" />
-                                                                    <TableColumn fx:id="typeCol" prefWidth="36.0" text="Type" />
-                                                                    <TableColumn fx:id="levelCol" prefWidth="81.0" text="Course Level" />
-                                                                    <TableColumn fx:id="deliveryCol" prefWidth="68.0" text="Delivery" />
-                                                                    <TableColumn fx:id="teachingMethodsCol" prefWidth="109.79998779296875" text="Teaching Methods" />
-                                                                    <TableColumn fx:id="coordinatorCol" text="Coordinator" />
-                                                                    <TableColumn fx:id="lecturersCol" prefWidth="78.0" text="Lecturer(s)" />
-                                                                    <TableColumn fx:id="assistantsCol" prefWidth="78.0" text="Assistant(s)" />
-                                                                    <TableColumn fx:id="objectivesCol" prefWidth="65.4000244140625" text="Objectives" />
-                                                                    <TableColumn fx:id="outcomesCol" prefWidth="65.4000244140625" text="Outcomes" />
-                                                                    <TableColumn fx:id="descriptionCol" prefWidth="78.5999755859375" text="Description" />
-                                                                    <TableColumn fx:id="categoryCol" prefWidth="68.0" text="Category" />
-                                                                    <TableColumn fx:id="textbooksCol" prefWidth="68.0" text="Textbooks" />
-                                                                    <TableColumn fx:id="readingCol" prefWidth="68.0" text="Reading Materials" />
+                                                                    <TableColumn fx:id="labCol" onEditCommit="#onLabTime" prefWidth="60.800018310546875" text="Lab Time" />
+                                                                    <TableColumn fx:id="creditsCol" onEditCommit="#onLocalCredit" prefWidth="55.0" text="L.Credits" />
+                                                                    <TableColumn fx:id="ectsCol" onEditCommit="#onECTS" prefWidth="48.4000244140625" text="ECTS" />
+                                                                    <TableColumn fx:id="prerequisitesCol" onEditCommit="#onPre" prefWidth="80.39990234375" text="Prerequisites" />
+                                                                    <TableColumn fx:id="languageCol" onEditCommit="#onLanguage" prefWidth="65.5999755859375" text="Language" />
+                                                                    <TableColumn fx:id="typeCol" onEditCommit="#onType" prefWidth="36.0" text="Type" />
+                                                                    <TableColumn fx:id="levelCol" onEditCommit="#onCourseLevel" prefWidth="81.0" text="Course Level" />
+                                                                    <TableColumn fx:id="deliveryCol" onEditCommit="#onDelivery" prefWidth="68.0" text="Delivery" />
+                                                                    <TableColumn fx:id="teachingMethodsCol" onEditCommit="#onMethods" prefWidth="109.79998779296875" text="Teaching Methods" />
+                                                                    <TableColumn fx:id="coordinatorCol" onEditCommit="#onCoordinator" text="Coordinator" />
+                                                                    <TableColumn fx:id="lecturersCol" onEditCommit="#onLecturer" prefWidth="78.0" text="Lecturer(s)" />
+                                                                    <TableColumn fx:id="assistantsCol" onEditCommit="#onAssistants" prefWidth="78.0" text="Assistant(s)" />
+                                                                    <TableColumn fx:id="objectivesCol" onEditCommit="#onObjective" prefWidth="65.4000244140625" text="Objectives" />
+                                                                    <TableColumn fx:id="outcomesCol" onEditCommit="#onOutcome" prefWidth="65.4000244140625" text="Outcomes" />
+                                                                    <TableColumn fx:id="descriptionCol" onEditCommit="#onDescription" prefWidth="78.5999755859375" text="Description" />
+                                                                    <TableColumn fx:id="categoryCol" onEditCommit="#onCategory" prefWidth="68.0" text="Category" />
+                                                                    <TableColumn fx:id="textbooksCol" onEditCommit="#onTextbook" prefWidth="68.0" text="Textbooks" />
+                                                                    <TableColumn fx:id="readingCol" onEditCommit="#onReading" prefWidth="68.0" text="Reading Materials" />
                                                                 </columns>
                                                             </TableView>
                                                         </children>

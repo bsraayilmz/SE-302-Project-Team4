@@ -10,7 +10,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-
+import javafx.util.converter.IntegerStringConverter;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -139,25 +139,8 @@ public class Controller implements Initializable {
         } else {
             System.out.println("The connection is failed.");
         }
-        subjectsCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        requiredMaterialsCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        numberWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        durationWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        workloadWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        contributionLevOutcome.setCellFactory(TextFieldTableCell.forTableColumn());
-        loOutcomeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-    //    semActAssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        numberAssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        weightingAssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        LO1AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        LO2AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        LO3AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        LO4AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        LO5AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        LO6AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        LO7AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
-
+        displayPageEditable();
         weekTableInitializer();
         refreshWeeklySchedule();
         assessmentTableInitializer();
@@ -168,6 +151,57 @@ public class Controller implements Initializable {
         refreshOutcome();
         courseInfoController.loadData();
         refreshTable();
+    }
+
+    /* To make displayPage's tables editable. */
+    public void displayPageEditable(){
+        /* CourseInfo table */
+        courseCodeCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        semesterCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        theoryCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        labCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        creditsCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        ectsCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        prerequisitesCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        languageCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        typeCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        levelCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        deliveryCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        teachingMethodsCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        coordinatorCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        lecturersCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        assistantsCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        objectivesCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        outcomesCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        categoryCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        textbooksCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        readingCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        /* Display Screen's Week table edit */
+        subjectsCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        requiredMaterialsCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        /* Display Screen's Assessment table edit */
+        numberAssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        weightingAssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO1AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO2AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO3AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO4AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO5AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO6AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        LO7AssessmentCol.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        /* Display Screen's Workload table edit */
+        numberWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        durationWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        workloadWorkloadColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        /* Display Screen's Outcome table edit */
+        contributionLevOutcome.setCellFactory(TextFieldTableCell.forTableColumn());
+        loOutcomeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     //*** INITIALIZATION OF ALL TABLEVIEWS IN THE NEW COURSE PAGE
@@ -1429,14 +1463,82 @@ public class Controller implements Initializable {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
         selectedCell.setTheoryTime(Integer.parseInt(editedCell.getNewValue().toString()));
     }
+    public void onLabTime(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setLabTime(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onLocalCredit(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseCredit(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onECTS(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseECTS(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onPre(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setPrerequisites(editedCell.getNewValue().toString());
+    }
+    public void onLanguage(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseLang(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onType(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseType(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onCourseLevel(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseLevel(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onDelivery(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setDelivery(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onMethods(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setTeachingMethods(editedCell.getNewValue().toString());
+    }
+    public void onCoordinator(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseCoordinator(editedCell.getNewValue().toString());
+    }
+    public void onLecturer(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseLecturer(editedCell.getNewValue().toString());
+    }
+    public void onAssistants(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setAssistant(editedCell.getNewValue().toString());
+    }
+    public void onObjective(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseObj(editedCell.getNewValue().toString());
+    }
+    public void onOutcome(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setOutcomes(editedCell.getNewValue().toString());
+    }
+    public void onDescription(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseDesc(editedCell.getNewValue().toString());
+    }
+    public void onCategory(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setCourseCategory(Integer.parseInt(editedCell.getNewValue().toString()));
+    }
+    public void onTextbook(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setTextbook(editedCell.getNewValue().toString());
+    }
+    public void onReading(TableColumn.CellEditEvent editedCell) {
+        courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
+        selectedCell.setReading(editedCell.getNewValue().toString());
+    }
 
 
-    //For Weekly Schedule Table
-//    public void onWeekNumber(TableColumn.CellEditEvent editedCell) {
-//        WeeklySubjects selectedCell = weeklyScheduleTable.getSelectionModel().getSelectedItem();
-//        selectedCell.setWeekColumn(editedCell.getNewValue().toString());
-////        weekColumn.setCellValueFactory(new PropertyValueFactory<WeeklySubjects, String>("weekColumn"));
-//    }
+
+    /* For Display Screen's Weekly Schedule Table */
     public void onSubjects(TableColumn.CellEditEvent editedCell) {
         WeeklySubjects selectedCell = weeklyScheduleTable.getSelectionModel().getSelectedItem();
         selectedCell.setSubjectColumn(editedCell.getNewValue().toString());
@@ -1446,9 +1548,7 @@ public class Controller implements Initializable {
         selectedCell.setReqColumn(editedCell.getNewValue().toString());
     }
 
-    //For Assessment Table
-
-
+    /* For Dispaly Screen's Assessment Table*/
     public void onSemAct(TableColumn.CellEditEvent editedCell) {
         AssessmentSemAct selectedCell = assessmentTable.getSelectionModel().getSelectedItem();
         selectedCell.setSemesterActivitiesColumn(editedCell.getNewValue().toString());
@@ -1499,9 +1599,7 @@ public class Controller implements Initializable {
         selectedCell.setL07Column(editedCell.getNewValue().toString());
     }
 
-
-
-    //For Workload Table
+    /* For Display Screen's Workload Table */
     public void onSemActWork(TableColumn.CellEditEvent editedCell) {
         WorkloadSemAct selectedCell = workloadTable.getSelectionModel().getSelectedItem();
         selectedCell.setSemesterActColumn(editedCell.getNewValue().toString());
@@ -1519,7 +1617,7 @@ public class Controller implements Initializable {
         selectedCell.setWorkloadColumn(editedCell.getNewValue().toString());
     }
 
-    //For Outcome Table
+    /* For Display Screen's Outcome Table */
     public void onSharp(TableColumn.CellEditEvent editedCell) {
         CourseOutcome selectedCell = outcomeTableD.getSelectionModel().getSelectedItem();
         selectedCell.setSharpColumn(editedCell.getNewValue().toString());
