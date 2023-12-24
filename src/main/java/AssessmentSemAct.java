@@ -18,6 +18,18 @@ public class AssessmentSemAct {
     public AssessmentSemAct(){
 
     }
+    public AssessmentSemAct(AssessmentSemAct assessmentSemAct){
+        this.semesterActivitiesColumn = assessmentSemAct.semesterActivitiesColumn;
+        this.numberColumn = assessmentSemAct.numberColumn;
+        this.weightingColumn = assessmentSemAct.weightingColumn;
+        this.l01Column = assessmentSemAct.l01Column;
+        this.l02Column = assessmentSemAct.l02Column;
+        this.l03Column = assessmentSemAct.l03Column;
+        this.l04Column = assessmentSemAct.l04Column;
+        this.l05Column = assessmentSemAct.l05Column;
+        this.l06Column = assessmentSemAct.l06Column;
+        this.l07Column = assessmentSemAct.l07Column;
+    }
 
     public String getSemesterActivitiesColumn() {
         return semesterActivitiesColumn;

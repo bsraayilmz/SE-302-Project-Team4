@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +14,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.util.converter.IntegerStringConverter;
+
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,10 +26,16 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    public ArrayList<WeeklySubjects> subjectsList = new ArrayList<>();
-    public ArrayList<AssessmentSemAct> assessmentsList = new ArrayList<>();
-    public ArrayList<WorkloadSemAct> workloadSemActsList = new ArrayList<>();
-    public ArrayList<CourseOutcome> courseOutcomesList = new ArrayList<>();
+
+    public ObservableList<WeeklySubjects> subjectsList = FXCollections.observableArrayList();
+
+    public ObservableList<AssessmentSemAct> assessmentsList = FXCollections.observableArrayList();
+    public ObservableList<WorkloadSemAct> workloadSemActsList = FXCollections.observableArrayList();
+    public ObservableList<CourseOutcome> courseOutcomesList = FXCollections.observableArrayList();
+    ObservableList<WeeklySubjects> weekHolderList = FXCollections.observableArrayList();
+    ObservableList<AssessmentSemAct> assessmentHolderList = FXCollections.observableArrayList();
+    ObservableList<WorkloadSemAct> workloadHolderList = FXCollections.observableArrayList();
+    ObservableList<CourseOutcome> outcomeHolderList = FXCollections.observableArrayList();
 
 
     /* Database controller variables */
@@ -134,6 +145,9 @@ public class Controller implements Initializable {
     int theoryTime, labTime, credit, courseECTS;
     PreparedStatement preparedStatementForWeeks = null;
     WeeklySubjects selectedItem;
+
+    public Controller() throws IOException {
+    }
 
 
     @Override
@@ -580,6 +594,7 @@ public class Controller implements Initializable {
                 for (WeeklySubjects selectedItem : weekTable.getItems()) {
                     if (selectedItem != null) {
                         subjectsList.add(new WeeklySubjects(selectedItem));
+                        weekHolderList.add(new WeeklySubjects(selectedItem));
                     }
                 }
             }
@@ -630,6 +645,7 @@ public class Controller implements Initializable {
                 for (AssessmentSemAct assessmentSemAct : tableView.getItems()) {
                     if (assessmentSemAct != null) {
                         assessmentsList.add(assessmentSemAct);
+                        assessmentHolderList.add(new AssessmentSemAct(assessmentSemAct));
                     }
                 }
             }
@@ -674,6 +690,7 @@ public class Controller implements Initializable {
                 for (WorkloadSemAct workloadSemAct : tableWorkload.getItems()) {
                     if (workloadSemAct != null) {
                         workloadSemActsList.add(workloadSemAct);
+                        workloadHolderList.add(workloadSemAct);
                     }
                 }
             }
@@ -716,6 +733,7 @@ public class Controller implements Initializable {
                 for (CourseOutcome courseOutcome : outcomeTable.getItems()) {
                     if (courseOutcome != null) {
                         courseOutcomesList.add(courseOutcome);
+                        outcomeHolderList.add(courseOutcome);
                     }
                 }
             }
@@ -744,43 +762,48 @@ public class Controller implements Initializable {
             }
         }
     }
-    ArrayList<WeeklySubjects> updateWeeklySubjectsList = new ArrayList<>();
+    ObservableList<WeeklySubjects> updateWeeklySubjectsList = FXCollections.observableArrayList();
     // to take the data that is entered to the "weeklyScheduleTable" TableView
     private void getWeeklySubjectsDisplay(){
         for (int i= 0; i<weeklyScheduleTable.getItems().size();i++){
             WeeklySubjects weeklySubjects = weeklyScheduleTable.getItems().get(i);
             if(weeklyScheduleTable != null){
                 updateWeeklySubjectsList.add(weeklySubjects);
+                weekInfoOInsertAndUpdateWriteToJsonFile(updateWeeklySubjectsList,"src/main/resources/updatedWeekInfoData.json");
             }
         }
     }
-    ArrayList<AssessmentSemAct> updateAssessmentList = new ArrayList<>();
+    ObservableList<AssessmentSemAct> updateAssessmentList = FXCollections.observableArrayList();
     // to take the data that is entered to the "weeklyScheduleTable" TableView
     private void getAssessmentDisplay(){
         for (int i= 0; i<assessmentTable.getItems().size();i++){
             AssessmentSemAct assessmentSemAct = assessmentTable.getItems().get(i);
             if(assessmentTable != null){
                 updateAssessmentList.add(assessmentSemAct);
+                assessmentInfoInsertAndUpdateWriteToJsonFile(updateAssessmentList, "src/main/resources/assessmentInfoData.json");
             }
         }
     }
-    ArrayList<WorkloadSemAct> updateWorkloadList = new ArrayList<>();
+    ObservableList<WorkloadSemAct> updateWorkloadList = FXCollections.observableArrayList();
     // to take the data that is entered to the "workloadTable" TableView
     private void getWorkloadDisplay(){
         for (int i= 0; i<workloadTable.getItems().size();i++){
             WorkloadSemAct workloadSemAct = workloadTable.getItems().get(i);
             if(workloadTable != null){
                 updateWorkloadList.add(workloadSemAct);
+                workloadInfoInsertAndUpdateWriteToJsonFile(updateWorkloadList, "src/main/resources/workloadInfoData.json");
             }
         }
     }
-    ArrayList<CourseOutcome> updateOutcomeList = new ArrayList<>();
+    ObservableList<CourseOutcome> updateOutcomeList = FXCollections.observableArrayList();
     // to take the data that is entered to the "outcomeTableD" TableView
     private void getOutcomeDisplay(){
         for (int i= 0; i<outcomeTableD.getItems().size();i++){
             CourseOutcome courseOutcome = outcomeTableD.getItems().get(i);
             if(outcomeTableD != null){
                 updateOutcomeList.add(courseOutcome);
+                outcomeInfoInsertAndUpdateWriteToJsonFile(updateOutcomeList, "src/main/resources/outcomeInfoData.json");
+
             }
         }
     }//THE COMPLETION OF GETTING DATA ENTERED TO THE TABLEVIEW TABLES
@@ -851,6 +874,7 @@ public class Controller implements Initializable {
                     courseInfoController.getQuery(cName, cCode, semester, theoryTime, labTime, credit, courseECTS, prerequisites, languageS, type, teachingMethods, objectives, outcomes, description, category, level, coordinator, lecturers, assistants, reading, textbooks, delivery);
                     courseInfoController.insertTable();
                     refreshTable();
+                    courseList.clear();
                     //to refresh after sending to the database table
                     courseNameField.setText("");
                     courseCodeField.setText("");
@@ -890,8 +914,6 @@ public class Controller implements Initializable {
                     savedSuccessfully.setText("Data are saved.");
                     savedSuccessfully.setTextFill(Color.GREEN);
                     sendCourseInfo = true;
-                    courseList.clear();
-
                 }
             } catch (NumberFormatException e) {
                 Alert notBlank = new Alert(Alert.AlertType.WARNING);
@@ -922,14 +944,16 @@ public class Controller implements Initializable {
                 preparedStatement = connection.prepareStatement(blank);
                 preparedStatementWeekly = connection.prepareStatement(insertWeeklySchedule);
 
+
                 for (WeeklySubjects weeklySubjects : subjectsList){
                     preparedStatementWeekly.setString(1,weeklySubjects.getWeekColumn());
                     preparedStatementWeekly.setString(2,weeklySubjects.getSubjectColumn());
                     preparedStatementWeekly.setString(3,weeklySubjects.getReqColumn());
-
+                    weekInfoOInsertAndUpdateWriteToJsonFile(weekHolderList,"src/main/resources/updatedWeekInfoData.json");
                     preparedStatementWeekly.addBatch();
 
                 }
+
                 preparedStatement.addBatch();
                 preparedStatement.executeBatch();
                 preparedStatementWeekly.executeBatch();
@@ -988,7 +1012,7 @@ public class Controller implements Initializable {
                     preparedStatementAssessment.setString(8, assessmentSemAct.getL05Column());
                     preparedStatementAssessment.setString(9, assessmentSemAct.getL06Column());
                     preparedStatementAssessment.setString(10, assessmentSemAct.getL07Column());
-
+                    assessmentInfoInsertAndUpdateWriteToJsonFile(assessmentHolderList,"src/main/resources/assessmentInfoData.json");
 
                     //sending queries in bulk instead of individually.
                     preparedStatementAssessment.addBatch();
@@ -1046,7 +1070,7 @@ public class Controller implements Initializable {
                     preparedStatementInsertWorkload.setString(2, workloadSemAct.getSemesterActColumn());
                     preparedStatementInsertWorkload.setString(3, workloadSemAct.getDurationColumn());
                     preparedStatementInsertWorkload.setString(4, workloadSemAct.getWorkloadColumn());
-
+                    workloadInfoInsertAndUpdateWriteToJsonFile(workloadHolderList, "src/main/resources/workloadInfoData.json");
                     preparedStatementInsertWorkload.addBatch();
                 }
                 preparedStatement.addBatch();
@@ -1102,7 +1126,7 @@ public class Controller implements Initializable {
                     preparedStatementOutcome.setString(2,courseOutcome.getOutcomeColumn());
                     preparedStatementOutcome.setString(3,courseOutcome.getContColumn());
                     preparedStatementOutcome.setString(4,courseOutcome.getSubContL0());
-
+                    outcomeInfoInsertAndUpdateWriteToJsonFile(outcomeHolderList, "src/main/resources/outcomeInfoData.json");
 
                     //sending queries in bulk instead of individually.
                     preparedStatementOutcome.addBatch();
@@ -1141,6 +1165,7 @@ public class Controller implements Initializable {
 
     //*** REFRESH METHODS IN THE DISPLAY VERSIONS PAGE
     public void refreshTable() {
+        courseList.clear();
         //to refresh the tables in the database
         Connection connection = SQLConnection.Connector();
         try {
@@ -1177,7 +1202,6 @@ public class Controller implements Initializable {
                 ));
                 //To update the elements of the courseInfoTable with the data received from courseList.
                 courseInfoTable.setItems(courseList);
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1416,6 +1440,7 @@ public class Controller implements Initializable {
     PreparedStatement preparedStatementUpdateWeeklySchedule;
     public void updateWeeklySchedule(){
         getWeeklySubjectsDisplay();
+
 
         String updateWeeklySchedule = "REPLACE INTO WeeklySchedule (WeekNumber, Subjects, RequiredMaterials) VALUES (?, ?, ?)";
         connection = SQLConnection.Connector();
@@ -2056,44 +2081,99 @@ public class Controller implements Initializable {
         CourseOutcome selectedCell = outcomeTableD.getSelectionModel().getSelectedItem();
         selectedCell.setContColumn(editedCell.getNewValue().toString());
     }
-    public void onLO(TableColumn.CellEditEvent editedCell) {
+    public void onLO(TableColumn.CellEditEvent editedCell){
         CourseOutcome selectedCell = outcomeTableD.getSelectionModel().getSelectedItem();
         selectedCell.setSubContL0(editedCell.getNewValue().toString());
-    }
+    } /* COMPLETION OF HELPER METHODS */
 
-
-
-
-    //COMPLETION OF HELPER METHODS
-
-    //SAVE TO THE DATABASE BUTTON
+    /* SAVE TO THE DATABASE BUTTON BY CLICKING ON THE SAVE BUTTON */
     @FXML
     public void save() {
-            // Save all tables to the database
-            insertCourseInfo();
-            refreshTable();
-            insertWeeklyScheduleDB();
-            refreshWeeklySchedule();
-            insertAssessmentTable();
-            refreshAssessment();
-            insertWorkLoadTable();
-            refreshWorkload();
-            insertOutcomeTable();
-            refreshOutcome();
+        /* Save all tables to the database */
+        insertCourseInfo();
+        refreshTable();
+        insertWeeklyScheduleDB();
+        refreshWeeklySchedule();
+        insertAssessmentTable();
+        refreshAssessment();
+        insertWorkLoadTable();
+        refreshWorkload();
+        insertOutcomeTable();
+        refreshOutcome();
 
-            // Refresh the screen
-            weekTableInitializer();
-            assessmentTableInitializer();
-            workloadTableInitializer();
-            outcomeTableInitializer();
+        /* To Refresh the screen */
+        weekTableInitializer();
+        assessmentTableInitializer();
+        workloadTableInitializer();
+        outcomeTableInitializer();
+        courseInfoInsertWriteToJsonFile(courseList, "src/main/resources/courseInfoData.json");
+    }
+    private static void courseInfoInsertWriteToJsonFile(ObservableList<courseInfo> courseInfoList, String filePath) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            objectMapper.writeValue(new File(filePath), courseInfoList);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
-    // Helper method to check if a table is empty
-    private boolean isTableEmpty(TableView<?> tableView) {
-        return tableView.getItems().isEmpty();
+        System.out.println("Wrote to the Course Info JSON file successfully.");
+    }
+    private static void weekInfoOInsertAndUpdateWriteToJsonFile(ObservableList<WeeklySubjects> weeklySubjectsList, String filePath) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            objectMapper.writeValue(new File(filePath), weeklySubjectsList);
+            System.out.println("Wrote to the Week JSON file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private static void assessmentInfoInsertAndUpdateWriteToJsonFile(ObservableList<AssessmentSemAct> assessmentInfoList, String filePath) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            objectMapper.writeValue(new File(filePath), assessmentInfoList);
+            System.out.println("Wrote to the Assessment JSON file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private static void workloadInfoInsertAndUpdateWriteToJsonFile(ObservableList<WorkloadSemAct> workloadSemActsList, String filePath) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            objectMapper.writeValue(new File(filePath), workloadSemActsList);
+            System.out.println("Wrote to the Workload JSON file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private static void outcomeInfoInsertAndUpdateWriteToJsonFile(ObservableList<CourseOutcome> courseOutcomesList, String filePath) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            objectMapper.writeValue(new File(filePath), courseOutcomesList);
+            System.out.println("Wrote to the Outcome JSON file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Helper methods to check if a table is empty */
     @FXML
     public void updateCourseInfoAction(){
         updateCourseInfo();

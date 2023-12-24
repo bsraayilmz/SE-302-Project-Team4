@@ -1,0 +1,66 @@
+[ {
+  "semesterActColumn" : "Course Hours (Including exam week: 16 x total hours)",
+  "numbColumn" : "16",
+  "durationColumn" : "2",
+  "workloadColumn" : "32"
+}, {
+  "semesterActColumn" : "Laboratory/Application Hours (Including exam week: 16 x total hours)",
+  "numbColumn" : "16",
+  "durationColumn" : "2",
+  "workloadColumn" : "32"
+}, {
+  "semesterActColumn" : "Study Hours out of Class",
+  "numbColumn" : "14",
+  "durationColumn" : "2",
+  "workloadColumn" : "28"
+}, {
+  "semesterActColumn" : "Field Work",
+  "numbColumn" : null,
+  "durationColumn" : null,
+  "workloadColumn" : null
+}, {
+  "semesterActColumn" : "Quiz/Studio Critique",
+  "numbColumn" : null,
+  "durationColumn" : null,
+  "workloadColumn" : null
+}, {
+  "semesterActColumn" : "Homework/Assignment",
+  "numbColumn" : null,
+  "durationColumn" : null,
+  "workloadColumn" : null
+}, {
+  "semesterActColumn" : "Presentation/Jury",
+  "numbColumn" : null,
+  "durationColumn" : null,
+  "workloadColumn" : null
+}, {
+  "semesterActColumn" : "Project",
+  "numbColumn" : "1",
+  "durationColumn" : null,
+  "workloadColumn" : "64"
+}, {
+  "semesterActColumn" : "Seminar/Workshop",
+  "numbColumn" : null,
+  "durationColumn" : null,
+  "workloadColumn" : null
+}, {
+  "semesterActColumn" : "Oral Exam",
+  "numbColumn" : null,
+  "durationColumn" : null,
+  "workloadColumn" : null
+}, {
+  "semesterActColumn" : "Midterm",
+  "numbColumn" : "1",
+  "durationColumn" : null,
+  "workloadColumn" : "24"
+}, {
+  "semesterActColumn" : "Final Exam",
+  "numbColumn" : null,
+  "durationColumn" : null,
+  "workloadColumn" : null
+}, {
+  "semesterActColumn" : "Total",
+  "numbColumn" : null,
+  "durationColumn" : null,
+  "workloadColumn" : "180"
+} ]

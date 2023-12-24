@@ -1,0 +1,133 @@
+[ {
+  "semesterActivitiesColumn" : "Participation",
+  "numberColumn" : null,
+  "weightingColumn" : null,
+  "l01Column" : null,
+  "l02Column" : null,
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Laboratory/Application",
+  "numberColumn" : "1",
+  "weightingColumn" : "30",
+  "l01Column" : "1",
+  "l02Column" : "1",
+  "l03Column" : "1",
+  "l04Column" : "1",
+  "l05Column" : "1",
+  "l06Column" : "1",
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Field Work",
+  "numberColumn" : null,
+  "weightingColumn" : null,
+  "l01Column" : null,
+  "l02Column" : null,
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Quiz/Studio Critique",
+  "numberColumn" : null,
+  "weightingColumn" : null,
+  "l01Column" : null,
+  "l02Column" : null,
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Homework/Assignment",
+  "numberColumn" : null,
+  "weightingColumn" : null,
+  "l01Column" : null,
+  "l02Column" : null,
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Presentation/Jury",
+  "numberColumn" : null,
+  "weightingColumn" : null,
+  "l01Column" : null,
+  "l02Column" : null,
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Project",
+  "numberColumn" : "1",
+  "weightingColumn" : "40",
+  "l01Column" : "1",
+  "l02Column" : "1",
+  "l03Column" : "1",
+  "l04Column" : "1",
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : "1"
+}, {
+  "semesterActivitiesColumn" : "Seminar/Workshop",
+  "numberColumn" : null,
+  "weightingColumn" : null,
+  "l01Column" : null,
+  "l02Column" : null,
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Oral Exam",
+  "numberColumn" : null,
+  "weightingColumn" : null,
+  "l01Column" : null,
+  "l02Column" : null,
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Midterm",
+  "numberColumn" : "1",
+  "weightingColumn" : "30",
+  "l01Column" : "1",
+  "l02Column" : "1",
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Final Exam",
+  "numberColumn" : null,
+  "weightingColumn" : null,
+  "l01Column" : null,
+  "l02Column" : null,
+  "l03Column" : null,
+  "l04Column" : null,
+  "l05Column" : null,
+  "l06Column" : null,
+  "l07Column" : null
+}, {
+  "semesterActivitiesColumn" : "Total",
+  "numberColumn" : "3",
+  "weightingColumn" : "100",
+  "l01Column" : "3",
+  "l02Column" : "3",
+  "l03Column" : "2",
+  "l04Column" : "2",
+  "l05Column" : "1",
+  "l06Column" : "1",
+  "l07Column" : "1"
+} ]

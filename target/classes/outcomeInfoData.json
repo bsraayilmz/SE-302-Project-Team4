@@ -1,0 +1,66 @@
+[ {
+  "sharpColumn" : "1",
+  "outcomeColumn" : "To have adequate knowledge in Mathematics, Science and\nComputer Engineering; to be able to use theoretical and\napplied information in these areas on complex engineering\nproblems.",
+  "contColumn" : "1",
+  "subContL0" : "1,2"
+}, {
+  "sharpColumn" : "2",
+  "outcomeColumn" : "To be able to identify, define, formulate, and solve complex\nComputer Engineering problems; to be able to select and apply\nproper analysis and modeling methods for this purpose.",
+  "contColumn" : "3",
+  "subContL0" : "1,4,5,6"
+}, {
+  "sharpColumn" : "3",
+  "outcomeColumn" : "To be able to design a complex system, process, device or\nproduct under realistic constraints and conditions, in such a\nway as to meet the requirements; to be able to apply modern\ndesign methods for this purpose.",
+  "contColumn" : "3",
+  "subContL0" : "2,7"
+}, {
+  "sharpColumn" : "4",
+  "outcomeColumn" : "To be able to devise, select, and use modern techniques and\ntools needed for analysis and solution of complex problems in\nComputer Engineering applications; to be able to use\ninformation technologies effectively.",
+  "contColumn" : "5",
+  "subContL0" : "2,3,4,7"
+}, {
+  "sharpColumn" : "5",
+  "outcomeColumn" : "To be able to design and conduct experiments, gather data,\nanalyze, and interpret results for investigating complex\nengineering problems or Computer Engineering research\ntopics.",
+  "contColumn" : "1",
+  "subContL0" : "6"
+}, {
+  "sharpColumn" : "6",
+  "outcomeColumn" : "To be able to work efficiently in Computer Engineering\ndisciplinary and multi-disciplinary teams; to be able to work\nindividually.",
+  "contColumn" : "2",
+  "subContL0" : "7"
+}, {
+  "sharpColumn" : "7",
+  "outcomeColumn" : "To be able to communicate effectively in Turkish, both orally\nand in writing; to be able to author and comprehend written\nreports, to be able to prepare design and implementation\nreports, to present effectively, to be able to give and receive\nclear and comprehensible instructions.",
+  "contColumn" : null,
+  "subContL0" : null
+}, {
+  "sharpColumn" : "8",
+  "outcomeColumn" : "To have knowledge about global and social impact of Computer\nEngineering practices on health, environment, and safety; to\nhave knowledge about contemporary issues as they pertain to\nengineering; to be aware of the legal ramifications of Computer\nEngineering solutions.",
+  "contColumn" : null,
+  "subContL0" : null
+}, {
+  "sharpColumn" : "9",
+  "outcomeColumn" : "To be aware of ethical behavior, professional and ethical\nresponsibility; to have knowledge about standards utilized in\nengineering applications.",
+  "contColumn" : null,
+  "subContL0" : null
+}, {
+  "sharpColumn" : "10",
+  "outcomeColumn" : "To have knowledge about industrial practices such as project\nmanagement, risk management, and change management; to\nhave awareness of entrepreneurship and innovation; to have\nknowledge about sustainable development.",
+  "contColumn" : null,
+  "subContL0" : null
+}, {
+  "sharpColumn" : "11",
+  "outcomeColumn" : "To be able to collect data in the area of Computer Engineering,\nand to be able to communicate with colleagues in a foreign\nlanguage. (\"European Language Portfolio Global Scale\", Level\nB1)",
+  "contColumn" : null,
+  "subContL0" : null
+}, {
+  "sharpColumn" : "12",
+  "outcomeColumn" : "To be able to speak a second foreign language at a medium\nlevel of fluency efficiently.",
+  "contColumn" : null,
+  "subContL0" : null
+}, {
+  "sharpColumn" : "13",
+  "outcomeColumn" : "To recognize the need for lifelong learning; to be able to access\ninformation, to be able to stay current with developments in\nscience and technology; to be able to relate the knowledge accumulated throughout the human history to Computer\nEngineering.",
+  "contColumn" : null,
+  "subContL0" : null
+} ]

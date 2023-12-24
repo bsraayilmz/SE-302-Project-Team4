@@ -1,0 +1,65 @@
+[ {
+  "weekColumn" : "1",
+  "subjectColumn" : "Programming Style and Conventions",
+  "reqColumn" : "Practice of Programming, Chapter 1."
+}, {
+  "weekColumn" : "2",
+  "subjectColumn" : "Build Automation and Software Deployment",
+  "reqColumn" : "Apache Maven Online Documentation,http://maven.apache.org/guides/index.html"
+}, {
+  "weekColumn" : "3",
+  "subjectColumn" : "Graphical User Interfaces: JavaFX",
+  "reqColumn" : "Java How to Program, Chapter 25; Java InTwo Semesters, Chapter 10.�Java How to Program, Chapter 25; Java InTwo Semesters, Chapter 10."
+}, {
+  "weekColumn" : "4",
+  "subjectColumn" : "Working with files",
+  "reqColumn" : "Java How to Program, Chapter 15; Java inTwo Semesters, Chapter 18"
+}, {
+  "weekColumn" : "5",
+  "subjectColumn" : "Using data structures",
+  "reqColumn" : "Practice of Programming, Chapters 2 & 3."
+}, {
+  "weekColumn" : "6",
+  "subjectColumn" : "Creational Design Patterns",
+  "reqColumn" : "Design Patterns, Chapter 1 and 3"
+}, {
+  "weekColumn" : "7",
+  "subjectColumn" : "Structural Design Patterns",
+  "reqColumn" : "Design Patterns, Chapter 4"
+}, {
+  "weekColumn" : "8",
+  "subjectColumn" : "Behavioral Design Patterns",
+  "reqColumn" : "Design Patterns, Chapter 5"
+}, {
+  "weekColumn" : "9",
+  "subjectColumn" : "MIDTERM",
+  "reqColumn" : ""
+}, {
+  "weekColumn" : "10",
+  "subjectColumn" : "Concurrency",
+  "reqColumn" : "Java How to Program, Chapter 23; Java InTwo Semesters, Chapter 20."
+}, {
+  "weekColumn" : "11",
+  "subjectColumn" : "Debugging and Testing",
+  "reqColumn" : "Java How to Program, Appendix E, OnlineJUnit Documentation -https://junit.org/junit5/docs/current/user-guide/"
+}, {
+  "weekColumn" : "12",
+  "subjectColumn" : "Performance Tuning",
+  "reqColumn" : "Programming Pearls, Chapter 9."
+}, {
+  "weekColumn" : "13",
+  "subjectColumn" : "Case Studies",
+  "reqColumn" : null
+}, {
+  "weekColumn" : "14",
+  "subjectColumn" : "Project Presentations",
+  "reqColumn" : null
+}, {
+  "weekColumn" : "15",
+  "subjectColumn" : "Semester Reviews",
+  "reqColumn" : null
+}, {
+  "weekColumn" : "16",
+  "subjectColumn" : "Final Exam",
+  "reqColumn" : null
+} ]

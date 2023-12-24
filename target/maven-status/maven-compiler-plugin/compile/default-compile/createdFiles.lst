@@ -1,3 +1,11 @@
-Javafxx.class
-Main.class
+courseInfo.class
 SQLConnection.class
+WorkloadSemAct.class
+AssessmentSemAct.class
+CourseOutcome.class
+FakeMain.class
+Main.class
+CoursesModel.class
+courseInfoController.class
+Controller.class
+WeeklySubjects.class
