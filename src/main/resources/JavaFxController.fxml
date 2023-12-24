@@ -122,7 +122,7 @@
             </VBox>
             <AnchorPane layoutX="206.0" prefHeight="470.0" prefWidth="445.0">
                 <children>
-                    <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
+                    <Pane id="homePage" fx:id="homePage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0">
                         <children>
                             <Label layoutX="163.0" layoutY="29.0" prefHeight="72.0" prefWidth="111.0" text="Welcome!" textAlignment="CENTER">
                                 <font>
@@ -621,7 +621,7 @@
                             </ScrollPane>
                         </children>
                     </Pane>
-                    <Pane id="userManualPage" fx:id="userManualPage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0">
+                    <Pane id="userManualPage" fx:id="userManualPage" layoutX="5.0" prefHeight="470.0" prefWidth="446.0" visible="false">
                         <children>
                             <ScrollPane layoutY="14.0" prefHeight="470.0" prefWidth="446.0">
                                 <content>
