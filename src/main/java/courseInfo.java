@@ -1,12 +1,8 @@
-import javafx.fxml.FXML;
-
-import java.sql.SQLException;
-
 public class courseInfo{
-    String courseCode, courseName, prerequisites, teachingMethods, courseObj, outcomes, courseDesc, courseCoordinator, courseLecturer, assistant, reading, textbook;
-    int courseSemester, theoryTime, labTime, courseCredit, courseECTS,courseLang, courseType, courseCategory, courseLevel, delivery;
+    String courseCode, courseSemester,courseName, prerequisites, teachingMethods,courseType, courseObj, outcomes, courseDesc, courseCoordinator, courseLecturer, assistant, reading, textbook,courseLang, courseCategory, courseLevel, delivery;;
+    int theoryTime,labTime, courseCredit, courseECTS;
 
-    public courseInfo(String courseCode, String courseName, int courseSemester, int theoryTime, int labTime, int courseCredit, int courseECTS, String prerequisites, int courseLang, int courseType, String teachingMethods, String courseObj, String outcomes, String courseDesc, int courseCategory, int courseLevel, String courseCoordinator, String courseLecturer, String assistant, String reading, String textbook, int delivery) {
+    public courseInfo(String courseCode, String courseName, String courseSemester, int theoryTime, int labTime, int courseCredit, int courseECTS, String prerequisites, String courseLang, String courseType, String teachingMethods, String courseObj, String outcomes, String courseDesc, String courseCategory, String courseLevel, String courseCoordinator, String courseLecturer, String assistant, String reading, String textbook, String delivery) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.prerequisites = prerequisites;
@@ -87,11 +83,11 @@ public class courseInfo{
         this.courseDesc = courseDesc;
     }
 
-    public int getCourseSemester() {
+    public String getCourseSemester() {
         return courseSemester;
     }
 
-    public void setCourseSemester(int courseSemester) {
+    public void setCourseSemester(String courseSemester) {
         this.courseSemester = courseSemester;
     }
 
@@ -127,27 +123,27 @@ public class courseInfo{
         this.courseECTS = courseECTS;
     }
 
-    public int getCourseLang() {
+    public String getCourseLang() {
         return courseLang;
     }
 
-    public void setCourseLang(int courseLang) {
+    public void setCourseLang(String courseLang) {
         this.courseLang = courseLang;
     }
 
-    public int getCourseType() {
+    public String getCourseType() {
         return courseType;
     }
 
-    public void setCourseType(int courseType) {
+    public void setCourseType(String courseType) {
         this.courseType = courseType;
     }
 
-    public int getCourseCategory() {
+    public String getCourseCategory() {
         return courseCategory;
     }
 
-    public void setCourseCategory(int courseCategory) {
+    public void setCourseCategory(String courseCategory) {
         this.courseCategory = courseCategory;
     }
 
@@ -191,19 +187,19 @@ public class courseInfo{
         this.textbook = textbook;
     }
 
-    public int getCourseLevel() {
+    public String getCourseLevel() {
         return courseLevel;
     }
 
-    public void setCourseLevel(int courseLevel) {
+    public void setCourseLevel(String courseLevel) {
         this.courseLevel = courseLevel;
     }
 
-    public int getDelivery() {
+    public String getDelivery() {
         return delivery;
     }
 
-    public void setDelivery(int delivery) {
+    public void setDelivery(String delivery) {
         this.delivery = delivery;
     }
 }

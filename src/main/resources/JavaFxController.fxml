@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<StackPane prefHeight="469.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <AnchorPane>
         <children>
             <VBox prefHeight="480.0" prefWidth="206.0" style="-fx-background-color: #03045E;">
@@ -141,11 +141,11 @@
                             </ImageView>
                         </children>
                     </Pane>
-                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0" visible="false">
+                    <Pane id="newCoursePage" fx:id="newCourseENPage" prefHeight="470.0" prefWidth="446.0">
                         <children>
-                            <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2846.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
+                            <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2610.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
                                 <content>
-                                    <AnchorPane minHeight="5210.0" minWidth="700.0" prefHeight="476.0" prefWidth="452.0">
+                                    <AnchorPane minHeight="4700.0" minWidth="700.0" prefHeight="476.0" prefWidth="452.0">
                                         <children>
                                             <TextField fx:id="courseCodeField" layoutX="19.0" layoutY="142.0" prefHeight="26.0" prefWidth="78.0" style="-fx-font-style: italic;" />
                                             <Label alignment="CENTER" layoutX="118.0" layoutY="26.0" prefHeight="35.0" prefWidth="206.0" text="1. GENERAL INFORMATION" textFill="#6c0000">
@@ -371,248 +371,28 @@
                                                 </columns>
                                             </TableView>
                                             <Label layoutX="27.0" layoutY="2166.0" prefHeight="18.0" prefWidth="368.0" style="-fx-font-style: italic;" text="Please enter a number between 1 and 5 for contribution level." />
-                                            <Button id="saveButton" fx:id="saveButtonEN" layoutX="168.0" layoutY="2505.0" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="100.0" styleClass="saveButton" stylesheets="@application.css" text="SAVE" />
+                                            <Button id="saveButton" fx:id="saveButtonEN" accessibleRole="BUTTON" layoutX="168.0" layoutY="2505.0" mnemonicParsing="false" onAction="#save" prefHeight="42.0" prefWidth="100.0" styleClass="saveButton" stylesheets="@application.css" text="SAVE" />
                                             <Line endX="331.0" layoutX="106.0" layoutY="2473.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
+                                 <Label fx:id="savedSuccessfully" alignment="CENTER" layoutX="13.0" layoutY="2474.0" prefHeight="18.0" prefWidth="409.0" text="The result information text will be visible after clicking the save button." textFill="#000000d9">
+                                    <font>
+                                       <Font name="Verdana Bold" size="8.0" />
+                                    </font></Label>
+                                 <Label alignment="CENTER" layoutX="-5.0" layoutY="8.0" prefHeight="12.0" prefWidth="452.0" text="To save, all tables must be entered and then, the save button must be pressed just once." textFill="#521313d2">
+                                    <font>
+                                       <Font size="10.0" />
+                                    </font>
+                                 </Label>
                                         </children>
                                     </AnchorPane>
                                 </content>
                             </ScrollPane>
                         </children>
                     </Pane>
-                    <Pane id="newCoursePage" fx:id="newCourseTRPage" prefHeight="470.0" prefWidth="446.0" visible="false">
+                    <Pane id="displayVersionsPage" fx:id="displayVersionsPage" layoutX="3.0" prefHeight="470.0" prefWidth="446.0" visible="false">
                         <children>
-                            <ScrollPane layoutX="-2.0" pannable="true" prefHeight="2846.0" prefViewportHeight="1200.0" prefViewportWidth="700.0" prefWidth="451.0">
+                            <ScrollPane prefHeight="1680.0" prefWidth="452.0">
                                 <content>
-                                    <AnchorPane minHeight="5210.0" minWidth="700.0" prefHeight="476.0" prefWidth="452.0">
-                                        <children>
-                                            <TextField layoutX="19.0" layoutY="142.0" prefHeight="26.0" prefWidth="78.0" style="-fx-font-style: italic;" />
-                                            <Label alignment="CENTER" layoutX="118.0" layoutY="26.0" prefHeight="35.0" prefWidth="206.0" text="1. GENEL BİLGİLER" textFill="#6c0000">
-                                                <font>
-                                                    <Font name="System Bold" size="15.0" />
-                                                </font>
-                                            </Label>
-                                            <Label layoutX="63.0" layoutY="67.0" prefHeight="18.0" prefWidth="86.0" text="Dersin Adı" textFill="#03045e" />
-                                            <TextField layoutX="147.0" layoutY="63.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="38.0" layoutY="123.0" prefHeight="18.0" prefWidth="41.0" text="Kodu" textFill="#03045e" />
-                                            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="123.0" prefHeight="18.0" prefWidth="41.0" text="Dönem" textFill="#03045e" />
-                                            <RadioButton layoutX="103.0" layoutY="143.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" opacity="0.72" prefHeight="24.0" prefWidth="38.0" text="Güz" textAlignment="CENTER">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </RadioButton>
-                                            <RadioButton layoutX="141.0" layoutY="143.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" opacity="0.72" prefHeight="24.0" prefWidth="52.0" text="Bahar" textAlignment="CENTER">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </RadioButton>
-                                            <TextField layoutX="205.0" layoutY="142.0" prefHeight="26.0" prefWidth="49.0" style="-fx-font-style: italic;" />
-                                            <Label layoutX="190.0" layoutY="123.0" prefHeight="18.0" prefWidth="129.0" text="       Teori     Uygulama" textFill="#03045e" />
-                                            <TextField layoutX="255.0" layoutY="142.0" prefHeight="26.0" prefWidth="49.0" style="-fx-font-style: italic;" />
-                                            <TextField layoutX="325.0" layoutY="142.0" prefHeight="26.0" prefWidth="49.0" style="-fx-font-style: italic;" />
-                                            <Label layoutX="318.0" layoutY="123.0" prefHeight="18.0" prefWidth="129.0" text="   Y. Kredi     ACTS" textFill="#03045e" />
-                                            <TextField layoutX="375.0" layoutY="142.0" prefHeight="26.0" prefWidth="49.0" style="-fx-font-style: italic;" />
-                                            <Label layoutX="63.0" layoutY="201.0" prefHeight="18.0" prefWidth="86.0" text="Ön-koşul(lar) " textFill="#03045e" />
-                                            <TextField layoutX="147.0" layoutY="197.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="63.0" layoutY="256.0" prefHeight="18.0" prefWidth="118.0" text="Dersin Dili " textFill="#03045e" />
-                                            <Label layoutX="60.0" layoutY="309.0" prefHeight="18.0" prefWidth="118.0" text="Dersin Türü " textFill="#03045e" />
-                                            <Label layoutX="14.0" layoutY="366.0" prefHeight="18.0" prefWidth="118.0" text="Dersin Düzeyi" textFill="#03045e" />
-                                            <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="161.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Türkçe">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox alignment="CENTER_RIGHT" layoutX="229.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="İngilizce">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox layoutX="312.0" layoutY="258.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="İkinci Yabancı Dil">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="184.0" layoutY="311.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Zorunlu">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox alignment="CENTER_RIGHT" layoutX="286.0" layoutY="311.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Seçmeli">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="101.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="13.0" prefWidth="70.0" text="Ön Lisans">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox alignment="CENTER_RIGHT" layoutX="194.0" layoutY="363.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="24.0" prefWidth="48.0" text="Lisans">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="261.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="15.0" prefWidth="88.0" text="Yüksek Lisans">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox alignment="CENTER_RIGHT" layoutX="361.0" layoutY="368.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Doktora">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <Label layoutX="40.0" layoutY="429.0" prefHeight="18.0" prefWidth="118.0" text="Dersin Veriliş Şekli" textFill="#03045e" />
-                                            <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="158.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Yüz yüze">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox alignment="CENTER_RIGHT" layoutX="256.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Çevrim içi">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <CheckBox layoutX="331.0" layoutY="431.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Hibrit">
-                                                <font>
-                                                    <Font size="10.0" />
-                                                </font>
-                                            </CheckBox>
-                                            <Label layoutX="38.0" layoutY="487.0" prefHeight="18.0" prefWidth="125.0" text="Öğretim Yöntemleri " textFill="#03045e" />
-                                            <TextField layoutX="157.0" layoutY="492.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="38.0" layoutY="505.0" prefHeight="18.0" prefWidth="125.0" text="ve Teknikler" textFill="#03045e" />
-                                            <Label layoutX="37.0" layoutY="496.0" prefHeight="18.0" prefWidth="125.0" textFill="#03045e" />
-                                            <TextField layoutX="157.0" layoutY="549.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="34.0" layoutY="553.0" prefHeight="18.0" prefWidth="125.0" text="Dersin Koordinatörü" textFill="#03045e" />
-                                            <Line endX="331.0" layoutX="107.0" layoutY="108.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="110.0" layoutY="182.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="110.0" layoutY="240.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="110.0" layoutY="297.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="110.0" layoutY="349.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="107.0" layoutY="410.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="107.0" layoutY="469.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="107.0" layoutY="533.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="157.0" layoutY="610.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="36.0" layoutY="614.0" prefHeight="18.0" prefWidth="125.0" text="Öğretim Eleman(lar)ı" textFill="#03045e" />
-                                            <Line endX="331.0" layoutX="109.0" layoutY="594.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="157.0" layoutY="667.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="38.0" layoutY="671.0" prefHeight="18.0" prefWidth="125.0" text="Yardımcı(lar)ı" textFill="#03045e" />
-                                            <Line endX="331.0" layoutX="107.0" layoutY="651.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="157.0" layoutY="725.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="38.0" layoutY="729.0" prefHeight="18.0" prefWidth="125.0" text="Dersin Amacı" textFill="#03045e" />
-                                            <Line endX="331.0" layoutX="106.0" layoutY="709.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="110.0" layoutY="770.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="157.0" layoutY="787.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="35.0" layoutY="791.0" prefHeight="18.0" prefWidth="125.0" text="Öğrenme Çıktıları" textFill="#03045e" />
-                                            <Line endX="331.0" layoutX="107.0" layoutY="832.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="159.0" layoutY="848.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="37.0" layoutY="852.0" prefHeight="18.0" prefWidth="125.0" text="Ders Tanımı" textFill="#03045e" />
-                                            <Line endX="331.0" layoutX="109.0" layoutY="893.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Label layoutX="36.0" layoutY="914.0" prefHeight="18.0" prefWidth="125.0" text="Dersin Kategorisi" textFill="#03045e" />
-                                            <ListView layoutX="147.0" layoutY="908.0" prefHeight="129.0" prefWidth="282.0" />
-                                            <CheckBox layoutX="151.0" layoutY="914.0" mnemonicParsing="false" text="Temel Ders" />
-                                            <CheckBox layoutX="151.0" layoutY="940.0" mnemonicParsing="false" text="Uzmanlık/Alan Dersi" />
-                                            <CheckBox layoutX="151.0" layoutY="1014.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="159.0" text="Aktarılabilir Beceri Dersi" />
-                                            <CheckBox layoutX="151.0" layoutY="988.0" mnemonicParsing="false" text="İletişim ve Yönetim Becerileri Dersi" />
-                                            <CheckBox layoutX="151.0" layoutY="964.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="121.0" text="Destek Dersi" />
-                                            <Line endX="331.0" layoutX="109.0" layoutY="1055.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Label alignment="CENTER" layoutY="1069.0" prefHeight="35.0" prefWidth="446.0" text="2. HAFTALIK KONULAR VE İLGİLİ ÖN HAZIRLIK ÇALIŞMALARI" textFill="#6c0000">
-                                                <font>
-                                                    <Font name="System Bold" size="14.0" />
-                                                </font>
-                                            </Label>
-                                            <TableView editable="true" layoutX="47.0" layoutY="1115.0" prefHeight="229.0" prefWidth="350.0">
-                                                <columns>
-                                                    <TableColumn prefWidth="45.599971771240234" text="Hafta" />
-                                                    <TableColumn prefWidth="108.00006103515625" text="Konular" />
-                                                    <TableColumn prefWidth="193.59999084472656" text="Ön Hazırlık" />
-                                                </columns>
-                                            </TableView>
-                                            <Line endX="331.0" layoutX="110.0" layoutY="1359.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="157.0" layoutY="1376.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="23.0" layoutY="1380.0" prefHeight="18.0" prefWidth="138.0" text="Ders Kitabı" textFill="#03045e" />
-                                            <Line endX="331.0" layoutX="107.0" layoutY="1421.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TextField layoutX="159.0" layoutY="1437.0" prefHeight="26.0" prefWidth="258.0" />
-                                            <Label layoutX="8.0" layoutY="1441.0" prefHeight="18.0" prefWidth="167.0" text="Önerilen Okumalar/Materyaller " textFill="#03045e">
-                                                <font>
-                                                    <Font size="11.0" />
-                                                </font>
-                                            </Label>
-                                            <Label alignment="CENTER" layoutX="104.0" layoutY="1501.0" prefHeight="35.0" prefWidth="236.0" text="3. DEĞERLENDİRME ÖLÇÜTLERİ" textFill="#6c0000">
-                                                <font>
-                                                    <Font name="System Bold" size="15.0" />
-                                                </font>
-                                            </Label>
-                                            <Line endX="331.0" layoutX="107.0" layoutY="1487.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TableView editable="true" layoutX="2.0" layoutY="1544.0" prefHeight="230.0" prefWidth="431.0">
-                                                <columns>
-                                                    <TableColumn prefWidth="112.80004572868347" text="Yarıyıl Aktiviteleri" />
-                                                    <TableColumn prefWidth="33.79998779296875" text="Sayı" />
-                                                    <TableColumn prefWidth="81.39996337890625" text="Katkı Payı %" />
-                                                    <TableColumn prefWidth="27.199966430664062" text="L01" />
-                                                    <TableColumn prefWidth="28.79998779296875" text="L02" />
-                                                    <TableColumn prefWidth="27.99993896484375" text="L03" />
-                                                    <TableColumn prefWidth="29.5999755859375" text="L04" />
-                                                    <TableColumn prefWidth="29.60003662109375" text="L05" />
-                                                    <TableColumn prefWidth="27.20001220703125" text="L06" />
-                                                    <TableColumn prefWidth="29.60002441406249" text="L07" />
-                                                </columns>
-                                            </TableView>
-                                            <TableView editable="true" layoutX="14.0" layoutY="1809.0" prefHeight="230.0" prefWidth="412.0">
-                                                <columns>
-                                                    <TableColumn prefWidth="245.99998474121094" text="Total Katkı Payı" />
-                                                    <TableColumn prefWidth="73.20001220703125" text="Sayı" />
-                                                    <TableColumn prefWidth="90.79998779296875" text="Puan" />
-                                                </columns>
-                                            </TableView>
-                                            <Line endX="331.0" layoutX="108.0" layoutY="1793.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Line endX="331.0" layoutX="108.0" layoutY="2056.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Label alignment="CENTER" layoutX="115.0" layoutY="2074.0" prefHeight="35.0" prefWidth="214.0" text="4. AKTS / İŞ YÜKÜ TABLOSU" textFill="#6c0000">
-                                                <font>
-                                                    <Font name="System Bold" size="15.0" />
-                                                </font>
-                                            </Label>
-                                            <TableView editable="true" layoutX="14.0" layoutY="2119.0" prefHeight="230.0" prefWidth="412.0">
-                                                <columns>
-                                                    <TableColumn prefWidth="182.40002155303955" text="Yarıyıl Aktiviteleri" />
-                                                    <TableColumn prefWidth="62.39997863769531" text="Sayı" />
-                                                    <TableColumn prefWidth="102.39996337890625" text="Süre (Saat)" />
-                                                    <TableColumn prefWidth="65.5999755859375" text="İş Yükü" />
-                                                </columns>
-                                            </TableView>
-                                            <Label alignment="CENTER" layoutX="-16.0" layoutY="2397.0" prefHeight="35.0" prefWidth="463.0" text="5. DERSİN ÖĞRENME ÇIKTILARININ" textFill="#6c0000">
-                                                <font>
-                                                    <Font name="System Bold" size="15.0" />
-                                                </font>
-                                            </Label>
-                                            <Line endX="331.0" layoutX="109.0" layoutY="2389.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <TableView editable="true" layoutX="16.0" layoutY="2490.0" prefHeight="230.0" prefWidth="412.0">
-                                                <columns>
-                                                    <TableColumn prefWidth="28.0" text="#" />
-                                                    <TableColumn prefWidth="217.60004806518555" text="Program Yeterlilikleri/Çıktıları" />
-                                                    <TableColumn prefWidth="121.60003662109375" text="Katkı Düzeyi" />
-                                                    <TableColumn prefWidth="43.20001220703125" text="LO#" />
-                                                </columns>
-                                            </TableView>
-                                            <Label layoutX="21.0" layoutY="2471.0" prefHeight="18.0" prefWidth="368.0" style="-fx-font-style: italic;" text="Lütfen katkı düzeyi değeri için 1 ve 5 arasında bir değer giriniz." />
-                                            <Button id="saveButton" fx:id="saveButtonTR" layoutX="173.0" layoutY="2765.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" styleClass="saveButton" stylesheets="@application.css" text="SAVE" />
-                                            <Line endX="331.0" layoutX="111.0" layoutY="2733.0" smooth="false" startX="-107.0" startY="-7.62939453125E-6" stroke="#b5b5b5" />
-                                            <Label alignment="CENTER" layoutX="60.0" layoutY="2423.0" prefHeight="35.0" prefWidth="311.0" text="PROGRAM YETERLİLİKLERİ İLE İLİŞKİSİ" textFill="#6c0000">
-                                                <font>
-                                                    <Font name="System Bold" size="15.0" />
-                                                </font>
-                                            </Label>
-                                            <!--                                 <ComboBox fx:id="documentLang" layoutX="-1.0" onAction="#selectDocLang" prefHeight="26.0" prefWidth="122.0" promptText="Doc. Language" styleClass="documentLang" stylesheets="@application.css" />-->
-                                        </children>
-                                    </AnchorPane>
-                                </content>
-                            </ScrollPane>
-                        </children>
-                    </Pane>
-                    <Pane id="displayVersionsPage" fx:id="displayVersionsPage" layoutX="3.0" prefHeight="470.0" prefWidth="446.0">
-                        <children>
-                            <ScrollPane prefHeight="1552.0" prefWidth="452.0">
-                                <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2750.0" prefWidth="460.0">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2850.0" prefWidth="460.0">
                                         <children>
                                             <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="14.0" layoutY="105.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing course information.">
                                                 <font>
@@ -630,12 +410,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                            <Label fx:id="courseNameLabel" layoutX="14.0" layoutY="32.0" prefHeight="27.0" prefWidth="132.0" text="COURSE NAME" textFill="#03045e">
-                                                <font>
-                                                    <Font size="18.0" />
-                                                </font>
-                                            </Label>
-                                            <ScrollPane layoutX="25.0" layoutY="140.0" prefHeight="200.0" prefWidth="402.0">
+                                            <ScrollPane layoutX="23.0" layoutY="131.0" prefHeight="200.0" prefWidth="402.0">
                                                 <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="700.0">
                                                         <children>
@@ -695,7 +470,7 @@
                                                     <Blend opacity="0.19" />
                                                 </effect>
                                             </Label>
-                                            <Label layoutX="25.0" layoutY="360.0" prefHeight="18.0" prefWidth="464.0" text="Weekly Schedule" textFill="#610000">
+                                            <Label layoutX="24.0" layoutY="367.0" prefHeight="18.0" prefWidth="464.0" text="Weekly Schedule" textFill="#610000">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
@@ -722,7 +497,7 @@
                                                     </AnchorPane>
                                                 </content>
                                             </ScrollPane>
-                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="667.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing assessment schedule.">
+                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="27.0" layoutY="676.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing assessment schedule.">
                                                 <font>
                                                     <Font size="11.0" />
                                                 </font>
@@ -733,12 +508,12 @@
                                                     <Blend opacity="0.19" />
                                                 </effect>
                                             </Label>
-                                            <Label layoutX="28.0" layoutY="640.0" prefHeight="18.0" prefWidth="464.0" text="Assessment" textFill="#610000">
+                                            <Label layoutX="25.0" layoutY="656.0" prefHeight="18.0" prefWidth="464.0" text="Assessment" textFill="#610000">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="958.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing ECTS / Workload schedule.">
+                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="974.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing ECTS / Workload schedule.">
                                                 <font>
                                                     <Font size="11.0" />
                                                 </font>
@@ -749,12 +524,12 @@
                                                     <Blend opacity="0.19" />
                                                 </effect>
                                             </Label>
-                                            <Label layoutX="28.0" layoutY="931.0" prefHeight="18.0" prefWidth="464.0" text="ECTS / Workload" textFill="#610000">
+                                            <Label layoutX="28.0" layoutY="956.0" prefHeight="18.0" prefWidth="464.0" text="ECTS / Workload" textFill="#610000">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                            <ScrollPane layoutX="31.0" layoutY="989.0" prefHeight="214.0" prefWidth="387.0">
+                                            <ScrollPane layoutX="31.0" layoutY="1002.0" prefHeight="214.0" prefWidth="387.0">
                                                 <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="395.0">
                                                         <children>
@@ -786,7 +561,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                            <ScrollPane layoutX="23.0" layoutY="1274.0" prefHeight="232.0" prefWidth="404.0">
+                                            <ScrollPane layoutX="23.0" layoutY="1333.0" prefHeight="232.0" prefWidth="404.0">
                                                 <content>
                                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="398.0">
                                                         <children>
@@ -802,7 +577,7 @@
                                                     </AnchorPane>
                                                 </content>
                                             </ScrollPane>
-                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="28.0" layoutY="1243.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing Outcome Matrix schedule.">
+                                            <Label cacheShape="false" centerShape="false" focusTraversable="false" layoutX="27.0" layoutY="1301.0" mouseTransparent="true" pickOnBounds="false" prefHeight="18.0" prefWidth="405.0" scaleShape="false" style="-fx-font-style: italic;" text="Please scroll to the right to view the complete table containing Outcome Matrix schedule.">
                                                 <font>
                                                     <Font size="11.0" />
                                                 </font>
@@ -813,11 +588,33 @@
                                                     <Blend opacity="0.19" />
                                                 </effect>
                                             </Label>
-                                            <Label layoutX="28.0" layoutY="1216.0" prefHeight="18.0" prefWidth="464.0" text="Course / Program Outcome Matrix" textFill="#610000">
+                                            <Label layoutX="28.0" layoutY="1271.0" prefHeight="18.0" prefWidth="464.0" text="Course / Program Outcome Matrix" textFill="#610000">
                                                 <font>
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
+                                            <Button fx:id="updateOutcomeB" layoutX="190.0" layoutY="1572.0" mnemonicParsing="false" onAction="#updateOutcomeAction" prefHeight="33.0" prefWidth="75.0" text="Update" />
+                                 <Label layoutX="18.0" layoutY="14.0" prefHeight="18.0" prefWidth="413.0" text="For each course in the Course Info table, values from the other tables are added sequentially.">
+                                    <font>
+                                       <Font size="10.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="19.0" layoutY="32.0" text="When you write the course name and version number in the part where there are lines in the tables,">
+                                    <font>
+                                       <Font size="9.0" />
+                                    </font>
+                                 </Label>
+                                 <Label layoutX="18.0" layoutY="46.0" text=" you make more organized records.">
+                                    <font>
+                                       <Font size="9.0" />
+                                    </font>
+                                 </Label>
+                                 <Circle fill="DODGERBLUE" layoutX="14.0" layoutY="23.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+                                 <Circle fill="DODGERBLUE" layoutX="14.0" layoutY="39.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+                                 <Button fx:id="updateWorkloadB" layoutX="188.0" layoutY="1227.0" mnemonicParsing="false" onAction="#updateWorkloadAction" prefHeight="30.0" prefWidth="74.0" text="Update" />
+                                 <Button fx:id="updateAssessmentB" layoutX="187.0" layoutY="926.0" mnemonicParsing="false" onAction="#updateAssessmentAction" prefHeight="30.0" prefWidth="74.0" text="Update" />
+                                 <Button fx:id="updateWeeklyScheduleB" layoutX="187.0" layoutY="635.0" mnemonicParsing="false" onAction="#updateWeeklyScheduleAction" prefHeight="30.0" prefWidth="74.0" text="Update" />
+                                 <Button fx:id="updateCourseInfoB" layoutX="179.0" layoutY="340.0" mnemonicParsing="false" onAction="#updateCourseInfoAction" prefHeight="30.0" prefWidth="74.0" text="Update" />
                                         </children>
                                     </AnchorPane>
                                 </content>

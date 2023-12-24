@@ -28,8 +28,15 @@ public class courseInfoController{
         controller.outcomesCol.setCellValueFactory(new PropertyValueFactory<>("outcomes"));
         controller.descriptionCol.setCellValueFactory(new PropertyValueFactory<>("courseDesc"));
         controller.categoryCol.setCellValueFactory(new PropertyValueFactory<>("courseCategory"));
+        controller.levelCol.setCellValueFactory(new PropertyValueFactory<>("courseLevel"));
+        controller.coordinatorCol.setCellValueFactory(new PropertyValueFactory<>("courseCoordinator"));
+        controller.lecturersCol.setCellValueFactory(new PropertyValueFactory<>("courseLecturer"));
+        controller.assistantsCol.setCellValueFactory(new PropertyValueFactory<>("assistant"));
+        controller.readingCol.setCellValueFactory(new PropertyValueFactory<>("reading"));
+        controller.textbooksCol.setCellValueFactory(new PropertyValueFactory<>("textbook"));
+        controller.deliveryCol.setCellValueFactory(new PropertyValueFactory<>("delivery"));
 
-                    try {
+        try {
                 controller.connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -58,7 +65,7 @@ public class courseInfoController{
 
     }
     public boolean controlBlank() {
-        if (controller.cName == null || controller.cCode == null || controller.semester == null || controller.languageS == null || controller.type == null || controller.teachingMethods == null || controller.objectives == null || controller.outcomes == null || controller.category == null || controller.level == null || controller.coordinator == null || controller.lecturers == null || controller.delivery == null) {
+        if (controller.cName == null || controller.cCode == null || controller.semester == null || controller.semesterValue == null|| controller.languageValue == null|| controller.courseType == null|| controller.levelType == null|| controller.deliveryType == null|| controller.categoryType == null|| controller.languageS == null || controller.type == null || controller.teachingMethods == null || controller.objectives == null || controller.outcomes == null || controller.category == null || controller.level == null || controller.coordinator == null || controller.lecturers == null || controller.delivery == null) {
             Alert notBlank = new Alert(Alert.AlertType.WARNING);
             notBlank.setTitle("Value Selection");
             notBlank.setHeaderText("The required fields cannot be left empty.");

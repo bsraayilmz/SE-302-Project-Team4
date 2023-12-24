@@ -40,4 +40,4 @@ public class WeeklySubjects {
     public void setReqColumn(String  reqColumn) {
         this.reqColumn = reqColumn;
     }
-    }
+}

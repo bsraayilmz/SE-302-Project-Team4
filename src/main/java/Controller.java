@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.util.converter.IntegerStringConverter;
 import java.net.URL;
@@ -52,6 +53,8 @@ public class Controller implements Initializable {
     @FXML
     public TableColumn<WorkloadSemAct, String> durationColumn;
     @FXML
+    Label savedSuccessfully;
+    @FXML
     public TableColumn<WorkloadSemAct, String> workloadColumn;
     /* Variables for Section 5: Course/Program Outcome Matrix */
     public ObservableList<CourseOutcome> courseOutcomes; /* represents the non-editable first columns: # and program competencies / outcomes. */
@@ -59,6 +62,8 @@ public class Controller implements Initializable {
     public TableView<CourseOutcome> outcomeTable;
     @FXML
     public TableColumn<CourseOutcome, String> sharpColumn, outcomeColumn, contColumn, loCol;
+    @FXML
+    public Button  updateCourseInfoB,updateWeeklyScheduleB,updateAssessmentB,updateWorkloadB,updateOutcomeB;
     //to be able to refresh the all information
     ObservableList<courseInfo> courseList = FXCollections.observableArrayList();
     String queryCourseInfo = null;
@@ -79,7 +84,7 @@ public class Controller implements Initializable {
     RadioButton turkishLangButton, englishLangButton, secondLangButton, thirdCycleButton, requiredTypeButton, electiveTypeButton, shortCycleButton, firstCycleButton, coreCategoryButton, secondCycleButton, f2fDel, onlineDel, blendedDel, majorAreaCategoryButton, supportiveCategoryButton, commCategoryButton, transferableCategoryButton;
     //the pages for buttons
     @FXML
-    Pane displayVersionsPage, newCourseENPage, userManualPage, homePage, newCourseTRPage;
+    Pane displayVersionsPage, newCourseENPage, userManualPage, homePage;
 
     //for the display versions page's table
     @FXML
@@ -100,11 +105,11 @@ public class Controller implements Initializable {
     TableColumn<CourseOutcome, String>sharpOutcomeCol,programOutcomesColumn,contributionLevOutcome,loOutcomeColumn;
 
     @FXML
-    TableColumn<courseInfo, String> courseCodeCol, nameCol, prerequisitesCol, teachingMethodsCol, objectivesCol, outcomesCol, textbooksCol, readingCol, descriptionCol, lecturersCol, assistantsCol, coordinatorCol, levelCol;
+    TableColumn<courseInfo, String> courseCodeCol, semesterCol,nameCol, prerequisitesCol, languageCol,typeCol,categoryCol,deliveryCol, teachingMethodsCol, objectivesCol, outcomesCol, textbooksCol, readingCol, descriptionCol, lecturersCol, assistantsCol, coordinatorCol, levelCol;
     @FXML
-    TableColumn<courseInfo, Integer> semesterCol, theoryCol, labCol, creditsCol, ectsCol, languageCol, typeCol, categoryCol, deliveryCol;
-   @FXML
-   TableColumn<WeeklySubjects, String>weekNumberCol,subjectsCol,requiredMaterialsCol;
+    TableColumn<courseInfo, Integer>  theoryCol, labCol, creditsCol, ectsCol;
+    @FXML
+    TableColumn<WeeklySubjects, String>weekNumberCol,subjectsCol,requiredMaterialsCol;
     @FXML
     Button refreshButton, newCourseButton;
 
@@ -119,12 +124,12 @@ public class Controller implements Initializable {
     String queryAdditionForCourseInfo = null;
     PreparedStatement preparedStatementAddition = null;
     //To store the output values of checkboxes
-    int semesterValue;
-    int languageValue;
-    int courseType;
-    int categoryType;
-    int levelType;
-    int deliveryType;
+    String semesterValue;
+    String languageValue;
+    String courseType;
+    String categoryType;
+    String levelType;
+    String deliveryType;
     String cName, cCode, semester, languageS, prerequisites, type, teachingMethods, objectives, outcomes, description, category, textbooks, reading, lecturers, assistants, coordinator, level, delivery;
     int theoryTime, labTime, credit, courseECTS;
     PreparedStatement preparedStatementForWeeks = null;
@@ -139,7 +144,6 @@ public class Controller implements Initializable {
         } else {
             System.out.println("The connection is failed.");
         }
-
         displayPageEditable();
         weekTableInitializer();
         refreshWeeklySchedule();
@@ -158,16 +162,16 @@ public class Controller implements Initializable {
         /* CourseInfo table */
         courseCodeCol.setCellFactory(TextFieldTableCell.forTableColumn());
         nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        semesterCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        semesterCol.setCellFactory(TextFieldTableCell.forTableColumn());
         theoryCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         labCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         creditsCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         ectsCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         prerequisitesCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        languageCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        typeCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        languageCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        typeCol.setCellFactory(TextFieldTableCell.forTableColumn());
         levelCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        deliveryCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        deliveryCol.setCellFactory(TextFieldTableCell.forTableColumn());
         teachingMethodsCol.setCellFactory(TextFieldTableCell.forTableColumn());
         coordinatorCol.setCellFactory(TextFieldTableCell.forTableColumn());
         lecturersCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -175,7 +179,7 @@ public class Controller implements Initializable {
         objectivesCol.setCellFactory(TextFieldTableCell.forTableColumn());
         outcomesCol.setCellFactory(TextFieldTableCell.forTableColumn());
         descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        categoryCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
         textbooksCol.setCellFactory(TextFieldTableCell.forTableColumn());
         readingCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
@@ -422,15 +426,97 @@ public class Controller implements Initializable {
                 if (selectedLanguage != null && !selectedLanguage.isEmpty() && selectedLanguage.equals(English)) {
                     homePage.setVisible(false);
                     newCourseENPage.setVisible(true);
-                    newCourseTRPage.setVisible(false);
                     displayVersionsPage.setVisible(false);
                     userManualPage.setVisible(false);
+                    savedSuccessfully.setText("Conditions will appear here");
+                    savedSuccessfully.setTextFill(Color.GRAY);
+                    // Refresh the screen
+                    weekTableInitializer();
+                    assessmentTableInitializer();
+                    workloadTableInitializer();
+                    outcomeTableInitializer();
+                    courseNameField.setText("");
+                    courseCodeField.setText("");
+                    theoryTimeField.setText("");
+                    labTimeField.setText("");
+                    prerequisitesField.setText("");
+                    coordinatorField.setText("");
+                    courseCreditsField.setText("");
+                    courseECTSField.setText("");
+                    teachingMethodsField.setText("");
+                    lecturerField.setText("");
+                    textbooksField.setText("");
+                    readingField.setText("");
+                    objectivesField.setText("");
+                    assistantField.setText("");
+                    outcomesField.setText("");
+                    descriptionField.setText("");
+                    courseFallSemButton.setSelected(false);
+                    courseSpringSemButton.setSelected(false);
+                    turkishLangButton.setSelected(false);
+                    englishLangButton.setSelected(false);
+                    secondLangButton.setSelected(false);
+                    requiredTypeButton.setSelected(false);
+                    electiveTypeButton.setSelected(false);
+                    shortCycleButton.setSelected(false);
+                    firstCycleButton.setSelected(false);
+                    secondCycleButton.setSelected(false);
+                    thirdCycleButton.setSelected(false);
+                    f2fDel.setSelected(false);
+                    onlineDel.setSelected(false);
+                    blendedDel.setSelected(false);
+                    coreCategoryButton.setSelected(false);
+                    majorAreaCategoryButton.setSelected(false);
+                    supportiveCategoryButton.setSelected(false);
+                    commCategoryButton.setSelected(false);
+                    transferableCategoryButton.setSelected(false);
                 } else if (selectedLanguage != null && !selectedLanguage.isEmpty() && selectedLanguage.equals(Turkish)) {
                     homePage.setVisible(false);
-                    newCourseENPage.setVisible(false);
-                    newCourseTRPage.setVisible(true);
+                    newCourseENPage.setVisible(true);
                     displayVersionsPage.setVisible(false);
                     userManualPage.setVisible(false);
+                    savedSuccessfully.setText("Conditions will appear here");
+                    savedSuccessfully.setTextFill(Color.GRAY);
+                    // Refresh the screen
+                    weekTableInitializer();
+                    assessmentTableInitializer();
+                    workloadTableInitializer();
+                    outcomeTableInitializer();
+                    courseNameField.setText("");
+                    courseCodeField.setText("");
+                    theoryTimeField.setText("");
+                    labTimeField.setText("");
+                    prerequisitesField.setText("");
+                    coordinatorField.setText("");
+                    courseCreditsField.setText("");
+                    courseECTSField.setText("");
+                    teachingMethodsField.setText("");
+                    lecturerField.setText("");
+                    textbooksField.setText("");
+                    readingField.setText("");
+                    objectivesField.setText("");
+                    assistantField.setText("");
+                    outcomesField.setText("");
+                    descriptionField.setText("");
+                    courseFallSemButton.setSelected(false);
+                    courseSpringSemButton.setSelected(false);
+                    turkishLangButton.setSelected(false);
+                    englishLangButton.setSelected(false);
+                    secondLangButton.setSelected(false);
+                    requiredTypeButton.setSelected(false);
+                    electiveTypeButton.setSelected(false);
+                    shortCycleButton.setSelected(false);
+                    firstCycleButton.setSelected(false);
+                    secondCycleButton.setSelected(false);
+                    thirdCycleButton.setSelected(false);
+                    f2fDel.setSelected(false);
+                    onlineDel.setSelected(false);
+                    blendedDel.setSelected(false);
+                    coreCategoryButton.setSelected(false);
+                    majorAreaCategoryButton.setSelected(false);
+                    supportiveCategoryButton.setSelected(false);
+                    commCategoryButton.setSelected(false);
+                    transferableCategoryButton.setSelected(false);
                 }
                 //if no selection
                 else {
@@ -451,7 +537,6 @@ public class Controller implements Initializable {
             newCourseENPage.setVisible(false);
             displayVersionsPage.setVisible(true);
             userManualPage.setVisible(false);
-            newCourseTRPage.setVisible(false);
         });
     }
 
@@ -462,7 +547,6 @@ public class Controller implements Initializable {
             newCourseENPage.setVisible(false);
             displayVersionsPage.setVisible(false);
             userManualPage.setVisible(true);
-            newCourseTRPage.setVisible(false);
         });
     } //THE COMPLETION OF THE BUTTONS FUNCTIONALITIES ON THE HOME PAGE
 
@@ -470,44 +554,233 @@ public class Controller implements Initializable {
 
     //to take the data that is entered to the "weekTable" TableView
     private void getDataForWeekTable() {
-        //not to conflict with the previous data
-        for (int i = 0; i < weekTable.getItems().size(); i++) {
-            //all items are taken from the all rows
-            WeeklySubjects selectedItem = weekTable.getItems().get(i);
-            if (selectedItem != null) {
-                WeeklySubjects updatedSubject = new WeeklySubjects(selectedItem);
-                subjectsList.add(updatedSubject);
+        boolean isTableEmpty = true;
+
+        try {
+            for (WeeklySubjects selectedItem : weekTable.getItems()) {
+                if (selectedItem != null) {
+                    // Check if any column in the current row is not empty (considering null as non-empty)
+                    if (selectedItem.getSubjectColumn() != null && !selectedItem.getSubjectColumn().isEmpty() ||
+                            selectedItem.getReqColumn() != null && !selectedItem.getReqColumn().isEmpty()) {
+                        isTableEmpty = false;
+                        break; // Exit the loop if any non-empty cell is found
+                    }
+                }
             }
+
+            if (isTableEmpty) {
+                // Table is completely empty, show a warning
+                Alert notBlank = new Alert(Alert.AlertType.WARNING);
+                notBlank.setTitle("Value Selection");
+                notBlank.setHeaderText("The Week Table is empty. Please enter some data.");
+                notBlank.initModality(Modality.APPLICATION_MODAL);
+                notBlank.showAndWait();
+            } else {
+                // Table is not empty, retrieve data
+                for (WeeklySubjects selectedItem : weekTable.getItems()) {
+                    if (selectedItem != null) {
+                        subjectsList.add(new WeeklySubjects(selectedItem));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // Handle other errors
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText("An error occurred while retrieving data from the Week Table.");
+            errorAlert.setContentText(e.getMessage());
+            errorAlert.initModality(Modality.APPLICATION_MODAL);
+            errorAlert.showAndWait();
         }
     }
+
+
     //to take the data that is entered to the "tableView" TableView
-    private void getDataForAssessmentTable(){
-        for (int i= 0; i<tableView.getItems().size();i++){
-            AssessmentSemAct assessmentSemAct = tableView.getItems().get(i);
-            if(assessmentSemAct != null){
-                assessmentsList.add(assessmentSemAct);
+    private void getDataForAssessmentTable() {
+        boolean isTableEmpty = true;
+
+        try {
+            for (AssessmentSemAct assessmentSemAct : tableView.getItems()) {
+                if (assessmentSemAct != null) {
+                    // Check if any column in the current row is not empty (considering null as non-empty)
+                    if (assessmentSemAct.getNumberColumn() != null && !assessmentSemAct.getNumberColumn().isEmpty() ||
+                            assessmentSemAct.getWeightingColumn() != null && !assessmentSemAct.getWeightingColumn().isEmpty() ||
+                            assessmentSemAct.getL01Column() != null && !assessmentSemAct.getL01Column().isEmpty() ||
+                            assessmentSemAct.getL02Column() != null && !assessmentSemAct.getL02Column().isEmpty() ||
+                            assessmentSemAct.getL03Column() != null && !assessmentSemAct.getL03Column().isEmpty() ||
+                            assessmentSemAct.getL04Column() != null && !assessmentSemAct.getL04Column().isEmpty() ||
+                            assessmentSemAct.getL05Column() != null && !assessmentSemAct.getL05Column().isEmpty() ||
+                            assessmentSemAct.getL06Column() != null && !assessmentSemAct.getL06Column().isEmpty() ||
+                            assessmentSemAct.getL07Column() != null && !assessmentSemAct.getL07Column().isEmpty()) {
+                        isTableEmpty = false;
+                        break; // Exit the loop if any non-empty cell is found
+                    }
+                }
             }
+
+            if (isTableEmpty) {
+                // Table is completely empty, show a warning
+                Alert notBlank = new Alert(Alert.AlertType.WARNING);
+                notBlank.setTitle("Value Selection");
+                notBlank.setHeaderText("The Assessment Table is empty. Please enter some data.");
+                notBlank.initModality(Modality.APPLICATION_MODAL);
+                notBlank.showAndWait();
+            } else {
+                // Table is not empty, retrieve data
+                for (AssessmentSemAct assessmentSemAct : tableView.getItems()) {
+                    if (assessmentSemAct != null) {
+                        assessmentsList.add(assessmentSemAct);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // Handle other errors
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText("An error occurred while retrieving data from the Assessment Table.");
+            errorAlert.setContentText(e.getMessage());
+            errorAlert.initModality(Modality.APPLICATION_MODAL);
+            errorAlert.showAndWait();
         }
     }
+
+
     //to take the data that is entered to the "tableWorkload" TableView
     private void getDataForWorkloadTable(){
-        if (tableWorkload.getItems().size() == 0) {
-            System.out.println("Table is empty.");
-            return;
+        try {
+            boolean isTableEmpty = true;
+
+            for (WorkloadSemAct workloadSemAct : tableWorkload.getItems()) {
+                if (workloadSemAct != null) {
+                    // Check if any column in the current row is not empty
+                    if (workloadSemAct.getNumbColumn() != null && !workloadSemAct.getNumbColumn().isEmpty() ||
+                            workloadSemAct.getDurationColumn() != null && !workloadSemAct.getDurationColumn().isEmpty() ||
+                            workloadSemAct.getWorkloadColumn() != null && !workloadSemAct.getWorkloadColumn().isEmpty()) {
+                        isTableEmpty = false;
+                        break; // Exit the loop if any non-empty cell is found
+                    }
+                }
+            }
+
+            if (isTableEmpty) {
+                // Table is completely empty, show a warning
+                Alert notBlank = new Alert(Alert.AlertType.WARNING);
+                notBlank.setTitle("Value Selection");
+                notBlank.setHeaderText("The Workload Table's all columns cannot be empty.");
+                notBlank.initModality(Modality.APPLICATION_MODAL);
+                notBlank.showAndWait();
+            } else {
+                // Table is not empty, retrieve data
+                for (WorkloadSemAct workloadSemAct : tableWorkload.getItems()) {
+                    if (workloadSemAct != null) {
+                        workloadSemActsList.add(workloadSemAct);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // Handle other errors
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText("An error occurred while processing the Workload Table.");
+            errorAlert.setContentText(e.getMessage());
+            errorAlert.initModality(Modality.APPLICATION_MODAL);
+            errorAlert.showAndWait();
         }
-        for (int i= 0; i<tableWorkload.getItems().size();i++){
-            WorkloadSemAct workloadSemAct = tableWorkload.getItems().get(i);
-            if(workloadSemAct != null){
-                workloadSemActsList.add(workloadSemAct);
+
+    }
+    // to take the data that is entered to the "outcomeTable" TableView
+    private void getDataForOutcomeTable() {
+        boolean isTableEmpty = true;
+
+        try {
+            for (CourseOutcome courseOutcome : outcomeTable.getItems()) {
+                if (courseOutcome != null) {
+                    // Check if any column in the current row is not empty (considering null as non-empty)
+                    if (courseOutcome.getContColumn() != null && !courseOutcome.getContColumn().isEmpty() ||
+                            courseOutcome.getSubContL0() != null && !courseOutcome.getSubContL0().isEmpty()) {
+                        isTableEmpty = false;
+                        break; // Exit the loop if any non-empty cell is found
+                    }
+                }
+            }
+
+            if (isTableEmpty) {
+                // Table is completely empty, show a warning
+                Alert notBlank = new Alert(Alert.AlertType.WARNING);
+                notBlank.setTitle("Value Selection");
+                notBlank.setHeaderText("The Outcome Table is empty. Please enter some data.");
+                notBlank.initModality(Modality.APPLICATION_MODAL);
+                notBlank.showAndWait();
+            } else {
+                // Table is not empty, retrieve data
+                for (CourseOutcome courseOutcome : outcomeTable.getItems()) {
+                    if (courseOutcome != null) {
+                        courseOutcomesList.add(courseOutcome);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // Handle other errors
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText("An error occurred while retrieving data from the Outcome Table.");
+            errorAlert.setContentText(e.getMessage());
+            errorAlert.initModality(Modality.APPLICATION_MODAL);
+            errorAlert.showAndWait();
+        }
+    }
+
+
+
+
+
+    ArrayList<courseInfo> updateCourseInfoList = new ArrayList<>();
+    // to take the data that is entered to the "courseInfoTable" TableView
+    private void getCourseInfoDisplay(){
+        for (int i= 0; i<courseInfoTable.getItems().size();i++){
+            courseInfo courseInfo = courseInfoTable.getItems().get(i);
+            if(courseInfoTable != null){
+                updateCourseInfoList.add(courseInfo);
             }
         }
     }
-    // to take the data that is entered to the "outcomeTable" TableView
-    private void getDataForOutcomeTable(){
-        for (int i= 0; i<outcomeTable.getItems().size();i++){
-            CourseOutcome courseOutcome = outcomeTable.getItems().get(i);
-            if(courseOutcome != null){
-                courseOutcomesList.add(courseOutcome);
+    ArrayList<WeeklySubjects> updateWeeklySubjectsList = new ArrayList<>();
+    // to take the data that is entered to the "weeklyScheduleTable" TableView
+    private void getWeeklySubjectsDisplay(){
+        for (int i= 0; i<weeklyScheduleTable.getItems().size();i++){
+            WeeklySubjects weeklySubjects = weeklyScheduleTable.getItems().get(i);
+            if(weeklyScheduleTable != null){
+                updateWeeklySubjectsList.add(weeklySubjects);
+            }
+        }
+    }
+    ArrayList<AssessmentSemAct> updateAssessmentList = new ArrayList<>();
+    // to take the data that is entered to the "weeklyScheduleTable" TableView
+    private void getAssessmentDisplay(){
+        for (int i= 0; i<assessmentTable.getItems().size();i++){
+            AssessmentSemAct assessmentSemAct = assessmentTable.getItems().get(i);
+            if(assessmentTable != null){
+                updateAssessmentList.add(assessmentSemAct);
+            }
+        }
+    }
+    ArrayList<WorkloadSemAct> updateWorkloadList = new ArrayList<>();
+    // to take the data that is entered to the "workloadTable" TableView
+    private void getWorkloadDisplay(){
+        for (int i= 0; i<workloadTable.getItems().size();i++){
+            WorkloadSemAct workloadSemAct = workloadTable.getItems().get(i);
+            if(workloadTable != null){
+                updateWorkloadList.add(workloadSemAct);
+            }
+        }
+    }
+    ArrayList<CourseOutcome> updateOutcomeList = new ArrayList<>();
+    // to take the data that is entered to the "outcomeTableD" TableView
+    private void getOutcomeDisplay(){
+        for (int i= 0; i<outcomeTableD.getItems().size();i++){
+            CourseOutcome courseOutcome = outcomeTableD.getItems().get(i);
+            if(outcomeTableD != null){
+                updateOutcomeList.add(courseOutcome);
             }
         }
     }//THE COMPLETION OF GETTING DATA ENTERED TO THE TABLEVIEW TABLES
@@ -517,6 +790,7 @@ public class Controller implements Initializable {
 
     //CourseInfo Table
     //According to the Text fields, to add below text fields data.
+    boolean sendCourseInfo = false;
     public void insertCourseInfo() {
         connection = SQLConnection.Connector();
         cName = courseNameField.getText();
@@ -539,13 +813,16 @@ public class Controller implements Initializable {
         reading = readingField.getText();
 
         System.out.println("\nThe pressed key information has been recorded, and String conversion processes have been completed:");
-        convertSemesterValue();
-        convertLanguageValue();
-        convertCourseType();
-        convertLevelType();
-        convertDeliveryType();
-        convertCategoryType();
-
+        try{
+            convertSemesterValue();
+            convertLanguageValue();
+            convertCourseType();
+            convertLevelType();
+            convertDeliveryType();
+            convertCategoryType();
+        }catch (Exception e){
+            courseInfoController.controlBlank();
+        }
         if (courseInfoController.controlBlank()) {
             try {
                 theoryTime = Integer.parseInt(theoryTimeField.getText());
@@ -556,14 +833,20 @@ public class Controller implements Initializable {
                     Alert notBlank = new Alert(Alert.AlertType.WARNING);
                     notBlank.setTitle("Value Selection");
                     notBlank.setHeaderText("The L.Credits and ECTS fields,both,must be a non-zero value.");
+                    savedSuccessfully.setText("Data saving failed, please pay attention to the warnings.");
+                    savedSuccessfully.setTextFill(Color.RED);
                     notBlank.initModality(Modality.APPLICATION_MODAL);
                     notBlank.showAndWait();
+                    sendCourseInfo = false;
                 } else if ((labTime == 0 && theoryTime == 0)) {
                     Alert notBlank = new Alert(Alert.AlertType.WARNING);
                     notBlank.setTitle("Value Selection");
                     notBlank.setHeaderText("At least one of the Lab Hour and Theory Hour must be a non-zero value.");
+                    savedSuccessfully.setText("Data saving failed, please pay attention to the warnings.");
+                    savedSuccessfully.setTextFill(Color.RED);
                     notBlank.initModality(Modality.APPLICATION_MODAL);
                     notBlank.showAndWait();
+                    sendCourseInfo = false;
                 } else {
                     courseInfoController.getQuery(cName, cCode, semester, theoryTime, labTime, credit, courseECTS, prerequisites, languageS, type, teachingMethods, objectives, outcomes, description, category, level, coordinator, lecturers, assistants, reading, textbooks, delivery);
                     courseInfoController.insertTable();
@@ -604,6 +887,9 @@ public class Controller implements Initializable {
                     supportiveCategoryButton.setSelected(false);
                     commCategoryButton.setSelected(false);
                     transferableCategoryButton.setSelected(false);
+                    savedSuccessfully.setText("Data are saved.");
+                    savedSuccessfully.setTextFill(Color.GREEN);
+                    sendCourseInfo = true;
                     courseList.clear();
 
                 }
@@ -621,62 +907,8 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
-
-    //WeeklySchedule Table
-    //According to the WeekNumber, to add the subjects that is entered by the user to the DB.
-//    private void insertWeeklyScheduleSubjectsDB() {
-//        //firstly data are taken.
-//        getDataForWeekTable();
-//        if (!subjectsList.isEmpty()) {
-//            connection = SQLConnection.Connector();
-//            try {
-//                //to update the Subjects column in the WeeklySchedule table.
-//                //CASE WHEN: allows updating based on the week number.
-//                StringBuilder insertQuery = new StringBuilder("UPDATE WeeklySchedule SET Subjects = CASE WeekNumber ");
-//                for (int i = 0; i < subjectsList.size(); i++) {
-//                    /*In the getDataForWeekTable method, all the data entered by the user has been added to the subjectsList list. In this section, each element of
-//                    subjectsList is assigned to a WeeklySubjects object.*/
-//                    WeeklySubjects newSubject = subjectsList.get(i);
-//                    //WHEN WeekColumn --> adding to the relational week number row. And then Subject Column.
-//                    insertQuery.append(" WHEN ").append(newSubject.getWeekColumn()).append(" THEN '").append(newSubject.getSubjectColumn()).append("' ");
-//                }
-//                insertQuery.append(" END WHERE WeekNumber IN (");
-//                for (WeeklySubjects subject : subjectsList) {
-//                    insertQuery.append(subject.getWeekColumn()).append(", ");
-//                }
-//                //to modify the code.
-//                insertQuery.deleteCharAt(insertQuery.length() - 2);
-//                insertQuery.append(")");
-//
-//
-//                preparedStatementForWeeks = connection.prepareStatement(insertQuery.toString());
-//                int result = preparedStatementForWeeks.executeUpdate();
-//
-//                if (result > 0) {
-//                    System.out.println("Data updated successfully for subjectsList column.");
-//                    refreshWeeklySchedule();
-//                    subjectsList.clear();
-//                } else {
-//                    System.out.println("Data failed.");
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            } finally {
-//                {
-//                    try {
-//                        connection.close();
-//                    } catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        } else {
-//            System.out.println("No data updated");
-//        }
-//    }
-
     PreparedStatement preparedStatementWeekly = null;
-
+    boolean sendWeekly = false;
     //According to the WeekNumber, to add the required materials that is entered by the user to the DB.
     private void insertWeeklyScheduleDB() {
         getDataForWeekTable();
@@ -702,25 +934,12 @@ public class Controller implements Initializable {
                 preparedStatement.executeBatch();
                 preparedStatementWeekly.executeBatch();
 
-//                StringBuilder insertQuery = new StringBuilder("UPDATE WeeklySchedule SET RequiredMaterials = CASE WeekNumber ");
-//                for (int i = 0; i < subjectsList.size(); i++) {
-//                    WeeklySubjects newSubject = subjectsList.get(i);
-//                    insertQuery.append(" WHEN ").append(newSubject.getWeekColumn()).append(" THEN '").append(newSubject.getReqColumn()).append("' ");
-//                }
-//                insertQuery.append(" END WHERE WeekNumber IN (");
-//                for (WeeklySubjects subject : subjectsList) {
-//                    insertQuery.append(subject.getWeekColumn()).append(", ");
-//                }
-//                insertQuery.deleteCharAt(insertQuery.length() - 2);
-//                insertQuery.append(")");
-
-                //preparedStatementForWeeks = connection.prepareStatement(insertQuery.toString());
                 if (preparedStatementWeekly.getUpdateCount() > 0) {
                     System.out.println("Data updated successfully for required materials column.");
-                    //refreshWeeklySchedule();
+                    savedSuccessfully.setText("Data are saved.");
+                    savedSuccessfully.setTextFill(Color.GREEN);
+                    sendWeekly = true;
                     subjectsList.clear();
-                } else {
-                    System.out.println("Data failed.");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -734,13 +953,14 @@ public class Controller implements Initializable {
                 }
             }
         } else {
-            System.out.println("No data updated");
+            System.out.println("No data saved.");
+            sendWeekly = false;
         }
     }
 
     //Assessment Table
     //According to the SemesterActivities, to add the Number, Weighting, LO1, LO2, LO3, LO4, LO5, LO6, LO7 that are entered by the user to the DB.
-
+    boolean sendAssessment = false;
     PreparedStatement preparedStatementAssessment = null;
     private void insertAssessmentTable() {
         getDataForAssessmentTable();
@@ -748,6 +968,10 @@ public class Controller implements Initializable {
             connection = SQLConnection.Connector();
             try {
                 String insertAssessment = "INSERT INTO Assessment (SemesterActivities,Number, Weighting, LO1, LO2,LO3,LO4,LO5,LO6,LO7) VALUES (?, ?, ?, ?,?,?,?,?,?,?)";
+                String blank = "INSERT INTO Assessment (SemesterActivities,Number, Weighting) VALUES ('----------------','----------------','----------------')";
+
+                PreparedStatement preparedStatement;
+                preparedStatement = connection.prepareStatement(blank);
 
                 preparedStatementAssessment = connection.prepareStatement(insertAssessment);
 
@@ -769,16 +993,19 @@ public class Controller implements Initializable {
                     //sending queries in bulk instead of individually.
                     preparedStatementAssessment.addBatch();
                 }
+                preparedStatement.addBatch();
+                preparedStatement.executeBatch();
                 preparedStatementAssessment.executeBatch();
 
                 if (preparedStatementAssessment.getUpdateCount() > 0) {
                     System.out.println("Data updated successfully for number column.");
+                    savedSuccessfully.setText("Data are saved.");
+                    savedSuccessfully.setTextFill(Color.GREEN);
+                    sendAssessment = true;
+
                     // refreshWeeklySchedule();
                     assessmentsList.clear();
-                }else {
-                    System.out.println("Data failed.");
-                }
-            } catch (SQLException e) {
+                }} catch (SQLException e) {
                 e.printStackTrace();
             } finally {
                 {
@@ -790,41 +1017,47 @@ public class Controller implements Initializable {
                 }
             }
         } else {
-            System.out.println("No data updated");
+            System.out.println("No data saved");
+            savedSuccessfully.setText("Data saving failed, please pay attention to the warnings.");
+            savedSuccessfully.setTextFill(Color.RED);
         }
     }
 
     //Workload Table
     //According to the SemesterActivities, to add the WorkloadNumber, WorkloadDuration, TotalWorkload that are entered by the user to the DB.
-
+    boolean sendWorkload = false;
     PreparedStatement preparedStatementInsertWorkload = null;
     private void insertWorkLoadTable() {
         getDataForWorkloadTable();
-        if (workloadSemActsList.get(1) != null || workloadSemActsList.get(2) != null ||workloadSemActsList.get(3) != null) {
+        if (!workloadSemActsList.isEmpty()) {
             connection = SQLConnection.Connector();
             try {
                 // INSERT sorgusu oluşturun
                 String insertWorkload = "INSERT INTO WorkloadTable (WorkloadNumber, SemesterActivities, WorkloadDuration, TotalWorkload) VALUES (?, ?, ?, ?)";
+                String blank = "INSERT INTO WorkloadTable (WorkloadNumber, SemesterActivities, WorkloadDuration) VALUES ('----------------','----------------','----------------')";
+
+                PreparedStatement preparedStatement;
+                preparedStatement = connection.prepareStatement(blank);
+
                 preparedStatementInsertWorkload = connection.prepareStatement(insertWorkload);
 
                 for (WorkloadSemAct workloadSemAct : workloadSemActsList) {
-                    // Her bir nesne için değerleri ayarla
                     preparedStatementInsertWorkload.setString(1, workloadSemAct.getNumbColumn());
                     preparedStatementInsertWorkload.setString(2, workloadSemAct.getSemesterActColumn());
                     preparedStatementInsertWorkload.setString(3, workloadSemAct.getDurationColumn());
                     preparedStatementInsertWorkload.setString(4, workloadSemAct.getWorkloadColumn());
 
-                    // Teker teker eklemek yerine toplu işleme ekle
                     preparedStatementInsertWorkload.addBatch();
                 }
+                preparedStatement.addBatch();
+                preparedStatement.executeBatch();
 
-                // Toplu işlemeyi çalıştır
                 preparedStatementInsertWorkload.executeBatch();
 
-                // Başarı mesajı göster
                 System.out.println("Data successfully inserted into WorkloadTable.");
+                savedSuccessfully.setTextFill(Color.GREEN);
+                sendWorkload = true;
 
-                // Temizleme gerekli değil, yeni veriler eklendi
                 workloadSemActsList.clear();
 
             } catch (SQLException e) {
@@ -839,22 +1072,27 @@ public class Controller implements Initializable {
                 }
             }
         } else {
-            System.out.println("No data to insert");
+            System.out.println("No data saved");
+            savedSuccessfully.setText("Data saving failed, please pay attention to the warnings.");
+            savedSuccessfully.setTextFill(Color.RED);
+            sendWorkload = false;
         }
     }
     //OutcomeMatrix Table
     //According to the ProgramOutcomes, to add the ContributionLevel, LO that are entered by the user to the DB.
 
     PreparedStatement preparedStatementOutcome = null;
-
+    boolean sendOutcome = false;
     private void insertOutcomeTable() {
         getDataForOutcomeTable();
-        if (!courseOutcomes.isEmpty()) {
+        if (!courseOutcomesList.isEmpty()) {
             connection = SQLConnection.Connector();
             try {
-
                 String insertOutcome = "INSERT INTO OutcomeMatrix ('#', ProgramOutcomes, ContributionLevel, LO) VALUES (?, ?, ?, ?)";
+                String blank = "INSERT INTO OutcomeMatrix ('#', ProgramOutcomes, ContributionLevel) VALUES ('----------------','----------------','----------------')";
 
+                PreparedStatement preparedStatement;
+                preparedStatement = connection.prepareStatement(blank);
 
                 preparedStatementOutcome = connection.prepareStatement(insertOutcome);
 
@@ -869,14 +1107,16 @@ public class Controller implements Initializable {
                     //sending queries in bulk instead of individually.
                     preparedStatementOutcome.addBatch();
                 }
+                preparedStatement.addBatch();
+                preparedStatement.executeBatch();
+
                 preparedStatementOutcome.executeBatch();
 
-                if (preparedStatementOutcome.getUpdateCount() > 0) {
+                if(preparedStatementOutcome.executeUpdate()>0){
                     System.out.println("Data updated successfully for contribution level number column for OutcomeMatrix table.");
-                    // refreshWeeklySchedule();
+                    savedSuccessfully.setText("Data are saved.");
+                    sendOutcome = true;
                     courseOutcomesList.clear();
-                }else {
-                    System.out.println("Data failed.");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -890,7 +1130,10 @@ public class Controller implements Initializable {
                 }
             }
         } else {
-            System.out.println("No data updated");
+            System.out.println("No data saved");
+            savedSuccessfully.setText("Data saving failed, please pay attention to the warnings.");
+            savedSuccessfully.setTextFill(Color.RED);
+            sendOutcome = false;
         }
     } // COMPLETION TO INSERTING THE DATABASE HELPING WITH THE GET DATA METHODS
 
@@ -901,41 +1144,41 @@ public class Controller implements Initializable {
         //to refresh the tables in the database
         Connection connection = SQLConnection.Connector();
         try {
-                queryCourseInfo = "SELECT * FROM 'CourseInfo'";
-                //to prepare the SQLite query
-                preparedStatementCourseInfo = connection.prepareStatement(queryCourseInfo);
-                //to run the sqlite query above
-                resultSetCourseInfo = preparedStatementCourseInfo.executeQuery();
+            queryCourseInfo = "SELECT * FROM 'CourseInfo'";
+            //to prepare the SQLite query
+            preparedStatementCourseInfo = connection.prepareStatement(queryCourseInfo);
+            //to run the sqlite query above
+            resultSetCourseInfo = preparedStatementCourseInfo.executeQuery();
 
-                while (resultSetCourseInfo.next()) {
-                    //to create a new courseInfo object according to the data by the user
-                    courseList.add(new courseInfo(resultSetCourseInfo.getString("CourseID"),
-                            resultSetCourseInfo.getString("CourseName"),
-                            resultSetCourseInfo.getInt("CourseSemester"),
-                            resultSetCourseInfo.getInt("TheoryTime"),
-                            resultSetCourseInfo.getInt("LabTime"),
-                            resultSetCourseInfo.getInt("CourseCredit"),
-                            resultSetCourseInfo.getInt("CourseECTS"),
-                            resultSetCourseInfo.getString("Prerequisites"),
-                            resultSetCourseInfo.getInt("CourseLanguage"),
-                            resultSetCourseInfo.getInt("CourseType"),
-                            resultSetCourseInfo.getString("TeachingMethods"),
-                            resultSetCourseInfo.getString("CourseObj"),
-                            resultSetCourseInfo.getString("Outcomes"),
-                            resultSetCourseInfo.getString("CourseDesc"),
-                            resultSetCourseInfo.getInt("CourseCategory"),
-                            resultSetCourseInfo.getInt("CourseLevel"),
-                            resultSetCourseInfo.getString("CourseCoordinator"),
-                            resultSetCourseInfo.getString("CourseLecturer"),
-                            resultSetCourseInfo.getString("Assistant"),
-                            resultSetCourseInfo.getString("ReadingInfo"),
-                            resultSetCourseInfo.getString("TextbookInfo"),
-                            resultSetCourseInfo.getInt("Delivery")
-                    ));
-                    //To update the elements of the courseInfoTable with the data received from courseList.
-                    courseInfoTable.setItems(courseList);
+            while (resultSetCourseInfo.next()) {
+                //to create a new courseInfo object according to the data by the user
+                courseList.add(new courseInfo(resultSetCourseInfo.getString("CourseID"),
+                        resultSetCourseInfo.getString("CourseName"),
+                        resultSetCourseInfo.getString("CourseSemester"),
+                        resultSetCourseInfo.getInt("TheoryTime"),
+                        resultSetCourseInfo.getInt("LabTime"),
+                        resultSetCourseInfo.getInt("CourseCredit"),
+                        resultSetCourseInfo.getInt("CourseECTS"),
+                        resultSetCourseInfo.getString("Prerequisites"),
+                        resultSetCourseInfo.getString("CourseLanguage"),
+                        resultSetCourseInfo.getString("CourseType"),
+                        resultSetCourseInfo.getString("TeachingMethods"),
+                        resultSetCourseInfo.getString("CourseObj"),
+                        resultSetCourseInfo.getString("Outcomes"),
+                        resultSetCourseInfo.getString("CourseDesc"),
+                        resultSetCourseInfo.getString("CourseCategory"),
+                        resultSetCourseInfo.getString("CourseLevel"),
+                        resultSetCourseInfo.getString("CourseCoordinator"),
+                        resultSetCourseInfo.getString("CourseLecturer"),
+                        resultSetCourseInfo.getString("Assistant"),
+                        resultSetCourseInfo.getString("ReadingInfo"),
+                        resultSetCourseInfo.getString("TextbookInfo"),
+                        resultSetCourseInfo.getString("Delivery")
+                ));
+                //To update the elements of the courseInfoTable with the data received from courseList.
+                courseInfoTable.setItems(courseList);
 
-                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
             Alert notBlank = new Alert(Alert.AlertType.WARNING);
@@ -1120,17 +1363,198 @@ public class Controller implements Initializable {
         }
     }
 
+    //*** UPDATE FUNCTIONS ON THE DISPLAY SCREEN
+
+    //To update CourseInfo table
+    PreparedStatement preparedStatementUpdateCourseInfo;
+    public void updateCourseInfo(){
+        getCourseInfoDisplay();
+        String updateCourseInfo = "REPLACE INTO CourseInfo (CourseID,CourseName, CourseSemester,TheoryTime,LabTime,CourseCredit,CourseECTS,Prerequisites,CourseLanguage,CourseType,TeachingMethods,CourseObj,Outcomes,CourseDesc,CourseCategory,CourseLevel,CourseCoordinator,CourseLecturer,Assistant,ReadingInfo,TextbookInfo,Delivery) VALUES  (?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ? ,?,?, ?, ?, ?, ?, ? , ?,?)";
+        connection = SQLConnection.Connector();
+        try {
+            preparedStatementUpdateCourseInfo = connection.prepareStatement(updateCourseInfo);
+            for(courseInfo courseInfo : updateCourseInfoList){
+                preparedStatementUpdateCourseInfo.setString(1, courseInfo.getCourseCode());  // Set CourseID for the WHERE clause
+                preparedStatementUpdateCourseInfo.setString(2, courseInfo.getCourseName());
+                preparedStatementUpdateCourseInfo.setString(3, courseInfo.getCourseSemester());
+                preparedStatementUpdateCourseInfo.setInt(4, courseInfo.getTheoryTime());
+                preparedStatementUpdateCourseInfo.setInt(5, courseInfo.getLabTime());
+                preparedStatementUpdateCourseInfo.setInt(6, courseInfo.getCourseCredit());
+                preparedStatementUpdateCourseInfo.setInt(7, courseInfo.getCourseECTS());
+                preparedStatementUpdateCourseInfo.setString(8, courseInfo.getPrerequisites());
+                preparedStatementUpdateCourseInfo.setString(9, String.valueOf(courseInfo.getCourseLang()));
+                preparedStatementUpdateCourseInfo.setString(10, String.valueOf(courseInfo.getCourseType()));
+                preparedStatementUpdateCourseInfo.setString(11, courseInfo.getTeachingMethods());
+                preparedStatementUpdateCourseInfo.setString(12, courseInfo.getCourseObj());
+                preparedStatementUpdateCourseInfo.setString(13, courseInfo.getOutcomes());
+                preparedStatementUpdateCourseInfo.setString(14, courseInfo.getCourseDesc());
+                preparedStatementUpdateCourseInfo.setString(15, String.valueOf(courseInfo.getCourseCategory()));
+                preparedStatementUpdateCourseInfo.setString(16, String.valueOf(courseInfo.getCourseLevel()));
+                preparedStatementUpdateCourseInfo.setString(17, courseInfo.getCourseCoordinator());
+                preparedStatementUpdateCourseInfo.setString(18, courseInfo.getCourseLecturer());
+                preparedStatementUpdateCourseInfo.setString(19, courseInfo.getAssistant());
+                preparedStatementUpdateCourseInfo.setString(20, courseInfo.getReading());
+                preparedStatementUpdateCourseInfo.setString(21, courseInfo.getTextbook());
+                preparedStatementUpdateCourseInfo.setString(22, String.valueOf(courseInfo.getDelivery()));
+
+                preparedStatementUpdateCourseInfo.executeUpdate();
+
+            }
+            courseList.clear();
+            refreshTable();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    //To update CourseInfo table
+    PreparedStatement preparedStatementUpdateWeeklySchedule;
+    public void updateWeeklySchedule(){
+        getWeeklySubjectsDisplay();
+
+        String updateWeeklySchedule = "REPLACE INTO WeeklySchedule (WeekNumber, Subjects, RequiredMaterials) VALUES (?, ?, ?)";
+        connection = SQLConnection.Connector();
+
+        try {
+            preparedStatementUpdateWeeklySchedule = connection.prepareStatement(updateWeeklySchedule);
+            for(WeeklySubjects weeklySubjects : updateWeeklySubjectsList){
+                preparedStatementUpdateWeeklySchedule.setString(1, weeklySubjects.getWeekColumn());
+                preparedStatementUpdateWeeklySchedule.setString(2, weeklySubjects.getSubjectColumn());
+                preparedStatementUpdateWeeklySchedule.setString(3, weeklySubjects.getReqColumn());
+
+                preparedStatementUpdateWeeklySchedule.executeUpdate();
+
+            }
+            updateWeeklySubjectsList.clear();
+            refreshWeeklySchedule();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    //To update Assessment table
+    PreparedStatement preparedStatementUpdateAssessment;
+    public void updateAssessment(){
+        getAssessmentDisplay();
+        String updateAssessment = "REPLACE INTO Assessment (SemesterActivities, Number, Weighting, LO1, LO2, LO3, LO4, LO5, LO6, LO7) VALUES (?, ?, ?,?,?,?,?,?,?,?)";
+        connection = SQLConnection.Connector();
+        try {
+            preparedStatementUpdateAssessment = connection.prepareStatement(updateAssessment);
+            for(AssessmentSemAct assessmentSemAct :updateAssessmentList){
+                preparedStatementUpdateAssessment.setString(1, assessmentSemAct.getSemesterActivitiesColumn());
+                preparedStatementUpdateAssessment.setString(2, assessmentSemAct.getNumberColumn());
+                preparedStatementUpdateAssessment.setString(3, assessmentSemAct.getWeightingColumn());
+                preparedStatementUpdateAssessment.setString(4, assessmentSemAct.getL01Column());
+                preparedStatementUpdateAssessment.setString(5, assessmentSemAct.getL02Column());
+                preparedStatementUpdateAssessment.setString(6, assessmentSemAct.getL03Column());
+                preparedStatementUpdateAssessment.setString(7, assessmentSemAct.getL04Column());
+                preparedStatementUpdateAssessment.setString(8, assessmentSemAct.getL05Column());
+                preparedStatementUpdateAssessment.setString(9, assessmentSemAct.getL06Column());
+                preparedStatementUpdateAssessment.setString(10, assessmentSemAct.getL07Column());
+
+                preparedStatementUpdateAssessment.executeUpdate();
+
+            }
+            updateAssessmentList.clear();
+
+            refreshAssessment();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //To update WorkloadTable table
+    PreparedStatement preparedStatementUpdateWorkload;
+    public void updateWorkload(){
+        getWorkloadDisplay();
+        String updateWorkload = "REPLACE INTO WorkloadTable (SemesterActivities, WorkloadNumber, WorkloadDuration, TotalWorkload) VALUES (?, ?, ?, ?)";
+        connection = SQLConnection.Connector();
+        try {
+            preparedStatementUpdateWorkload = connection.prepareStatement(updateWorkload);
+            for(WorkloadSemAct workloadSemAct :updateWorkloadList){
+                preparedStatementUpdateWorkload.setString(1, workloadSemAct.getSemesterActColumn());
+                preparedStatementUpdateWorkload.setString(2, workloadSemAct.getNumbColumn());
+                preparedStatementUpdateWorkload.setString(3, workloadSemAct.getDurationColumn());
+                preparedStatementUpdateWorkload.setString(4, workloadSemAct.getWorkloadColumn());
+
+                preparedStatementUpdateWorkload.executeUpdate();
+
+            }
+            updateWorkloadList.clear();
+
+            refreshWorkload();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //To update OutcomeMatrix table
+    PreparedStatement preparedStatementUpdateOutcome;
+    public void updateOutcome(){
+        getOutcomeDisplay();
+        String updateOutcome = "REPLACE INTO OutcomeMatrix ('#', ProgramOutcomes, ContributionLevel, LO) VALUES (?, ?, ?, ?)";
+        connection = SQLConnection.Connector();
+        try {
+            preparedStatementUpdateOutcome = connection.prepareStatement(updateOutcome);
+            for(CourseOutcome courseOutcome :updateOutcomeList){
+                preparedStatementUpdateOutcome.setString(1, courseOutcome.getSharpColumn());
+                preparedStatementUpdateOutcome.setString(2, courseOutcome.getOutcomeColumn());
+                preparedStatementUpdateOutcome.setString(3, courseOutcome.getContColumn());
+                preparedStatementUpdateOutcome.setString(4, courseOutcome.getSubContL0());
+
+                preparedStatementUpdateOutcome.executeUpdate();
+
+            }
+            updateOutcomeList.clear();
+
+            refreshOutcome();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 
 
     // COMPLETION REFRESH METHODS IN THE DISPLAY VERSIONS PAGE
 
-
     //*** FOR ORGANIZATION OF THE RADIO BUTTONS, HANDLE AND CONVERT METHODS
     @FXML
     public String handleCourseFallSemButton() {
         if (courseFallSemButton.isSelected()) {
-            semesterValue = 1;
+            semesterValue = "1";
             System.out.println("Clicked fall semester button.");
         }
         return "Fall";
@@ -1139,7 +1563,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleCourseSpringSemButton() {
         if (courseSpringSemButton.isSelected()) {
-            semesterValue = 2;
+            semesterValue = "2";
             System.out.println("Clicked spring semester button.");
         }
         return "Spring";
@@ -1148,7 +1572,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleTurkishButton() {
         if (turkishLangButton.isSelected()) {
-            languageValue = 1;
+            languageValue = "1";
             System.out.println("Clicked Turkish language button.");
         }
         return "Turkish";
@@ -1157,7 +1581,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleEnglishButton() {
         if (englishLangButton.isSelected()) {
-            languageValue = 2;
+            languageValue = "2";
             System.out.println("Clicked English language button.");
         }
         return "English";
@@ -1166,7 +1590,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleSecondLButton() {
         if (secondLangButton.isSelected()) {
-            languageValue = 3;
+            languageValue = "3";
             System.out.println("Clicked Second language button.");
         }
         return "Second Foreign Language";
@@ -1175,7 +1599,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleRequiredButton() {
         if (requiredTypeButton.isSelected()) {
-            courseType = 1;
+            courseType = "1";
             System.out.println("Clicked required course type button.");
         }
         return "Required";
@@ -1184,7 +1608,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleElectiveButton() {
         if (electiveTypeButton.isSelected()) {
-            courseType = 2;
+            courseType = "2";
             System.out.println("Clicked elective course type button.");
         }
         return "Elective";
@@ -1193,7 +1617,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleShortButton() {
         if (shortCycleButton.isSelected()) {
-            levelType = 1;
+            levelType = "1";
             System.out.println("Clicked Short Cycle button.");
         }
         return "Short Cycle";
@@ -1202,7 +1626,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleFirstButton() {
         if (firstCycleButton.isSelected()) {
-            levelType = 2;
+            levelType = "2";
             System.out.println("Clicked First Cycle button.");
         }
         return "First Cycle";
@@ -1211,7 +1635,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleSecondButton() {
         if (secondCycleButton.isSelected()) {
-            levelType = 3;
+            levelType = "3";
             System.out.println("Clicked Second Cycle button.");
         }
         return "Second Cycle";
@@ -1220,7 +1644,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleThirdButton() {
         if (thirdCycleButton.isSelected()) {
-            levelType = 4;
+            levelType = "4";
             System.out.println("Clicked Third Cycle button.");
         }
         return "Third Cycle";
@@ -1229,7 +1653,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleF2FButton() {
         if (f2fDel.isSelected()) {
-            deliveryType = 1;
+            deliveryType = "1";
             System.out.println("Clicked Face-to-Face button.");
         }
         return "Face-to-Face";
@@ -1238,7 +1662,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleOnlineButton() {
         if (onlineDel.isSelected()) {
-            deliveryType = 2;
+            deliveryType = "2";
             System.out.println("Clicked Online button.");
         }
         return "Online";
@@ -1247,7 +1671,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleBlendedButton() {
         if (blendedDel.isSelected()) {
-            deliveryType = 3;
+            deliveryType = "3";
             System.out.println("Clicked Blended button.");
         }
         return "Blended";
@@ -1256,7 +1680,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleCoreButton() {
         if (coreCategoryButton.isSelected()) {
-            categoryType = 1;
+            categoryType = "1";
             System.out.println("Clicked Core Course button.");
         }
         return "Core Course";
@@ -1265,7 +1689,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleMajorButton() {
         if (majorAreaCategoryButton.isSelected()) {
-            categoryType = 2;
+            categoryType = "2";
             System.out.println("Clicked Major Area Course button.");
         }
         return "Major Area Course";
@@ -1274,7 +1698,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleSupportiveButton() {
         if (supportiveCategoryButton.isSelected()) {
-            categoryType = 3;
+            categoryType = "3";
             System.out.println("Clicked Supportive Course button.");
         }
         return "Supportive Course";
@@ -1283,7 +1707,7 @@ public class Controller implements Initializable {
     @FXML
     public String handleCommButton() {
         if (commCategoryButton.isSelected()) {
-            categoryType = 4;
+            categoryType = "4";
             System.out.println("Clicked Communication and Management Skills Course button.");
         }
         return "Communication and Management Skills Course";
@@ -1293,79 +1717,81 @@ public class Controller implements Initializable {
     @FXML
     public String handleTransferableButton() {
         if (transferableCategoryButton.isSelected()) {
-            categoryType = 5;
+            categoryType = "5";
             System.out.println("Clicked Transferable Skill Course button.");
         }
         return "Transferable Skill Course";
     }
 
     public void convertSemesterValue() {
-        if (semesterValue == 1) {
-            semester = handleCourseFallSemButton();
-        } else if (semesterValue == 2) {
-            semester = handleCourseSpringSemButton();
-        }
+
+            if (semesterValue.equals("1")) {
+                semester = handleCourseFallSemButton();
+            } else if (semesterValue.equals("2")) {
+                semester = handleCourseSpringSemButton();
+            }
+
     }
 
     public void convertLanguageValue() {
-        if (languageValue == 1) {
-            languageS = handleTurkishButton();
-        } else if (languageValue == 2) {
-            languageS = handleEnglishButton();
-        } else if (languageValue == 3) {
-            languageS = handleSecondLButton();
-        }
+
+            switch (languageValue) {
+                case "1" -> languageS = handleTurkishButton();
+                case "2" -> languageS = handleEnglishButton();
+                case "3" -> languageS = handleSecondLButton();
+            }
+
     }
 
     public void convertCourseType() {
-        if (courseType == 1) {
-            type = handleRequiredButton();
-        } else if (courseType == 2) {
-            type = handleElectiveButton();
-        }
+
+            if (courseType.equals("1")) {
+                type = handleRequiredButton();
+            } else if (courseType.equals("2")) {
+                type = handleElectiveButton();
+            }
+
     }
 
     public void convertLevelType() {
-        if (levelType == 1) {
-            level = handleShortButton();
-        } else if (levelType == 2) {
-            level = handleFirstButton();
-        } else if (levelType == 3) {
-            level = handleSecondButton();
-        } else if (levelType == 4) {
-            level = handleThirdButton();
-        }
+            switch (levelType) {
+                case "1" -> level = handleShortButton();
+                case "2" -> level = handleFirstButton();
+                case "3" -> level = handleSecondButton();
+                case "4" -> level = handleThirdButton();
+            }
+
+
     }
 
     public void convertDeliveryType() {
-        if (deliveryType == 1) {
-            delivery = handleF2FButton();
-        } else if (deliveryType == 2) {
-            delivery = handleOnlineButton();
-        } else if (deliveryType == 3) {
-            delivery = handleBlendedButton();
-        }
+            switch (deliveryType) {
+                case "1" -> delivery = handleF2FButton();
+                case "2" -> delivery = handleOnlineButton();
+                case "3" -> delivery = handleBlendedButton();
+            }
+
+
     }
 
     public void convertCategoryType() {
-        if (categoryType == 1) {
-            category = handleCoreButton();
-        } else if (categoryType == 2) {
-            category = handleMajorButton();
-        } else if (categoryType == 3) {
-            category = handleSupportiveButton();
-        } else if (categoryType == 4) {
-            category = handleCommButton();
-        } else if (categoryType == 5) {
-            category = handleTransferableButton();
-        }
+            switch (categoryType) {
+                case "1" -> category = handleCoreButton();
+                case "2" -> category = handleMajorButton();
+                case "3" -> category = handleSupportiveButton();
+                case "4" -> category = handleCommButton();
+                case "5" -> category = handleTransferableButton();
+            }
+
+
     }// COMPLETION RADIO BUTTONS ORGANIZATION METHODS
+
 
 
     //*** HELPER METHODS FOR EDITABLE WEEK TABLES IN THE COURSE PAGE
     /* Methods to be able to edit the corresponding columns of Week table */
     public void changeSubjectCellEvent(TableColumn.CellEditEvent editedCell) {
-        selectedItem = weekTable.getSelectionModel().getSelectedItem();
+        WeeklySubjects selectedItem = weekTable.getSelectionModel().getSelectedItem();
         selectedItem.setSubjectColumn(editedCell.getNewValue().toString());
     }
 
@@ -1457,7 +1883,7 @@ public class Controller implements Initializable {
     }
     public void onSemester(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
-        selectedCell.setCourseSemester(Integer.parseInt(editedCell.getNewValue().toString()));
+        selectedCell.setCourseSemester(editedCell.getNewValue().toString());
     }
     public void onTheoryTime(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
@@ -1481,19 +1907,19 @@ public class Controller implements Initializable {
     }
     public void onLanguage(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
-        selectedCell.setCourseLang(Integer.parseInt(editedCell.getNewValue().toString()));
+        selectedCell.setCourseLang(editedCell.getNewValue().toString());
     }
     public void onType(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
-        selectedCell.setCourseType(Integer.parseInt(editedCell.getNewValue().toString()));
+        selectedCell.setCourseType(editedCell.getNewValue().toString());
     }
     public void onCourseLevel(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
-        selectedCell.setCourseLevel(Integer.parseInt(editedCell.getNewValue().toString()));
+        selectedCell.setCourseLevel(editedCell.getNewValue().toString());
     }
     public void onDelivery(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
-        selectedCell.setDelivery(Integer.parseInt(editedCell.getNewValue().toString()));
+        selectedCell.setDelivery(editedCell.getNewValue().toString());
     }
     public void onMethods(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
@@ -1525,7 +1951,7 @@ public class Controller implements Initializable {
     }
     public void onCategory(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
-        selectedCell.setCourseCategory(Integer.parseInt(editedCell.getNewValue().toString()));
+        selectedCell.setCourseCategory(editedCell.getNewValue().toString());
     }
     public void onTextbook(TableColumn.CellEditEvent editedCell) {
         courseInfo selectedCell = courseInfoTable.getSelectionModel().getSelectedItem();
@@ -1638,34 +2064,60 @@ public class Controller implements Initializable {
 
 
 
-
-
-
     //COMPLETION OF HELPER METHODS
 
     //SAVE TO THE DATABASE BUTTON
     @FXML
     public void save() {
-        //for Subjects column is WeeklySchedule table
-        //insertWeeklyScheduleSubjectsDB();
-        //for Required Materials column is WeeklySchedule table
-        insertWeeklyScheduleDB();
-        refreshWeeklySchedule();
-        insertAssessmentTable();
-        refreshAssessment();
-        insertWorkLoadTable();
-        refreshWorkload();
-        insertOutcomeTable();
-        refreshOutcome();
-        insertCourseInfo();
-        refreshTable();
+            // Save all tables to the database
+            insertCourseInfo();
+            refreshTable();
+            insertWeeklyScheduleDB();
+            refreshWeeklySchedule();
+            insertAssessmentTable();
+            refreshAssessment();
+            insertWorkLoadTable();
+            refreshWorkload();
+            insertOutcomeTable();
+            refreshOutcome();
 
-        //to refresh the screen
-        weekTableInitializer();
-        assessmentTableInitializer();
-        workloadTableInitializer();
-        outcomeTableInitializer();
+            // Refresh the screen
+            weekTableInitializer();
+            assessmentTableInitializer();
+            workloadTableInitializer();
+            outcomeTableInitializer();
+        }
 
+
+    // Helper method to check if a table is empty
+    private boolean isTableEmpty(TableView<?> tableView) {
+        return tableView.getItems().isEmpty();
+    }
+
+    @FXML
+    public void updateCourseInfoAction(){
+        updateCourseInfo();
+        updateCourseInfoB.setText("Updated.");
+    }
+    @FXML
+    public void updateWeeklyScheduleAction(){
+        updateWeeklySchedule();
+        updateWeeklyScheduleB.setText("Updated.");
+    }
+    @FXML
+    public void updateAssessmentAction(){
+        updateAssessment();
+        updateAssessmentB.setText("Updated.");
+    }
+    @FXML
+    public void updateWorkloadAction(){
+        updateWorkload();
+        updateWorkloadB.setText("Updated.");
+    }
+    @FXML
+    public void updateOutcomeAction(){
+        updateOutcome();
+        updateOutcomeB.setText("Updated.");
     }
 }
 
